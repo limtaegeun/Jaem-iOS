@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */; };
+		AFFBBC181C9FFB3A00879BDC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC171C9FFB3A00879BDC /* FirstViewController.swift */; };
+		AFFBBC1A1C9FFB3A00879BDC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC191C9FFB3A00879BDC /* SecondViewController.swift */; };
+		AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFFBBC1B1C9FFB3A00879BDC /* Main.storyboard */; };
+		AFFBBC1F1C9FFB3A00879BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */; };
+		AFFBBC221C9FFB3A00879BDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */; };
+		AFFBBC2D1C9FFB3A00879BDC /* Jaem_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC2C1C9FFB3A00879BDC /* Jaem_iOSTests.swift */; };
+		AFFBBC381C9FFB3B00879BDC /* Jaem_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC371C9FFB3B00879BDC /* Jaem_iOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFFBBC291C9FFB3A00879BDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFFBBC0A1C9FFB3A00879BDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFFBBC111C9FFB3A00879BDC;
+			remoteInfo = "Jaem-iOS";
+		};
+		AFFBBC341C9FFB3B00879BDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFFBBC0A1C9FFB3A00879BDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFFBBC111C9FFB3A00879BDC;
+			remoteInfo = "Jaem-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AFFBBC121C9FFB3A00879BDC /* Jaem-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jaem-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AFFBBC171C9FFB3A00879BDC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		AFFBBC191C9FFB3A00879BDC /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		AFFBBC1C1C9FFB3A00879BDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AFFBBC211C9FFB3A00879BDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AFFBBC231C9FFB3A00879BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFFBBC281C9FFB3A00879BDC /* Jaem-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jaem-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFFBBC2C1C9FFB3A00879BDC /* Jaem_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jaem_iOSTests.swift; sourceTree = "<group>"; };
+		AFFBBC2E1C9FFB3A00879BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFFBBC331C9FFB3B00879BDC /* Jaem-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jaem-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFFBBC371C9FFB3B00879BDC /* Jaem_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jaem_iOSUITests.swift; sourceTree = "<group>"; };
+		AFFBBC391C9FFB3B00879BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFFBBC0F1C9FFB3A00879BDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFBBC251C9FFB3A00879BDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFBBC301C9FFB3B00879BDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AFFBBC091C9FFB3A00879BDC = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC141C9FFB3A00879BDC /* Jaem-iOS */,
+				AFFBBC2B1C9FFB3A00879BDC /* Jaem-iOSTests */,
+				AFFBBC361C9FFB3B00879BDC /* Jaem-iOSUITests */,
+				AFFBBC131C9FFB3A00879BDC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AFFBBC131C9FFB3A00879BDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC121C9FFB3A00879BDC /* Jaem-iOS.app */,
+				AFFBBC281C9FFB3A00879BDC /* Jaem-iOSTests.xctest */,
+				AFFBBC331C9FFB3B00879BDC /* Jaem-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AFFBBC141C9FFB3A00879BDC /* Jaem-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */,
+				AFFBBC171C9FFB3A00879BDC /* FirstViewController.swift */,
+				AFFBBC191C9FFB3A00879BDC /* SecondViewController.swift */,
+				AFFBBC1B1C9FFB3A00879BDC /* Main.storyboard */,
+				AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */,
+				AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */,
+				AFFBBC231C9FFB3A00879BDC /* Info.plist */,
+			);
+			path = "Jaem-iOS";
+			sourceTree = "<group>";
+		};
+		AFFBBC2B1C9FFB3A00879BDC /* Jaem-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC2C1C9FFB3A00879BDC /* Jaem_iOSTests.swift */,
+				AFFBBC2E1C9FFB3A00879BDC /* Info.plist */,
+			);
+			path = "Jaem-iOSTests";
+			sourceTree = "<group>";
+		};
+		AFFBBC361C9FFB3B00879BDC /* Jaem-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC371C9FFB3B00879BDC /* Jaem_iOSUITests.swift */,
+				AFFBBC391C9FFB3B00879BDC /* Info.plist */,
+			);
+			path = "Jaem-iOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFFBBC111C9FFB3A00879BDC /* Jaem-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFFBBC3C1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOS" */;
+			buildPhases = (
+				AFFBBC0E1C9FFB3A00879BDC /* Sources */,
+				AFFBBC0F1C9FFB3A00879BDC /* Frameworks */,
+				AFFBBC101C9FFB3A00879BDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Jaem-iOS";
+			productName = "Jaem-iOS";
+			productReference = AFFBBC121C9FFB3A00879BDC /* Jaem-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AFFBBC271C9FFB3A00879BDC /* Jaem-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFFBBC3F1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSTests" */;
+			buildPhases = (
+				AFFBBC241C9FFB3A00879BDC /* Sources */,
+				AFFBBC251C9FFB3A00879BDC /* Frameworks */,
+				AFFBBC261C9FFB3A00879BDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFFBBC2A1C9FFB3A00879BDC /* PBXTargetDependency */,
+			);
+			name = "Jaem-iOSTests";
+			productName = "Jaem-iOSTests";
+			productReference = AFFBBC281C9FFB3A00879BDC /* Jaem-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AFFBBC321C9FFB3B00879BDC /* Jaem-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFFBBC421C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSUITests" */;
+			buildPhases = (
+				AFFBBC2F1C9FFB3B00879BDC /* Sources */,
+				AFFBBC301C9FFB3B00879BDC /* Frameworks */,
+				AFFBBC311C9FFB3B00879BDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFFBBC351C9FFB3B00879BDC /* PBXTargetDependency */,
+			);
+			name = "Jaem-iOSUITests";
+			productName = "Jaem-iOSUITests";
+			productReference = AFFBBC331C9FFB3B00879BDC /* Jaem-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFFBBC0A1C9FFB3A00879BDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = whataday;
+				TargetAttributes = {
+					AFFBBC111C9FFB3A00879BDC = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					AFFBBC271C9FFB3A00879BDC = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = AFFBBC111C9FFB3A00879BDC;
+					};
+					AFFBBC321C9FFB3B00879BDC = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = AFFBBC111C9FFB3A00879BDC;
+					};
+				};
+			};
+			buildConfigurationList = AFFBBC0D1C9FFB3A00879BDC /* Build configuration list for PBXProject "Jaem-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFFBBC091C9FFB3A00879BDC;
+			productRefGroup = AFFBBC131C9FFB3A00879BDC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFFBBC111C9FFB3A00879BDC /* Jaem-iOS */,
+				AFFBBC271C9FFB3A00879BDC /* Jaem-iOSTests */,
+				AFFBBC321C9FFB3B00879BDC /* Jaem-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFFBBC101C9FFB3A00879BDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFBBC221C9FFB3A00879BDC /* LaunchScreen.storyboard in Resources */,
+				AFFBBC1F1C9FFB3A00879BDC /* Assets.xcassets in Resources */,
+				AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFBBC261C9FFB3A00879BDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFBBC311C9FFB3B00879BDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFFBBC0E1C9FFB3A00879BDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFBBC1A1C9FFB3A00879BDC /* SecondViewController.swift in Sources */,
+				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
+				AFFBBC181C9FFB3A00879BDC /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFBBC241C9FFB3A00879BDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFBBC2D1C9FFB3A00879BDC /* Jaem_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFBBC2F1C9FFB3B00879BDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFBBC381C9FFB3B00879BDC /* Jaem_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFFBBC2A1C9FFB3A00879BDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFFBBC111C9FFB3A00879BDC /* Jaem-iOS */;
+			targetProxy = AFFBBC291C9FFB3A00879BDC /* PBXContainerItemProxy */;
+		};
+		AFFBBC351C9FFB3B00879BDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFFBBC111C9FFB3A00879BDC /* Jaem-iOS */;
+			targetProxy = AFFBBC341C9FFB3B00879BDC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AFFBBC1B1C9FFB3A00879BDC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFFBBC1C1C9FFB3A00879BDC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFFBBC211C9FFB3A00879BDC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AFFBBC3A1C9FFB3B00879BDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AFFBBC3B1C9FFB3B00879BDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFFBBC3D1C9FFB3B00879BDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AFFBBC3E1C9FFB3B00879BDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AFFBBC401C9FFB3B00879BDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Jaem-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jaem-iOS.app/Jaem-iOS";
+			};
+			name = Debug;
+		};
+		AFFBBC411C9FFB3B00879BDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Jaem-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jaem-iOS.app/Jaem-iOS";
+			};
+			name = Release;
+		};
+		AFFBBC431C9FFB3B00879BDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Jaem-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Jaem-iOS";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		AFFBBC441C9FFB3B00879BDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Jaem-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Jaem-iOS";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFFBBC0D1C9FFB3A00879BDC /* Build configuration list for PBXProject "Jaem-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFBBC3A1C9FFB3B00879BDC /* Debug */,
+				AFFBBC3B1C9FFB3B00879BDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFFBBC3C1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFBBC3D1C9FFB3B00879BDC /* Debug */,
+				AFFBBC3E1C9FFB3B00879BDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AFFBBC3F1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFBBC401C9FFB3B00879BDC /* Debug */,
+				AFFBBC411C9FFB3B00879BDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AFFBBC421C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFBBC431C9FFB3B00879BDC /* Debug */,
+				AFFBBC441C9FFB3B00879BDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFFBBC0A1C9FFB3A00879BDC /* Project object */;
+}
