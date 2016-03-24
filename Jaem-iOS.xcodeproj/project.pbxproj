@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		322017136EBEB07E8052F320 /* Pods_Jaem_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A24E8CEB6D11A268BA7F138 /* Pods_Jaem_iOSUITests.framework */; };
+		AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */; };
+		AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */; };
+		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
+		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
+		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
 		AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */; };
-		AFFBBC181C9FFB3A00879BDC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC171C9FFB3A00879BDC /* FirstViewController.swift */; };
-		AFFBBC1A1C9FFB3A00879BDC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC191C9FFB3A00879BDC /* SecondViewController.swift */; };
 		AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFFBBC1B1C9FFB3A00879BDC /* Main.storyboard */; };
 		AFFBBC1F1C9FFB3A00879BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */; };
 		AFFBBC221C9FFB3A00879BDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */; };
 		AFFBBC2D1C9FFB3A00879BDC /* Jaem_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC2C1C9FFB3A00879BDC /* Jaem_iOSTests.swift */; };
 		AFFBBC381C9FFB3B00879BDC /* Jaem_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC371C9FFB3B00879BDC /* Jaem_iOSUITests.swift */; };
+		AFFBBC4A1CA0017A00879BDC /* BTDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC481CA0017A00879BDC /* BTDiscovery.swift */; };
+		AFFBBC4B1CA0017A00879BDC /* BTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC491CA0017A00879BDC /* BTService.swift */; };
+		AFFBBC4E1CA002B800879BDC /* CardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */; };
+		AFFBBC501CA0064100879BDC /* JaemStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC4F1CA0064100879BDC /* JaemStoryboardSegue.swift */; };
+		AFFBBC531CA0241400879BDC /* CardStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC521CA0241400879BDC /* CardStackLayout.swift */; };
+		DA8B6FCA5298D7E35EF4AD92 /* Pods_Jaem_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D62D7BD77463E772A5A093E /* Pods_Jaem_iOS.framework */; };
+		F9E3180A5D50BC163343F750 /* Pods_Jaem_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC17E93F1E010033BC2969B /* Pods_Jaem_iOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +46,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D857276982C7F56A6EB67B3 /* Pods-Jaem-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOS/Pods-Jaem-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		28F80882EDE64E626DF33F60 /* Pods-Jaem-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOS/Pods-Jaem-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		2BC17E93F1E010033BC2969B /* Pods_Jaem_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jaem_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A63F2BCB54EF1D9DBFF509E /* Pods-Jaem-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSTests/Pods-Jaem-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A24E8CEB6D11A268BA7F138 /* Pods_Jaem_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jaem_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D62D7BD77463E772A5A093E /* Pods_Jaem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jaem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABF2B82440C3607470BB397C /* Pods-Jaem-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSUITests/Pods-Jaem-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BodyViewController.swift; path = Controller/BodyViewController.swift; sourceTree = "<group>"; };
+		AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosetViewController.swift; path = Controller/ClosetViewController.swift; sourceTree = "<group>"; };
+		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
+		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
+		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
 		AFFBBC121C9FFB3A00879BDC /* Jaem-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jaem-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AFFBBC171C9FFB3A00879BDC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		AFFBBC191C9FFB3A00879BDC /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		AFFBBC1C1C9FFB3A00879BDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFFBBC211C9FFB3A00879BDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +70,13 @@
 		AFFBBC331C9FFB3B00879BDC /* Jaem-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jaem-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFBBC371C9FFB3B00879BDC /* Jaem_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jaem_iOSUITests.swift; sourceTree = "<group>"; };
 		AFFBBC391C9FFB3B00879BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFFBBC481CA0017A00879BDC /* BTDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTDiscovery.swift; sourceTree = "<group>"; };
+		AFFBBC491CA0017A00879BDC /* BTService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTService.swift; sourceTree = "<group>"; };
+		AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackViewController.swift; sourceTree = "<group>"; };
+		AFFBBC4F1CA0064100879BDC /* JaemStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemStoryboardSegue.swift; sourceTree = "<group>"; };
+		AFFBBC521CA0241400879BDC /* CardStackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackLayout.swift; path = Layout/CardStackLayout.swift; sourceTree = "<group>"; };
+		B400C6ED59FACD37EC06F2FF /* Pods-Jaem-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSUITests/Pods-Jaem-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F7474B1AF025322DEF59CF31 /* Pods-Jaem-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSTests/Pods-Jaem-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA8B6FCA5298D7E35EF4AD92 /* Pods_Jaem_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E3180A5D50BC163343F750 /* Pods_Jaem_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +100,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322017136EBEB07E8052F320 /* Pods_Jaem_iOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AFC24B311CA252C7002FA07B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AFC24B321CA2533D002FA07B /* CardStackCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		AFC24B341CA2CF40002FA07B /* StyleKit */ = {
+			isa = PBXGroup;
+			children = (
+				AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */,
+			);
+			path = StyleKit;
+			sourceTree = "<group>";
+		};
 		AFFBBC091C9FFB3A00879BDC = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +130,8 @@
 				AFFBBC2B1C9FFB3A00879BDC /* Jaem-iOSTests */,
 				AFFBBC361C9FFB3B00879BDC /* Jaem-iOSUITests */,
 				AFFBBC131C9FFB3A00879BDC /* Products */,
+				DB31C9015B7AD01CD13BB5E1 /* Pods */,
+				B721BB2ACDB11362C00B3547 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +148,12 @@
 		AFFBBC141C9FFB3A00879BDC /* Jaem-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AFC24B341CA2CF40002FA07B /* StyleKit */,
+				AFFBBC511CA023DA00879BDC /* Layout */,
+				AFFBBC471CA0017A00879BDC /* Model */,
+				AFFBBC461CA0012200879BDC /* View */,
+				AFFBBC451CA0010E00879BDC /* Controller */,
 				AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */,
-				AFFBBC171C9FFB3A00879BDC /* FirstViewController.swift */,
-				AFFBBC191C9FFB3A00879BDC /* SecondViewController.swift */,
 				AFFBBC1B1C9FFB3A00879BDC /* Main.storyboard */,
 				AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */,
 				AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */,
@@ -128,6 +180,74 @@
 			path = "Jaem-iOSUITests";
 			sourceTree = "<group>";
 		};
+		AFFBBC451CA0010E00879BDC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */,
+				AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */,
+				AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AFFBBC461CA0012200879BDC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AFC24B311CA252C7002FA07B /* Cell */,
+				AFC24B371CA2D064002FA07B /* CardStackIcon.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AFFBBC471CA0017A00879BDC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC4C1CA0019900879BDC /* BLE */,
+				AFFBBC4F1CA0064100879BDC /* JaemStoryboardSegue.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AFFBBC4C1CA0019900879BDC /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC481CA0017A00879BDC /* BTDiscovery.swift */,
+				AFFBBC491CA0017A00879BDC /* BTService.swift */,
+			);
+			name = BLE;
+			sourceTree = "<group>";
+		};
+		AFFBBC511CA023DA00879BDC /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBBC521CA0241400879BDC /* CardStackLayout.swift */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		B721BB2ACDB11362C00B3547 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D62D7BD77463E772A5A093E /* Pods_Jaem_iOS.framework */,
+				2BC17E93F1E010033BC2969B /* Pods_Jaem_iOSTests.framework */,
+				7A24E8CEB6D11A268BA7F138 /* Pods_Jaem_iOSUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB31C9015B7AD01CD13BB5E1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D857276982C7F56A6EB67B3 /* Pods-Jaem-iOS.debug.xcconfig */,
+				28F80882EDE64E626DF33F60 /* Pods-Jaem-iOS.release.xcconfig */,
+				6A63F2BCB54EF1D9DBFF509E /* Pods-Jaem-iOSTests.debug.xcconfig */,
+				F7474B1AF025322DEF59CF31 /* Pods-Jaem-iOSTests.release.xcconfig */,
+				B400C6ED59FACD37EC06F2FF /* Pods-Jaem-iOSUITests.debug.xcconfig */,
+				ABF2B82440C3607470BB397C /* Pods-Jaem-iOSUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +255,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFFBBC3C1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOS" */;
 			buildPhases = (
+				757BF04A8C10392A6C3740C4 /* Check Pods Manifest.lock */,
 				AFFBBC0E1C9FFB3A00879BDC /* Sources */,
 				AFFBBC0F1C9FFB3A00879BDC /* Frameworks */,
 				AFFBBC101C9FFB3A00879BDC /* Resources */,
+				6BE3966C157067DD4754DA72 /* Embed Pods Frameworks */,
+				655985825CA4E266232CD995 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +275,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFFBBC3F1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSTests" */;
 			buildPhases = (
+				861B6CEE39B9DA365ADFB686 /* Check Pods Manifest.lock */,
 				AFFBBC241C9FFB3A00879BDC /* Sources */,
 				AFFBBC251C9FFB3A00879BDC /* Frameworks */,
 				AFFBBC261C9FFB3A00879BDC /* Resources */,
+				3758545B4A3D8025543F519A /* Embed Pods Frameworks */,
+				EE7469831C60573F28F215CD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +296,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFFBBC421C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSUITests" */;
 			buildPhases = (
+				089B857CA1F9C4EF70F7E53D /* Check Pods Manifest.lock */,
 				AFFBBC2F1C9FFB3B00879BDC /* Sources */,
 				AFFBBC301C9FFB3B00879BDC /* Frameworks */,
 				AFFBBC311C9FFB3B00879BDC /* Resources */,
+				4DC60F39505E85B9E4A2DF25 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,14 +382,145 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		089B857CA1F9C4EF70F7E53D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3758545B4A3D8025543F519A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jaem-iOSTests/Pods-Jaem-iOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DC60F39505E85B9E4A2DF25 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jaem-iOSUITests/Pods-Jaem-iOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		655985825CA4E266232CD995 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jaem-iOS/Pods-Jaem-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BE3966C157067DD4754DA72 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jaem-iOS/Pods-Jaem-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		757BF04A8C10392A6C3740C4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		861B6CEE39B9DA365ADFB686 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EE7469831C60573F28F215CD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jaem-iOSTests/Pods-Jaem-iOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AFFBBC0E1C9FFB3A00879BDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFFBBC1A1C9FFB3A00879BDC /* SecondViewController.swift in Sources */,
+				AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */,
+				AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */,
+				AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */,
+				AFFBBC4E1CA002B800879BDC /* CardStackViewController.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
-				AFFBBC181C9FFB3A00879BDC /* FirstViewController.swift in Sources */,
+				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
+				AFFBBC501CA0064100879BDC /* JaemStoryboardSegue.swift in Sources */,
+				AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */,
+				AFFBBC4B1CA0017A00879BDC /* BTService.swift in Sources */,
+				AFFBBC4A1CA0017A00879BDC /* BTDiscovery.swift in Sources */,
+				AFFBBC531CA0241400879BDC /* CardStackLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +658,7 @@
 		};
 		AFFBBC3D1C9FFB3B00879BDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D857276982C7F56A6EB67B3 /* Pods-Jaem-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
@@ -410,6 +670,7 @@
 		};
 		AFFBBC3E1C9FFB3B00879BDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28F80882EDE64E626DF33F60 /* Pods-Jaem-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
@@ -421,6 +682,7 @@
 		};
 		AFFBBC401C9FFB3B00879BDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A63F2BCB54EF1D9DBFF509E /* Pods-Jaem-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Jaem-iOSTests/Info.plist";
@@ -433,6 +695,7 @@
 		};
 		AFFBBC411C9FFB3B00879BDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7474B1AF025322DEF59CF31 /* Pods-Jaem-iOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Jaem-iOSTests/Info.plist";
@@ -445,6 +708,7 @@
 		};
 		AFFBBC431C9FFB3B00879BDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B400C6ED59FACD37EC06F2FF /* Pods-Jaem-iOSUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Jaem-iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -457,6 +721,7 @@
 		};
 		AFFBBC441C9FFB3B00879BDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABF2B82440C3607470BB397C /* Pods-Jaem-iOSUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Jaem-iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -486,6 +751,7 @@
 				AFFBBC3E1C9FFB3B00879BDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFFBBC3F1C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +760,7 @@
 				AFFBBC411C9FFB3B00879BDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFFBBC421C9FFB3B00879BDC /* Build configuration list for PBXNativeTarget "Jaem-iOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +769,7 @@
 				AFFBBC441C9FFB3B00879BDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
