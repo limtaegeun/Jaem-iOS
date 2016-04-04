@@ -10,8 +10,8 @@ import Foundation
 import CoreBluetooth
 
 /* Services & Characteristics UUIDs */
-let BLEServiceUUID = CBUUID(string: "025A7775-49AA-42BD-BBDB-E2AE77782966")
-let PositionCharUUID = CBUUID(string: "F38A2C23-BC54-40FC-BED0-60EDDA139F47")
+let DeviceInfoUUID = CBUUID(string: "180A")
+let CUST1_SVC_UUID_128 = CBUUID(string: "EDFEC62E-9910-0BAC-5241-D8BDA6932A2F")
 let BLEServiceChangedStatusNotification = "kBLEServiceChangedStatusNotification"
 
 class BTService: NSObject, CBPeripheralDelegate {
@@ -30,7 +30,7 @@ class BTService: NSObject, CBPeripheralDelegate {
   }
   
   func startDiscoveringServices() {
-    self.peripheral?.discoverServices([BLEServiceUUID])
+    self.peripheral?.discoverServices([DeviceInfoUUID])
   }
   
   func reset() {
@@ -45,7 +45,7 @@ class BTService: NSObject, CBPeripheralDelegate {
   // Mark: - CBPeripheralDelegate
   
   func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
-    let uuidsForBTService: [CBUUID] = [PositionCharUUID]
+    let uuidsForBTService: [CBUUID] = [DeviceInfoUUID]
     
     if (peripheral != self.peripheral) {
       // Wrong Peripheral
@@ -62,7 +62,7 @@ class BTService: NSObject, CBPeripheralDelegate {
     }
     
     for service in peripheral.services! {
-      if service.UUID == BLEServiceUUID {
+      if service.UUID == DeviceInfoUUID {
         peripheral.discoverCharacteristics(uuidsForBTService, forService: service)
       }
     }
@@ -80,7 +80,7 @@ class BTService: NSObject, CBPeripheralDelegate {
     
     if let characteristics = service.characteristics {
       for characteristic in characteristics {
-        if characteristic.UUID == PositionCharUUID {
+        if characteristic.UUID == DeviceInfoUUID {
           self.positionCharacteristic = (characteristic)
           peripheral.setNotifyValue(true, forCharacteristic: characteristic)
           

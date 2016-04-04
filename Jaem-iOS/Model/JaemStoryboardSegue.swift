@@ -23,7 +23,6 @@ class JaemStoryboardSegue: UIStoryboardSegue {
         
         tabBarController.currentViewController = destinationController
         tabBarController.placeholderView.addSubview(destinationController.view)
-        tabBarController.naviBar = destinationController.navigationBar
         
         tabBarController.placeholderView.translatesAutoresizingMaskIntoConstraints = false
         destinationController.view.translatesAutoresizingMaskIntoConstraints = false

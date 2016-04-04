@@ -11,36 +11,24 @@ import UIKit
 class CardStackCell: UICollectionViewCell {
     
     var cardView : UIView!
+    var layerColor : String?
     
     @IBOutlet weak var dragIconView: UIView!
+    @IBOutlet weak var title: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        /*
-        cardView = UIView(frame: CGRectMake(0.0, 0.0, UIScreen.mainScreen().bounds.width, frame.height))
-        cardView.backgroundColor = self.getRandomColor()
-        cardView.layer.cornerRadius = 10.0
-        cardView.clipsToBounds = true
-        self.contentView.addSubview(cardView)
-        
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOffset = CGSize(width: 0, height: -2)
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 10.0).CGPath
-        self.clipsToBounds = false
-*/
+        print("awakeFromNib")
+    
     }
     
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         print("applylayout")
-        /*
-        cardView.frame = frame
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 10.0).CGPath
-*/
+        
         
         cardView = UIView(frame: CGRectMake(5.0, 0.0, frame.width - (2 * 5) , frame.height))
-        cardView.backgroundColor = self.getRandomColor()
+        cardView.backgroundColor = UIColor.clearColor()
         cardView.layer.cornerRadius = 10.0
         cardView.clipsToBounds = true
         self.contentView.insertSubview(cardView, belowSubview: dragIconView)
@@ -55,10 +43,5 @@ class CardStackCell: UICollectionViewCell {
     }
     
     
-    func getRandomColor() -> UIColor{
-        let randomRed:CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max)
-        let randomGreen:CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max)
-        let randomBlue:CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max)
-        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-    }
+    
 }
