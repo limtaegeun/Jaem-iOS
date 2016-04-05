@@ -90,21 +90,32 @@ class BodyViewController: UIViewController {
         return set
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "GoMeasure" {
+            
+        }
+        
+        
     }
-    */
+    
     
     //MARK: - Action
     
     
     @IBAction func tapMeasureButton(sender: AnyObject) {
         performSegueWithIdentifier("GoMeasure", sender: self)
+        /*
+        let navi = MeasureNaviController()
+        let rootVC = self.view.window?.rootViewController as! CardStackViewController
+        rootVC.presentViewController(navi, animated: true, completion: nil)
+        */
+        
         
     }
 

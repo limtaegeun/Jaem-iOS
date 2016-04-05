@@ -32,7 +32,9 @@ class AdditionInfoViewController: UIViewController {
         
         
         setPickerView()
+        setDatePickerView()
         
+        birthTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -105,7 +107,21 @@ class AdditionInfoViewController: UIViewController {
         datePicker = UIDatePicker()
         
         if let picker = self.datePicker {
+            picker.sizeToFit()
+            picker.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+            picker.datePickerMode = .Date
+            birthTextField.inputView = picker
             
+            let toolbar = UIToolbar()
+            toolbar.barStyle = UIBarStyle.Default
+            toolbar.translucent = true
+            toolbar.tintColor = nil
+            toolbar.sizeToFit()
+            
+            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(AdditionInfoViewController.dismissPicker) )
+            toolbar.setItems([doneButton], animated: false)
+            
+            birthTextField.inputAccessoryView = toolbar
         }
     }
     func dismissPicker() {
@@ -131,7 +147,14 @@ class AdditionInfoViewController: UIViewController {
             picker?.reloadAllComponents()
             picker?.selectRow(presentHeightRow, inComponent: 0, animated: true)
             
-            heightTextField.text = " \(indexs[presentHeightRow])"
+            
+            //set init value
+            let pickerString = "\(indexs[presentHeightRow])CM"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
+            
+            attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
+            
+            heightTextField.attributedText = attributeString
             //self.DataToSend["gender"] = indexs[presentGenderPickerRow]
             
         }
@@ -140,7 +163,12 @@ class AdditionInfoViewController: UIViewController {
             picker?.reloadAllComponents()
             picker?.selectRow(presentWeightRow, inComponent: 0, animated: true)
             
-            weightTextField.text = "\(indexs[presentWeightRow])"
+            let pickerString = "\(indexs[presentWeightRow])KG"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
+            
+            attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
+            
+            weightTextField.attributedText = attributeString
             //self.DataToSend["age"] =  "\(ages[presentAgePickerRow])"
             
             
@@ -168,6 +196,19 @@ extension AdditionInfoViewController : UITextFieldDelegate , UIPickerViewDelegat
         return true
     }
     
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField == birthTextField {
+            // change birth nsdate to string
+            let birthNSDate = datePicker?.date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = " MMM'.' dd yyyy"
+            let birthString = dateFormatter.stringFromDate(birthNSDate!)
+            
+            birthTextField.text = birthString
+            
+        }
+    }
+    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if heightTextField.isFirstResponder() {
             return "\(indexs[row])"
@@ -182,13 +223,25 @@ extension AdditionInfoViewController : UITextFieldDelegate , UIPickerViewDelegat
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if heightTextField.isFirstResponder() {
-            heightTextField.text = "\(indexs[row])"
+            //get value of pickerView
+            let pickerString = "\(indexs[row])CM"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
+            
+            attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
+            
+            heightTextField.attributedText = attributeString
             //self.DataToSend["gender"] = genders[row]
             presentHeightRow = row
             checkData()
         }
         else {
-            weightTextField.text = "\(indexs[row])"
+            //get value of pickerView
+            let pickerString = "\(indexs[row])KG"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
+            
+            attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
+            
+            weightTextField.attributedText = attributeString
             //self.DataToSend["age"] =  "\(indexs[row])"
             presentWeightRow = row
             checkData()

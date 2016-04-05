@@ -23,6 +23,9 @@
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
 		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
+		AFC3589A1CB3E60D00A0CB1E /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC358991CB3E60D00A0CB1E /* NavigationControllerDelegate.swift */; };
+		AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */; };
+		AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */; };
 		AFDD17E11CA9779C005AF8BC /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */; };
 		AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */; };
 		AFDD17E51CAA649B005AF8BC /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */; };
@@ -85,6 +88,9 @@
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
 		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
+		AFC358991CB3E60D00A0CB1E /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationControllerDelegate.swift; path = Controller/NavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleTransitionAnimationController.swift; path = Controller/CircleTransitionAnimationController.swift; sourceTree = "<group>"; };
+		AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureNaviController.swift; path = Controller/MeasureNaviController.swift; sourceTree = "<group>"; };
 		AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureViewController.swift; path = Controller/MeasureViewController.swift; sourceTree = "<group>"; };
 		AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionViewController.swift; path = Controller/ConnectionViewController.swift; sourceTree = "<group>"; };
 		AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListTableViewController.swift; path = Controller/DeviceListTableViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +168,16 @@
 			path = StyleKit;
 			sourceTree = "<group>";
 		};
+		AFC3589B1CB3E74300A0CB1E /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				AFC358991CB3E60D00A0CB1E /* NavigationControllerDelegate.swift */,
+				AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */,
+				AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */,
+			);
+			name = Transition;
+			sourceTree = "<group>";
+		};
 		AFFBBC091C9FFB3A00879BDC = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +239,7 @@
 		AFFBBC451CA0010E00879BDC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AFC3589B1CB3E74300A0CB1E /* Transition */,
 				AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */,
 				AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */,
 				AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */,
@@ -574,7 +591,9 @@
 				AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */,
 				AFFBBC4E1CA002B800879BDC /* CardStackViewController.swift in Sources */,
 				AF63ADDA1CAF9E1E00029E77 /* LoginViewController.swift in Sources */,
+				AFC3589A1CB3E60D00A0CB1E /* NavigationControllerDelegate.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
+				AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */,
 				AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */,
 				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
@@ -583,6 +602,7 @@
 				AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */,
 				AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */,
 				AFF70E161CAC111200E869A6 /* RulerView.swift in Sources */,
+				AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */,
 				AF63ADE21CB00A6000029E77 /* FindPasswordViewController.swift in Sources */,
 				AFFBBC4B1CA0017A00879BDC /* BTService.swift in Sources */,
 				AFFBBC4A1CA0017A00879BDC /* BTDiscovery.swift in Sources */,
