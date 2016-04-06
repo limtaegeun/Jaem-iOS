@@ -21,11 +21,11 @@ class CircleTransitionAnimationController: NSObject, UIViewControllerAnimatedTra
         
         var containerView = transitionContext.containerView()
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as 
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         
-        containerView?.addSubview(toViewController!.view)
+        containerView!.addSubview(toViewController!.view)
         
-        var circleMaskPathInithal = UIBezierPath(ovalInRect: <#T##CGRect#>)
+        //var circleMaskPathInithal = UIBezierPath(ovalInRect: <#T##CGRect#>)
         
         
         
