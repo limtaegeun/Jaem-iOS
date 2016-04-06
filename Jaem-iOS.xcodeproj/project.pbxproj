@@ -26,6 +26,7 @@
 		AFC3589A1CB3E60D00A0CB1E /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC358991CB3E60D00A0CB1E /* NavigationControllerDelegate.swift */; };
 		AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */; };
 		AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */; };
+		AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */; };
 		AFDD17E11CA9779C005AF8BC /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */; };
 		AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */; };
 		AFDD17E51CAA649B005AF8BC /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */; };
@@ -41,8 +42,6 @@
 		AFFBBC381C9FFB3B00879BDC /* Jaem_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC371C9FFB3B00879BDC /* Jaem_iOSUITests.swift */; };
 		AFFBBC4A1CA0017A00879BDC /* BTDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC481CA0017A00879BDC /* BTDiscovery.swift */; };
 		AFFBBC4B1CA0017A00879BDC /* BTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC491CA0017A00879BDC /* BTService.swift */; };
-		AFFBBC4E1CA002B800879BDC /* CardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */; };
-		AFFBBC501CA0064100879BDC /* JaemStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC4F1CA0064100879BDC /* JaemStoryboardSegue.swift */; };
 		AFFBBC531CA0241400879BDC /* CardStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFBBC521CA0241400879BDC /* CardStackLayout.swift */; };
 		DA8B6FCA5298D7E35EF4AD92 /* Pods_Jaem_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D62D7BD77463E772A5A093E /* Pods_Jaem_iOS.framework */; };
 		F9E3180A5D50BC163343F750 /* Pods_Jaem_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC17E93F1E010033BC2969B /* Pods_Jaem_iOSTests.framework */; };
@@ -91,6 +90,7 @@
 		AFC358991CB3E60D00A0CB1E /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationControllerDelegate.swift; path = Controller/NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleTransitionAnimationController.swift; path = Controller/CircleTransitionAnimationController.swift; sourceTree = "<group>"; };
 		AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureNaviController.swift; path = Controller/MeasureNaviController.swift; sourceTree = "<group>"; };
+		AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardTabBarController.swift; path = Controller/CardTabBarController.swift; sourceTree = "<group>"; };
 		AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureViewController.swift; path = Controller/MeasureViewController.swift; sourceTree = "<group>"; };
 		AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionViewController.swift; path = Controller/ConnectionViewController.swift; sourceTree = "<group>"; };
 		AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListTableViewController.swift; path = Controller/DeviceListTableViewController.swift; sourceTree = "<group>"; };
@@ -112,8 +112,6 @@
 		AFFBBC391C9FFB3B00879BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFFBBC481CA0017A00879BDC /* BTDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTDiscovery.swift; sourceTree = "<group>"; };
 		AFFBBC491CA0017A00879BDC /* BTService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTService.swift; sourceTree = "<group>"; };
-		AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackViewController.swift; sourceTree = "<group>"; };
-		AFFBBC4F1CA0064100879BDC /* JaemStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemStoryboardSegue.swift; sourceTree = "<group>"; };
 		AFFBBC521CA0241400879BDC /* CardStackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackLayout.swift; path = Layout/CardStackLayout.swift; sourceTree = "<group>"; };
 		B400C6ED59FACD37EC06F2FF /* Pods-Jaem-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSUITests/Pods-Jaem-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7474B1AF025322DEF59CF31 /* Pods-Jaem-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSTests/Pods-Jaem-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				AFC3589B1CB3E74300A0CB1E /* Transition */,
-				AFFBBC4D1CA002B800879BDC /* CardStackViewController.swift */,
+				AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */,
 				AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */,
 				AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */,
 				AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */,
@@ -271,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				AFFBBC4C1CA0019900879BDC /* BLE */,
-				AFFBBC4F1CA0064100879BDC /* JaemStoryboardSegue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -581,6 +578,7 @@
 			files = (
 				AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */,
 				AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */,
+				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
 				AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */,
 				AFF70E121CABA5FA00E869A6 /* MeasureStepCell.swift in Sources */,
@@ -589,7 +587,6 @@
 				AF4DCD9B1CA40C8700E5CC15 /* SizeDataCell.swift in Sources */,
 				AFF70E141CABAC0D00E869A6 /* MeasureContainerViewController.swift in Sources */,
 				AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */,
-				AFFBBC4E1CA002B800879BDC /* CardStackViewController.swift in Sources */,
 				AF63ADDA1CAF9E1E00029E77 /* LoginViewController.swift in Sources */,
 				AFC3589A1CB3E60D00A0CB1E /* NavigationControllerDelegate.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
@@ -598,7 +595,6 @@
 				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
 				AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */,
-				AFFBBC501CA0064100879BDC /* JaemStoryboardSegue.swift in Sources */,
 				AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */,
 				AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */,
 				AFF70E161CAC111200E869A6 /* RulerView.swift in Sources */,

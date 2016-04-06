@@ -8,6 +8,27 @@
 
 import UIKit
 
-class CircleTransitionAnimationController: NSObject {
+class CircleTransitionAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    weak var circleTransitionContext : UIViewControllerContextTransitioning?
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+        return 0.5
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        circleTransitionContext = transitionContext
+        
+        var containerView = transitionContext.containerView()
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as 
+        
+        containerView?.addSubview(toViewController!.view)
+        
+        var circleMaskPathInithal = UIBezierPath(ovalInRect: <#T##CGRect#>)
+        
+        
+        
+    }
 
 }

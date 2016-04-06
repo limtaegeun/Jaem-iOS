@@ -1,46 +1,42 @@
 //
-//  CardStackViewController.swift
+//  CardTabBarController.swift
 //  Jaem-iOS
 //
-//  Created by 임태근 on 2016. 3. 21..
+//  Created by 임태근 on 2016. 4. 5..
 //  Copyright © 2016년 whataday. All rights reserved.
 //
 
 import UIKit
+
 
 struct Card {
     var title : String
     var color : String
 }
 
-class CardStackViewController: UIViewController {
+class CardTabBarController: UITabBarController {
 
-    var currentViewController: UIViewController?
-    @IBOutlet var placeholderView: UIView!
-    @IBOutlet weak var CardStackView: UICollectionView!
-    var cardIsExpanded : Bool!  // true : expanded  , false : folded
+    var cardStackView : UICollectionView!
     
     var cardData : [Card]!
+    var cardIsExpanded : Bool!  // true : expanded  , false : folded
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         //fold Tabbarbutton
         cardIsExpanded = false
         
-        //collectionView delegate
-        CardStackView.delegate = self
-        CardStackView.dataSource = self
-        
-        //segue to first Tab VC
-        let firstIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        performSegueWithIdentifier("GoMyBody", sender: CardStackView.cellForItemAtIndexPath(firstIndexPath))
-        
+        //setcollectionview
+        setCollectionView()
         //gesture Recognizer
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(CardStackViewController.panning(_:)))
-        self.CardStackView.addGestureRecognizer(panGestureRecognizer)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CardStackViewController.tapping(_:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(CardTabBarController.panning(_:)))
+        panGestureRecognizer.delegate = self
+        self.cardStackView.addGestureRecognizer(panGestureRecognizer)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CardTabBarController.tapping(_:)))
+        tapGestureRecognizer.delegate = self
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
         //set card
@@ -53,14 +49,33 @@ class CardStackViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        cardStackView.frame =  CGRectMake(0, view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)        
     }
     
-    override func viewDidLayoutSubviews() {
-        CardStackView.frame = CGRectMake(0, view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)
+    func setCollectionView() {
+        cardStackView = UICollectionView(frame: CGRectMake(0, view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8), collectionViewLayout: CardStackLayout())
+        cardStackView.delegate = self
+        cardStackView.dataSource = self
+        cardStackView.registerClass(CardStackCell.self, forCellWithReuseIdentifier: "CardStackCell")
+        cardStackView.backgroundColor = UIColor.clearColor()
+        cardStackView.reloadData()
+        cardStackView.userInteractionEnabled = true
+        view.addSubview(cardStackView)
+        
+        
         
     }
     
-    //MARK: Setting
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
     
     func setCard() -> [Card] {
         var cardSet = [Card]()
@@ -92,13 +107,13 @@ class CardStackViewController: UIViewController {
     func tapping(recognizer: UITapGestureRecognizer) {
         let location = recognizer.locationInView(view)
         
-        if CGRectContainsPoint(CardStackView.frame, location) {
+        if CGRectContainsPoint(cardStackView.frame, location) {
             if cardIsExpanded == false {
                 UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     
-                    self.CardStackView.frame = CGRectMake(0, self.view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 2 * CardStackLayoutConstant.Cell().visibleCellHeight - 8 , self.view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)
+                    self.cardStackView.frame = CGRectMake(0, self.view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 2 * CardStackLayoutConstant.Cell().visibleCellHeight - 8 , self.view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)
                     
-
+                    
                     
                     self.cardIsExpanded = true
                     
@@ -108,7 +123,7 @@ class CardStackViewController: UIViewController {
             if cardIsExpanded == true {
                 UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     
-                    self.CardStackView.frame = CGRectMake(0, self.view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , self.view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)
+                    self.cardStackView.frame = CGRectMake(0, self.view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , self.view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)
                     self.cardIsExpanded = false
                     
                     }, completion: nil)
@@ -119,7 +134,11 @@ class CardStackViewController: UIViewController {
     func panning(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translationInView(view)
         
-        recognizer.view?.center = CGPoint(x: recognizer.view!.center.x, y: recognizer.view!.center.y + translation.y)
+        let actualHeight = CardStackLayoutConstant.Cell().actualCellHeight
+        let visibleHeight = CardStackLayoutConstant.Cell().visibleCellHeight
+        
+        recognizer.view?.center = CGPoint(x: recognizer.view!.center.x,
+                                          y: max(recognizer.view!.center.y + translation.y, view.frame.height - ((visibleHeight*2 + actualHeight + 8)/2 - visibleHeight*3) ))
         recognizer.setTranslation(CGPoint(x: 0, y: 0), inView: view)
         
         if recognizer.state == .Ended {
@@ -133,19 +152,19 @@ class CardStackViewController: UIViewController {
                     self.cardIsExpanded = false
                 }
                 }, completion: nil)
-        
+            
         }
         
     }
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     
 
-    
 }
 
-extension CardStackViewController : UICollectionViewDelegate, UICollectionViewDataSource , UIGestureRecognizerDelegate{
+extension CardTabBarController : UICollectionViewDelegate, UICollectionViewDataSource , UIGestureRecognizerDelegate{
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -157,8 +176,19 @@ extension CardStackViewController : UICollectionViewDelegate, UICollectionViewDa
         cell.title.text = cardData[indexPath.row].title
         cell.cardView.backgroundColor = getColor(cardData[indexPath.row].color)
         
+        if indexPath.row != 0 {
+            cell.dragIconView.hidden = true
+        }
+        
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        print("select \(indexPath.row)")
+        self.selectedIndex = indexPath.row
+    }
+    
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         
@@ -166,19 +196,23 @@ extension CardStackViewController : UICollectionViewDelegate, UICollectionViewDa
             
             if let _ = gestureRecognizer as? UITapGestureRecognizer {
                 
-                if touch.view != CardStackView {
-                    return true
-                } else {
+                if CGRectContainsPoint(cardStackView.frame, touch.locationInView(view)) {
+                    print("false")
                     return false
+                } else {
+                    print("true")
+                    return true
                 }
                 
             } else if let _ = gestureRecognizer as? UIPanGestureRecognizer {
-                
-                if touch.view == CardStackView {
+                if CGRectContainsPoint(cardStackView.frame, touch.locationInView(view)) {
+                    print("true")
                     return true
                 } else {
+                    print("false")
                     return false
                 }
+                
                 
             } else {
                 return false
@@ -186,13 +220,19 @@ extension CardStackViewController : UICollectionViewDelegate, UICollectionViewDa
             
         } else {
             
-            if touch.view == CardStackView {
+            if CGRectContainsPoint(cardStackView.frame, touch.locationInView(view)) {
+                print("true")
                 return true
             } else {
+                print("false")
                 return false
             }
             
+            
         }
+ 
+        
     }
+    
     
 }

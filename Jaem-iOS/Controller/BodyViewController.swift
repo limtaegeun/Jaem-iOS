@@ -30,10 +30,13 @@ class BodyViewController: UIViewController {
     
     var SizeDataSet : [dummyData]?
     
+    @IBOutlet weak var LeftCircleView: UIView!
+    @IBOutlet weak var RightCircleView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //test 
+        tabBarController?.tabBar.hidden = true
+        //test
         
         SizeDataSet =  makeDummyData()
         
