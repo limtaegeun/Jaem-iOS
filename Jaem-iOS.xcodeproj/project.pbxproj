@@ -20,6 +20,11 @@
 		AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63ADDD1CAFA59C00029E77 /* JaemViewStyleKit.swift */; };
 		AF63ADE01CAFA8CA00029E77 /* TextFieldBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63ADDF1CAFA8CA00029E77 /* TextFieldBorderView.swift */; };
 		AF63ADE21CB00A6000029E77 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */; };
+		AF655F2C1CB619510015EE28 /* RegularFitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */; };
+		AF655F2E1CB61A580015EE28 /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2D1CB61A580015EE28 /* AddButtonView.swift */; };
+		AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2F1CB63C250015EE28 /* TypeCell.swift */; };
+		AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */; };
+		AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F331CB63CCD0015EE28 /* ClothesCell.swift */; };
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
 		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
@@ -84,6 +89,11 @@
 		AF63ADDD1CAFA59C00029E77 /* JaemViewStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemViewStyleKit.swift; sourceTree = "<group>"; };
 		AF63ADDF1CAFA8CA00029E77 /* TextFieldBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldBorderView.swift; path = View/TextFieldBorderView.swift; sourceTree = "<group>"; };
 		AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindPasswordViewController.swift; path = Controller/FindPasswordViewController.swift; sourceTree = "<group>"; };
+		AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegularFitViewController.swift; path = Controller/RegularFitViewController.swift; sourceTree = "<group>"; };
+		AF655F2D1CB61A580015EE28 /* AddButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddButtonView.swift; path = View/AddButtonView.swift; sourceTree = "<group>"; };
+		AF655F2F1CB63C250015EE28 /* TypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeCell.swift; path = Controller/TypeCell.swift; sourceTree = "<group>"; };
+		AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRegularFitCell.swift; path = Controller/MyRegularFitCell.swift; sourceTree = "<group>"; };
+		AF655F331CB63CCD0015EE28 /* ClothesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesCell.swift; path = View/ClothesCell.swift; sourceTree = "<group>"; };
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
 		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
@@ -153,6 +163,9 @@
 				AF4DCD9C1CA414B000E5CC15 /* SectionHeaderView.swift */,
 				AFDD17E61CAA9312005AF8BC /* PeripheralCell.swift */,
 				AFF70E111CABA5FA00E869A6 /* MeasureStepCell.swift */,
+				AF655F2F1CB63C250015EE28 /* TypeCell.swift */,
+				AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */,
+				AF655F331CB63CCD0015EE28 /* ClothesCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -250,6 +263,7 @@
 				AF63ADDB1CAF9E3E00029E77 /* RegisterViewController.swift */,
 				AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */,
 				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
+				AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -261,6 +275,7 @@
 				AFC24B371CA2D064002FA07B /* CardStackIcon.swift */,
 				AFF70E151CAC111200E869A6 /* RulerView.swift */,
 				AF63ADDF1CAFA8CA00029E77 /* TextFieldBorderView.swift */,
+				AF655F2D1CB61A580015EE28 /* AddButtonView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -578,6 +593,7 @@
 			files = (
 				AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */,
 				AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */,
+				AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */,
 				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
 				AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */,
@@ -587,11 +603,15 @@
 				AF4DCD9B1CA40C8700E5CC15 /* SizeDataCell.swift in Sources */,
 				AFF70E141CABAC0D00E869A6 /* MeasureContainerViewController.swift in Sources */,
 				AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */,
+				AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */,
+				AF655F2C1CB619510015EE28 /* RegularFitViewController.swift in Sources */,
 				AF63ADDA1CAF9E1E00029E77 /* LoginViewController.swift in Sources */,
 				AFC3589A1CB3E60D00A0CB1E /* NavigationControllerDelegate.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
 				AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */,
+				AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */,
 				AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */,
+				AF655F2E1CB61A580015EE28 /* AddButtonView.swift in Sources */,
 				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
 				AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */,
