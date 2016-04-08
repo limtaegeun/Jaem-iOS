@@ -197,19 +197,16 @@ extension CardTabBarController : UICollectionViewDelegate, UICollectionViewDataS
             if let _ = gestureRecognizer as? UITapGestureRecognizer {
                 
                 if CGRectContainsPoint(cardStackView.frame, touch.locationInView(view)) {
-                    print("false")
+                    
                     return false
                 } else {
-                    print("true")
                     return true
                 }
                 
             } else if let _ = gestureRecognizer as? UIPanGestureRecognizer {
                 if CGRectContainsPoint(cardStackView.frame, touch.locationInView(view)) {
-                    print("true")
                     return true
                 } else {
-                    print("false")
                     return false
                 }
                 
@@ -221,10 +218,8 @@ extension CardTabBarController : UICollectionViewDelegate, UICollectionViewDataS
         } else {
             
             if CGRectContainsPoint(cardStackView.frame, touch.locationInView(view)) {
-                print("true")
                 return true
             } else {
-                print("false")
                 return false
             }
             

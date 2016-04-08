@@ -24,6 +24,7 @@ struct dummyData {
 
 class BodyViewController: UIViewController {
 
+    @IBOutlet weak var AvatarView: UIView!
     var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var sizeCollectionView: UICollectionView!
@@ -32,6 +33,8 @@ class BodyViewController: UIViewController {
     
     @IBOutlet weak var LeftCircleView: UIView!
     @IBOutlet weak var RightCircleView: UIView!
+    
+    var interactionController : PanGestureInteractionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +55,9 @@ class BodyViewController: UIViewController {
         
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
+        
+        interactionController = PanGestureInteractionController(view: AvatarView, direction: .Right)
+        interactionController?.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -102,6 +108,9 @@ class BodyViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "GoMeasure" {
             
+        } else {
+            let dv = segue.destinationViewController as! RegularFitViewController
+            dv.interactionController = interactionController
         }
         
         
@@ -122,9 +131,12 @@ class BodyViewController: UIViewController {
         
     }
 
+    @IBAction func tapGraphButton(sender: AnyObject) {
+        performSegueWithIdentifier("GoFit", sender: self)
+    }
 }
 
-extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, UICollectionViewDataSource {
+extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, UICollectionViewDataSource, PanGestureInteractionControllerDelegate {
     
     //MARK : Scrollview delegate
     func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
@@ -218,5 +230,10 @@ extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, 
         
     }
     
+    //MARK : PanGestureInteractionControllerDelegate
+    
+    func didBeginPanning() {
+        performSegueWithIdentifier("GoFit", sender: self)
+    }
     
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dpf-nE-xvM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOb-To-zlQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -116,6 +116,9 @@
                                             <constraint firstAttribute="height" constant="25" id="xZs-C0-QkP"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tapGraphButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="4BE-VM-8Fo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afN-Wh-ALj">
                                         <rect key="frame" x="279" y="311" width="25" height="25"/>
@@ -265,28 +268,30 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siY-Kk-4he">
+                                                <rect key="frame" x="313" y="141" width="14" height="14"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="14" id="cNY-JS-8Y6"/>
+                                                    <constraint firstAttribute="width" constant="14" id="oBZ-bM-L3g"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="7"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="6J6-6E-r7y" firstAttribute="centerY" secondItem="HDu-AQ-UQO" secondAttribute="centerY" id="9Gg-Xd-Y6w"/>
+                                            <constraint firstAttribute="trailing" secondItem="siY-Kk-4he" secondAttribute="trailing" constant="-7" id="EcJ-Ub-34c"/>
                                             <constraint firstAttribute="height" constant="295" id="O0y-MQ-HKc"/>
                                             <constraint firstItem="euw-vw-gti" firstAttribute="centerY" secondItem="HDu-AQ-UQO" secondAttribute="centerY" id="aFK-0k-fT9"/>
                                             <constraint firstItem="euw-vw-gti" firstAttribute="centerX" secondItem="HDu-AQ-UQO" secondAttribute="centerX" id="adr-Rz-X9p"/>
                                             <constraint firstItem="6J6-6E-r7y" firstAttribute="leading" secondItem="HDu-AQ-UQO" secondAttribute="leading" constant="-7" id="aoD-sS-0Mg"/>
+                                            <constraint firstItem="siY-Kk-4he" firstAttribute="centerY" secondItem="HDu-AQ-UQO" secondAttribute="centerY" id="q3E-JA-tkN"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="siY-Kk-4he">
-                                        <rect key="frame" x="313" y="153" width="14" height="14"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="14" id="cNY-JS-8Y6"/>
-                                            <constraint firstAttribute="width" constant="14" id="oBZ-bM-L3g"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="7"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -326,12 +331,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="AvatarView" destination="HDu-AQ-UQO" id="hzO-LI-bak"/>
                         <outlet property="LeftCircleView" destination="6J6-6E-r7y" id="lWx-77-VqE"/>
                         <outlet property="RightCircleView" destination="siY-Kk-4he" id="Drz-Ch-OXf"/>
                         <outlet property="scrollView" destination="Bft-cA-toM" id="OOD-KT-6kW"/>
                         <outlet property="sizeCollectionView" destination="ke2-Rx-pqF" id="SEO-MQ-GSK"/>
                         <segue destination="C1F-za-lhT" kind="modal" identifier="GoMeasure" id="KfO-JD-r47"/>
-                        <segue destination="dpf-nE-xvM" kind="modal" id="in9-sE-5UI"/>
+                        <segue destination="dpf-nE-xvM" kind="modal" identifier="GoFit" id="in9-sE-5UI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -357,21 +363,21 @@
                                     <constraint firstAttribute="height" constant="280" id="qj8-Mx-KNk"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l0G-fC-djc">
-                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TypeCell" id="pE9-Vm-XSq" customClass="TypeCell" customModule="Jaem_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gi3-u8-ntB">
-                                                    <rect key="frame" x="8" y="8" width="84" height="84"/>
+                                                    <rect key="frame" x="8" y="8" width="64" height="64"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -394,14 +400,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axL-pt-srj">
-                                <rect key="frame" x="16" y="21" width="18" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="2UH-CN-lsO"/>
-                                    <constraint firstAttribute="width" constant="18" id="cHu-1P-8si"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GwS-Vy-Mpv">
                                 <rect key="frame" x="-4" y="370" width="164" height="198"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -520,6 +518,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axL-pt-srj">
+                                <rect key="frame" x="16" y="21" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2UH-CN-lsO"/>
+                                    <constraint firstAttribute="width" constant="50" id="cHu-1P-8si"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="tapExit:" destination="dpf-nE-xvM" eventType="touchUpInside" id="cAl-s0-aLQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1470,7 +1478,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="zoc-9B-qgn"/>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="H3e-Pt-bNc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UL-yK-a7F" userLabel="First Responder" sceneMemberID="firstResponder"/>

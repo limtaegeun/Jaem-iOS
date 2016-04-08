@@ -26,6 +26,8 @@ class RegularFitViewController: UIViewController {
     
     @IBOutlet weak var circleView: UIView!
     
+    var interactionController : PanGestureInteractionController!
+    
     var clothesSet = [AnyObject]()
     var types : [ClothesType]!
     
@@ -42,6 +44,18 @@ class RegularFitViewController: UIViewController {
         compareCollectionView.delegate = self
         compareCollectionView.dataSource = self
         
+        //set collectionViewFlowlayout
+        let layout = UICollectionViewFlowLayout()
+        let width = view.frame.width / 4 - 8
+        layout.itemSize = CGSize(width: width, height: width)
+        
+        clothesCollectionView.collectionViewLayout = layout
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        modalPresentationStyle = .Custom
+        transitioningDelegate = self
         
     }
 
@@ -65,6 +79,7 @@ class RegularFitViewController: UIViewController {
     }
     
     
+    
     func setDefaultTypes() -> [ClothesType]{
         
         var set = [ClothesType]()
@@ -83,6 +98,13 @@ class RegularFitViewController: UIViewController {
         return set
 
     }
+    
+    // MARK: ACTION
+    
+    @IBAction func tapExit(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -94,7 +116,7 @@ class RegularFitViewController: UIViewController {
     */
 
 }
-extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewDataSource , UIViewControllerTransitioningDelegate{
+extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewDataSource ,UIViewControllerTransitioningDelegate{
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
         
@@ -127,7 +149,19 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    
+    //MARK : UIViewControllerTransitioningDelegate
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CircleTransitionAnimationController()
     }
+    
+    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactionController
+    }
+    
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+        return CirclePresentationController(presentedViewController: presented, presentingViewController: presenting)
+    }
+    
 }
