@@ -50,6 +50,8 @@ class RegularFitViewController: UIViewController {
         layout.itemSize = CGSize(width: width, height: width)
         
         clothesCollectionView.collectionViewLayout = layout
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -116,7 +118,7 @@ class RegularFitViewController: UIViewController {
     */
 
 }
-extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewDataSource ,UIViewControllerTransitioningDelegate{
+extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate{
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
         
@@ -140,26 +142,44 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
             cell.icon.image =  UIImage(named: types[indexPath.row].title)
             return cell
         } else if collectionView == fitCollectionView {
+           
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyRegularFitCell", forIndexPath: indexPath) as! MyRegularFitCell
             return cell
             
+            
+            
         } else {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothesCell", forIndexPath: indexPath) as! ClothesCell
-            return cell
+            if indexPath.row < clothesSet.count {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothesCell", forIndexPath: indexPath) as! ClothesCell
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AddCell", forIndexPath: indexPath) as! AddCell
+                return cell
+            }
         }
+        
+        
     }
+    
+    
+    
+    
     
     
     //MARK : UIViewControllerTransitioningDelegate
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CircleTransitionAnimationController()
+        return CircleTransitionAnimationController(present: true)
     }
     
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CircleTransitionAnimationController(present: false)
+    }
+    /*
     func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactionController
     }
-    
+    */
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
         return CirclePresentationController(presentedViewController: presented, presentingViewController: presenting)
     }

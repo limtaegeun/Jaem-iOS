@@ -12,7 +12,6 @@
 		AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */; };
 		AF45544B1CB76C0600775D65 /* PanGestureInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */; };
 		AF45544E1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544D1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift */; };
-		AF4554501CB7C9FB00775D65 /* CircleMaskSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544F1CB7C9FB00775D65 /* CircleMaskSegue.swift */; };
 		AF4554521CB7D79200775D65 /* CirclePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4554511CB7D79200775D65 /* CirclePresentationController.swift */; };
 		AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */; };
 		AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */; };
@@ -39,6 +38,16 @@
 		AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */; };
 		AFDD17E51CAA649B005AF8BC /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */; };
 		AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E61CAA9312005AF8BC /* PeripheralCell.swift */; };
+		AFEADDEB1CBB67770017BAD9 /* PopCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDEA1CBB67770017BAD9 /* PopCircleView.swift */; };
+		AFEADDEF1CBB8E3C0017BAD9 /* AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDEE1CBB8E3C0017BAD9 /* AddCell.swift */; };
+		AFEADDF11CBBAFE80017BAD9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */; };
+		AFEADDF31CBBBD860017BAD9 /* IMG_0272 Copy 2.png in Resources */ = {isa = PBXBuildFile; fileRef = AFEADDF21CBBBD860017BAD9 /* IMG_0272 Copy 2.png */; };
+		AFEADDF51CBBBE1B0017BAD9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDF41CBBBE1B0017BAD9 /* SearchResultCell.swift */; };
+		AFEADDF71CBBD8A50017BAD9 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDF61CBBD8A50017BAD9 /* CategoryButton.swift */; };
+		AFEADDF91CBCF8810017BAD9 /* FitInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDF81CBCF8810017BAD9 /* FitInfoView.swift */; };
+		AFEADDFB1CBD01790017BAD9 /* BottomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDFA1CBD01790017BAD9 /* BottomCardView.swift */; };
+		AFEADDFD1CBD09E20017BAD9 /* ClothesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDFC1CBD09E20017BAD9 /* ClothesDetailViewController.swift */; };
+		AFEADDFF1CBD32000017BAD9 /* FitSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */; };
 		AFF70E121CABA5FA00E869A6 /* MeasureStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF70E111CABA5FA00E869A6 /* MeasureStepCell.swift */; };
 		AFF70E141CABAC0D00E869A6 /* MeasureContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF70E131CABAC0D00E869A6 /* MeasureContainerViewController.swift */; };
 		AFF70E161CAC111200E869A6 /* RulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF70E151CAC111200E869A6 /* RulerView.swift */; };
@@ -84,7 +93,6 @@
 		AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectGenderViewController.swift; path = Controller/SelectGenderViewController.swift; sourceTree = "<group>"; };
 		AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanGestureInteractionController.swift; path = Controller/PanGestureInteractionController.swift; sourceTree = "<group>"; };
 		AF45544D1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIPanGestureRecognizer+Direction.swift"; path = "extention/UIPanGestureRecognizer+Direction.swift"; sourceTree = "<group>"; };
-		AF45544F1CB7C9FB00775D65 /* CircleMaskSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleMaskSegue.swift; path = Controller/CircleMaskSegue.swift; sourceTree = "<group>"; };
 		AF4554511CB7D79200775D65 /* CirclePresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CirclePresentationController.swift; path = Controller/CirclePresentationController.swift; sourceTree = "<group>"; };
 		AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BodyViewController.swift; path = Controller/BodyViewController.swift; sourceTree = "<group>"; };
 		AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosetViewController.swift; path = Controller/ClosetViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +119,16 @@
 		AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionViewController.swift; path = Controller/ConnectionViewController.swift; sourceTree = "<group>"; };
 		AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListTableViewController.swift; path = Controller/DeviceListTableViewController.swift; sourceTree = "<group>"; };
 		AFDD17E61CAA9312005AF8BC /* PeripheralCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeripheralCell.swift; path = View/PeripheralCell.swift; sourceTree = "<group>"; };
+		AFEADDEA1CBB67770017BAD9 /* PopCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopCircleView.swift; path = View/PopCircleView.swift; sourceTree = "<group>"; };
+		AFEADDEE1CBB8E3C0017BAD9 /* AddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCell.swift; path = View/AddCell.swift; sourceTree = "<group>"; };
+		AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = Controller/SearchViewController.swift; sourceTree = "<group>"; };
+		AFEADDF21CBBBD860017BAD9 /* IMG_0272 Copy 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IMG_0272 Copy 2.png"; path = "../../Resource/IMG_0272 Copy 2.png"; sourceTree = "<group>"; };
+		AFEADDF41CBBBE1B0017BAD9 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultCell.swift; path = View/SearchResultCell.swift; sourceTree = "<group>"; };
+		AFEADDF61CBBD8A50017BAD9 /* CategoryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryButton.swift; path = View/CategoryButton.swift; sourceTree = "<group>"; };
+		AFEADDF81CBCF8810017BAD9 /* FitInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FitInfoView.swift; path = View/FitInfoView.swift; sourceTree = "<group>"; };
+		AFEADDFA1CBD01790017BAD9 /* BottomCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomCardView.swift; path = View/BottomCardView.swift; sourceTree = "<group>"; };
+		AFEADDFC1CBD09E20017BAD9 /* ClothesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesDetailViewController.swift; path = Controller/ClothesDetailViewController.swift; sourceTree = "<group>"; };
+		AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FitSearchViewController.swift; path = Controller/FitSearchViewController.swift; sourceTree = "<group>"; };
 		AFF70E111CABA5FA00E869A6 /* MeasureStepCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureStepCell.swift; path = View/MeasureStepCell.swift; sourceTree = "<group>"; };
 		AFF70E131CABAC0D00E869A6 /* MeasureContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureContainerViewController.swift; path = Controller/MeasureContainerViewController.swift; sourceTree = "<group>"; };
 		AFF70E151CAC111200E869A6 /* RulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RulerView.swift; path = View/RulerView.swift; sourceTree = "<group>"; };
@@ -180,6 +198,8 @@
 				AF655F2F1CB63C250015EE28 /* TypeCell.swift */,
 				AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */,
 				AF655F331CB63CCD0015EE28 /* ClothesCell.swift */,
+				AFEADDEE1CBB8E3C0017BAD9 /* AddCell.swift */,
+				AFEADDF41CBBBE1B0017BAD9 /* SearchResultCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -199,7 +219,6 @@
 				AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */,
 				AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */,
 				AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */,
-				AF45544F1CB7C9FB00775D65 /* CircleMaskSegue.swift */,
 				AF4554511CB7D79200775D65 /* CirclePresentationController.swift */,
 			);
 			name = Transition;
@@ -242,6 +261,7 @@
 				AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */,
 				AFFBBC231C9FFB3A00879BDC /* Info.plist */,
 				AF4DCD981CA3B2AE00E5CC15 /* newyork_2705424b.jpg */,
+				AFEADDF21CBBBD860017BAD9 /* IMG_0272 Copy 2.png */,
 			);
 			path = "Jaem-iOS";
 			sourceTree = "<group>";
@@ -281,6 +301,9 @@
 				AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */,
 				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
 				AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */,
+				AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */,
+				AFEADDFC1CBD09E20017BAD9 /* ClothesDetailViewController.swift */,
+				AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -293,6 +316,10 @@
 				AFF70E151CAC111200E869A6 /* RulerView.swift */,
 				AF63ADDF1CAFA8CA00029E77 /* TextFieldBorderView.swift */,
 				AF655F2D1CB61A580015EE28 /* AddButtonView.swift */,
+				AFEADDEA1CBB67770017BAD9 /* PopCircleView.swift */,
+				AFEADDF61CBBD8A50017BAD9 /* CategoryButton.swift */,
+				AFEADDF81CBCF8810017BAD9 /* FitInfoView.swift */,
+				AFEADDFA1CBD01790017BAD9 /* BottomCardView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -459,6 +486,7 @@
 			files = (
 				AFFBBC221C9FFB3A00879BDC /* LaunchScreen.storyboard in Resources */,
 				AFFBBC1F1C9FFB3A00879BDC /* Assets.xcassets in Resources */,
+				AFEADDF31CBBBD860017BAD9 /* IMG_0272 Copy 2.png in Resources */,
 				AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */,
 				AF4DCD991CA3B2AE00E5CC15 /* newyork_2705424b.jpg in Resources */,
 			);
@@ -608,29 +636,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEADDFD1CBD09E20017BAD9 /* ClothesDetailViewController.swift in Sources */,
 				AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */,
 				AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */,
 				AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */,
 				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
+				AFEADDF71CBBD8A50017BAD9 /* CategoryButton.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
 				AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */,
 				AFF70E121CABA5FA00E869A6 /* MeasureStepCell.swift in Sources */,
 				AF4DCD9D1CA414B000E5CC15 /* SectionHeaderView.swift in Sources */,
+				AFEADDFB1CBD01790017BAD9 /* BottomCardView.swift in Sources */,
+				AFEADDEB1CBB67770017BAD9 /* PopCircleView.swift in Sources */,
 				AFDD17E11CA9779C005AF8BC /* MeasureViewController.swift in Sources */,
 				AF4DCD9B1CA40C8700E5CC15 /* SizeDataCell.swift in Sources */,
+				AFEADDF91CBCF8810017BAD9 /* FitInfoView.swift in Sources */,
+				AFEADDEF1CBB8E3C0017BAD9 /* AddCell.swift in Sources */,
 				AFF70E141CABAC0D00E869A6 /* MeasureContainerViewController.swift in Sources */,
 				AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */,
+				AFEADDF51CBBBE1B0017BAD9 /* SearchResultCell.swift in Sources */,
 				AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */,
 				AF655F2C1CB619510015EE28 /* RegularFitViewController.swift in Sources */,
 				AF63ADDA1CAF9E1E00029E77 /* LoginViewController.swift in Sources */,
-				AF4554501CB7C9FB00775D65 /* CircleMaskSegue.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
 				AF45544E1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift in Sources */,
 				AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */,
 				AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */,
+				AFEADDF11CBBAFE80017BAD9 /* SearchViewController.swift in Sources */,
 				AF4554521CB7D79200775D65 /* CirclePresentationController.swift in Sources */,
 				AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */,
 				AF655F2E1CB61A580015EE28 /* AddButtonView.swift in Sources */,
+				AFEADDFF1CBD32000017BAD9 /* FitSearchViewController.swift in Sources */,
 				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
 				AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */,

@@ -56,8 +56,10 @@ class BodyViewController: UIViewController {
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
         
-        interactionController = PanGestureInteractionController(view: AvatarView, direction: .Right)
-        interactionController?.delegate = self
+        //interactionController = PanGestureInteractionController(view: AvatarView, direction: .Right)
+        //interactionController?.delegate = self
+        let tapGestrueRecognizer = UITapGestureRecognizer(target: self, action: #selector(BodyViewController.tapping(_:)))
+        AvatarView.addGestureRecognizer(tapGestrueRecognizer)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -132,7 +134,16 @@ class BodyViewController: UIViewController {
     }
 
     @IBAction func tapGraphButton(sender: AnyObject) {
-        performSegueWithIdentifier("GoFit", sender: self)
+    }
+    
+    func tapping(recognizer : UITapGestureRecognizer)  {
+        let location = recognizer.locationInView(view)
+        
+        if CGRectContainsPoint(CGRectOffset(LeftCircleView.frame, 0, AvatarView.frame.origin.y - scrollView.contentOffset.y ), location) {
+            performSegueWithIdentifier("GoFit", sender: self)
+
+        }
+        
     }
 }
 
