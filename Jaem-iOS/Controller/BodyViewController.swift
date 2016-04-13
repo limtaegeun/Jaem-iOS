@@ -110,7 +110,7 @@ class BodyViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "GoMeasure" {
             
-        } else {
+        } else if segue.identifier == "GoFit" {
             let dv = segue.destinationViewController as! RegularFitViewController
             dv.interactionController = interactionController
         }
@@ -121,6 +121,9 @@ class BodyViewController: UIViewController {
     
     //MARK: - Action
     
+    @IBAction func tapSearch(sender: AnyObject) {
+        performSegueWithIdentifier("GoSearch", sender: self)
+    }
     
     @IBAction func tapMeasureButton(sender: AnyObject) {
         performSegueWithIdentifier("GoMeasure", sender: self)

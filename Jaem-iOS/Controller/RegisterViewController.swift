@@ -36,8 +36,8 @@ class RegisterViewController: UIViewController {
         attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(11, 13))
         agreeLabel.attributedText = attributeString
         
-        
-        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.tapping(_:)))
+        subView.addGestureRecognizer(tapGestureRecognizer)
         
     }
 
@@ -97,15 +97,19 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GoAgreement" {
+            let destinationVC = segue.destinationViewController as! AgreementViewController
+            destinationVC.webSite = ""
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
     //MARK: action
     
@@ -115,9 +119,17 @@ class RegisterViewController: UIViewController {
     
     @IBAction func tapLogin(sender: AnyObject) {
     }
+    
+    func tapping(recognizer : UITapGestureRecognizer)  {
+        let location = recognizer.locationInView(self.subView)
+        
+        if CGRectContainsPoint(agreeLabel.frame, location) {
+            performSegueWithIdentifier("GoAgreement", sender: self)
+        }
+    }
 }
 
-extension RegisterViewController : UITextFieldDelegate {
+extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDelegate{
     func textFieldDidEndEditing(textField: UITextField) {
         if userNameTextField.text?.characters.count != 0 && passwordTextField.text?.characters.count != 0 && emailTextField.text?.characters.count != 0 {
             buttonBorderView.changeFillAlpha(true)
@@ -136,5 +148,17 @@ extension RegisterViewController : UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    
+    //MARK: UIGesgureRecognizer Delegate 
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if CGRectContainsPoint(agreeLabel.frame, touch.locationInView(subView)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
 }

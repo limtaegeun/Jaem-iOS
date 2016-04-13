@@ -59,6 +59,38 @@ class CircleTransitionAnimationController: NSObject, UIViewControllerAnimatedTra
                 maskLayerAnimation.duration = self.transitionDuration(transitionContext)
                 maskLayerAnimation.delegate = self
                 maskLayer.addAnimation(maskLayerAnimation, forKey: "path")
+            } else if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? FitSearchViewController {
+                
+                let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! ClothesDetailViewController
+                let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
+                
+                let baseView = fromViewController.clothesBaseView
+                let circleView = fromViewController.leftCircleView
+                
+                containerView!.addSubview(toView!)
+                
+                //set MaskPath
+                let pathframe = CGRectOffset(circleView.frame, 0, baseView.frame.origin.y )
+                let circleMaskPathInitial = UIBezierPath(ovalInRect: pathframe)
+                let extremePoint = CGPoint(x: (toView?.bounds.width)!, y: circleView.center.y - CGRectGetHeight(toViewController.view.bounds))
+                let radius = sqrt((extremePoint.x * extremePoint.x ) + (extremePoint.y * extremePoint.y))
+                let circleMaskPathFinal = UIBezierPath(ovalInRect: CGRectInset(circleView.frame, -radius, -radius))
+                
+                //set MaskLayer
+                let maskLayer = CAShapeLayer()
+                maskLayer.path = circleMaskPathFinal.CGPath
+                toView!.layer.mask = maskLayer
+                
+                //set LayerAnimation
+                let maskLayerAnimation = CABasicAnimation(keyPath: "path")
+                maskLayerAnimation.fromValue = circleMaskPathInitial.CGPath
+                maskLayerAnimation.toValue = circleMaskPathFinal.CGPath
+                maskLayerAnimation.duration = self.transitionDuration(transitionContext)
+                maskLayerAnimation.delegate = self
+                maskLayer.addAnimation(maskLayerAnimation, forKey: "path")
+                
+                
+                
             }
         }else {
             //set dismiss animation
@@ -89,6 +121,38 @@ class CircleTransitionAnimationController: NSObject, UIViewControllerAnimatedTra
                 maskLayerAnimation.duration = self.transitionDuration(transitionContext)
                 maskLayerAnimation.delegate = self
                 maskLayer.addAnimation(maskLayerAnimation, forKey: "path")
+            } else if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? ClothesDetailViewController {
+                
+                //let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! ClothesDetailViewController
+                let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
+                
+                let baseView = toViewController.clothesBaseView
+                let circleView = toViewController.leftCircleView
+                
+                
+                
+                //set MaskPath
+                let pathframe = CGRectOffset(circleView.frame, 0, baseView.frame.origin.y )
+                let circleMaskPathInitial = UIBezierPath(ovalInRect: pathframe)
+                let extremePoint = CGPoint(x: (fromView?.bounds.width)!, y: circleView.center.y - CGRectGetHeight(toViewController.view.bounds))
+                let radius = sqrt((extremePoint.x * extremePoint.x ) + (extremePoint.y * extremePoint.y))
+                let circleMaskPathFinal = UIBezierPath(ovalInRect: CGRectInset(circleView.frame, -radius, -radius))
+                
+                //set MaskLayer
+                let maskLayer = CAShapeLayer()
+                maskLayer.path = circleMaskPathFinal.CGPath
+                fromView!.layer.mask = maskLayer
+                
+                //set LayerAnimation
+                let maskLayerAnimation = CABasicAnimation(keyPath: "path")
+                maskLayerAnimation.fromValue = circleMaskPathInitial.CGPath
+                maskLayerAnimation.toValue = circleMaskPathFinal.CGPath
+                maskLayerAnimation.duration = self.transitionDuration(transitionContext)
+                maskLayerAnimation.delegate = self
+                maskLayer.addAnimation(maskLayerAnimation, forKey: "path")
+                
+                
+                
             }
         }
     }

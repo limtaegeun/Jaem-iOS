@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		322017136EBEB07E8052F320 /* Pods_Jaem_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A24E8CEB6D11A268BA7F138 /* Pods_Jaem_iOSUITests.framework */; };
+		AF03E12B1CBE24C900D1F1FC /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03E12A1CBE24C900D1F1FC /* AgreementViewController.swift */; };
+		AF03E12D1CBE387200D1F1FC /* PreSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03E12C1CBE387200D1F1FC /* PreSearchViewController.swift */; };
+		AF03E1331CBE677700D1F1FC /* SearchTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF03E1321CBE677700D1F1FC /* SearchTextCell.xib */; };
+		AF03E1351CBE67C000D1F1FC /* SearchTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */; };
+		AF03E1371CBE896D00D1F1FC /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03E1361CBE896D00D1F1FC /* RealmModel.swift */; };
 		AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */; };
 		AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */; };
 		AF45544B1CB76C0600775D65 /* PanGestureInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */; };
@@ -89,6 +94,11 @@
 		7A24E8CEB6D11A268BA7F138 /* Pods_Jaem_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jaem_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D62D7BD77463E772A5A093E /* Pods_Jaem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jaem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF2B82440C3607470BB397C /* Pods-Jaem-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaem-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jaem-iOSUITests/Pods-Jaem-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AF03E12A1CBE24C900D1F1FC /* AgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgreementViewController.swift; path = Controller/AgreementViewController.swift; sourceTree = "<group>"; };
+		AF03E12C1CBE387200D1F1FC /* PreSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreSearchViewController.swift; path = Controller/PreSearchViewController.swift; sourceTree = "<group>"; };
+		AF03E1321CBE677700D1F1FC /* SearchTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchTextCell.xib; path = View/SearchTextCell.xib; sourceTree = "<group>"; };
+		AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTextCell.swift; path = View/SearchTextCell.swift; sourceTree = "<group>"; };
+		AF03E1361CBE896D00D1F1FC /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdditionInfoViewController.swift; path = Controller/AdditionInfoViewController.swift; sourceTree = "<group>"; };
 		AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectGenderViewController.swift; path = Controller/SelectGenderViewController.swift; sourceTree = "<group>"; };
 		AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanGestureInteractionController.swift; path = Controller/PanGestureInteractionController.swift; sourceTree = "<group>"; };
@@ -301,9 +311,11 @@
 				AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */,
 				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
 				AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */,
+				AF03E12C1CBE387200D1F1FC /* PreSearchViewController.swift */,
 				AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */,
 				AFEADDFC1CBD09E20017BAD9 /* ClothesDetailViewController.swift */,
 				AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */,
+				AF03E12A1CBE24C900D1F1FC /* AgreementViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -320,6 +332,8 @@
 				AFEADDF61CBBD8A50017BAD9 /* CategoryButton.swift */,
 				AFEADDF81CBCF8810017BAD9 /* FitInfoView.swift */,
 				AFEADDFA1CBD01790017BAD9 /* BottomCardView.swift */,
+				AF03E1321CBE677700D1F1FC /* SearchTextCell.xib */,
+				AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -328,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				AFFBBC4C1CA0019900879BDC /* BLE */,
+				AF03E1361CBE896D00D1F1FC /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -488,6 +503,7 @@
 				AFFBBC1F1C9FFB3A00879BDC /* Assets.xcassets in Resources */,
 				AFEADDF31CBBBD860017BAD9 /* IMG_0272 Copy 2.png in Resources */,
 				AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */,
+				AF03E1331CBE677700D1F1FC /* SearchTextCell.xib in Resources */,
 				AF4DCD991CA3B2AE00E5CC15 /* newyork_2705424b.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,6 +659,7 @@
 				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
 				AFEADDF71CBBD8A50017BAD9 /* CategoryButton.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
+				AF03E12B1CBE24C900D1F1FC /* AgreementViewController.swift in Sources */,
 				AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */,
 				AFF70E121CABA5FA00E869A6 /* MeasureStepCell.swift in Sources */,
 				AF4DCD9D1CA414B000E5CC15 /* SectionHeaderView.swift in Sources */,
@@ -671,14 +688,17 @@
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
 				AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */,
 				AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */,
+				AF03E1371CBE896D00D1F1FC /* RealmModel.swift in Sources */,
 				AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */,
 				AFF70E161CAC111200E869A6 /* RulerView.swift in Sources */,
 				AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */,
 				AF63ADE21CB00A6000029E77 /* FindPasswordViewController.swift in Sources */,
 				AFFBBC4B1CA0017A00879BDC /* BTService.swift in Sources */,
 				AFFBBC4A1CA0017A00879BDC /* BTDiscovery.swift in Sources */,
+				AF03E1351CBE67C000D1F1FC /* SearchTextCell.swift in Sources */,
 				AF63ADE01CAFA8CA00029E77 /* TextFieldBorderView.swift in Sources */,
 				AFFBBC531CA0241400879BDC /* CardStackLayout.swift in Sources */,
+				AF03E12D1CBE387200D1F1FC /* PreSearchViewController.swift in Sources */,
 				AF45544B1CB76C0600775D65 /* PanGestureInteractionController.swift in Sources */,
 				AFDD17E51CAA649B005AF8BC /* DeviceListTableViewController.swift in Sources */,
 			);

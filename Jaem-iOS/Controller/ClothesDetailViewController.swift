@@ -65,7 +65,7 @@ class ClothesDetailViewController: UIViewController {
         let location = recognizer.locationInView(view)
         
         if CGRectContainsPoint(CGRectOffset(leftCircleView.frame, 0, clothesBaseView.frame.origin.y ), location) {
-            performSegueWithIdentifier("GoFit", sender: self)
+            performSegueWithIdentifier("GoCompare", sender: self)
             
         }
         

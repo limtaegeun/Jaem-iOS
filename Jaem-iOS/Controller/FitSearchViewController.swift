@@ -27,6 +27,9 @@ class FitSearchViewController: UIViewController {
         searchedClothesCollectionView.delegate = self
         searchedClothesCollectionView.dataSource = self
         
+        fitCollectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        searchedClothesCollectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        
         // Do any additional setup after loading the view.
     }
     
