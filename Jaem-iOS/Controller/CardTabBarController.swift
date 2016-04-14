@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 struct Card {
     var title : String
@@ -25,6 +25,7 @@ class CardTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+                
         //fold Tabbarbutton
         cardIsExpanded = false
         

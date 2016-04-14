@@ -1476,8 +1476,10 @@
                         <outlet property="passwordTextField" destination="oby-2u-yxM" id="5NX-r0-8yH"/>
                         <outlet property="regiButton" destination="Txc-2L-q1Q" id="gU6-DR-CwV"/>
                         <outlet property="subView" destination="ZK4-c2-DXy" id="Awf-d0-Sbh"/>
+                        <outlet property="subViewCenterYConstraint" destination="5r9-rm-tBO" id="883-YF-i6Z"/>
                         <outlet property="userNameTextField" destination="qSF-Ch-YwU" id="TmE-gX-shf"/>
                         <segue destination="fIc-rA-SPW" kind="modal" identifier="GoAgreement" id="X4U-Yl-tu9"/>
+                        <segue destination="iDb-LY-EhX" kind="modal" identifier="GoLogin" id="rYJ-hF-A02"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzs-eE-Oox" userLabel="First Responder" sceneMemberID="firstResponder"/>

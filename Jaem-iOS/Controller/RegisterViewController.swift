@@ -25,6 +25,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var errorViewTopConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var subViewCenterYConstraint: NSLayoutConstraint!
     var DataToSend = Dictionary<String,String>()
 
     var userNameFlag = false
@@ -142,7 +143,7 @@ class RegisterViewController: UIViewController {
                 session.uploadTask(DataToSend, url: url, complete: { (data) in
                     if data != nil {
                         
-                        if data!["stat"] as? String == "success" {
+                        if data!["stat"] as? String == "regi_success" {
                             if let realm = try? Realm() {
                                 try! realm.write({
                                     realm.add(me)
@@ -184,7 +185,41 @@ class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDelegate{
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == passwordTextField {
+            subViewCenterYConstraint.constant = -50
+            UIView.animateWithDuration(0.3, animations: { 
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
+        if textField == emailTextField {
+            if isValidEmail(textField.text!) {
+                DataToSend["email"] = textField.text
+                emailFlag = true
+            } else {
+                appearErrorView("이 이메일은 사용할 수 없습니다.")
+                
+            }
+        } else if textField == userNameTextField {
+            if textField.text?.characters.count > 0 {
+                DataToSend["name"] = textField.text
+                userNameFlag = true
+            }
+        } else if textField == passwordTextField {
+            if textField.text?.characters.count > 0 {
+                DataToSend["password"] = textField.text
+                
+                subViewCenterYConstraint.constant = 0
+                UIView.animateWithDuration(0.3, animations: {
+                    self.view.layoutIfNeeded()
+                })
+                
+                passwordFlag = true
+            }
+        }
         if userNameTextField.text?.characters.count != 0 && passwordTextField.text?.characters.count != 0 && emailTextField.text?.characters.count != 0 {
             buttonBorderView.changeFillAlpha(true)
             regiButton.userInteractionEnabled = true
@@ -199,21 +234,13 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == emailTextField {
-            if isValidEmail(textField.text!) {
-                DataToSend["email"] = textField.text
-                textField.resignFirstResponder()
-                return true
-            } else {
-                appearErrorView("이 이메일은 사용할 수 없습니다.")
-                return false
-            }
-        } else if textField == userNameTextField {
-            if textField.text
-        }
+        
+        textField.resignFirstResponder()
         return true
         
     }
+    
+    
     
     
     //MARK: UIGesgureRecognizer Delegate 

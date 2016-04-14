@@ -23,6 +23,8 @@ struct dummyData {
     
 }
 
+var test = true
+
 class BodyViewController: UIViewController {
 
     @IBOutlet weak var AvatarView: UIView!
@@ -41,7 +43,12 @@ class BodyViewController: UIViewController {
         super.viewDidLoad()
         tabBarController?.tabBar.hidden = true
         //test
-        
+        if test == true {
+            let realm = try! Realm()
+            try! realm.write({
+                realm.deleteAll()
+            })
+        }
         SizeDataSet =  makeDummyData()
         
         //set hidingNavBar

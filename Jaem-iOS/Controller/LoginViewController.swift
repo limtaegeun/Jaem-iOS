@@ -70,7 +70,9 @@ class LoginViewController: UIViewController {
         return emailTest.evaluateWithObject(testStr)
     }
     
-    
+    //MARK : ACTION
+
+
     
     /*
     // MARK: - Navigation
