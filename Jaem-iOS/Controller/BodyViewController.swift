@@ -8,6 +8,7 @@
 
 import UIKit
 import HidingNavigationBar
+import RealmSwift
 
 struct dummyData {
     var section : String
@@ -25,7 +26,7 @@ struct dummyData {
 class BodyViewController: UIViewController {
 
     @IBOutlet weak var AvatarView: UIView!
-    var hidingNavBarManager: HidingNavigationBarManager?
+    //var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     
@@ -44,7 +45,7 @@ class BodyViewController: UIViewController {
         SizeDataSet =  makeDummyData()
         
         //set hidingNavBar
-        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: scrollView)
+        //hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: scrollView)
         
         //navigationBar background clearColor
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -64,14 +65,30 @@ class BodyViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //hidingNavBarManager?.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewdidappear")
         
-        hidingNavBarManager?.viewWillAppear(animated)
+        let realm = try! Realm()
+        if let _ = realm.objects(UserInfo).first {
+            print("realm there")
+            return
+        } else {
+            print("segue")
+
+            performSegueWithIdentifier("GoRegister", sender: self)
+        }
+        
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        hidingNavBarManager?.viewWillDisappear(animated)
+        //hidingNavBarManager?.viewWillDisappear(animated)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -154,7 +171,7 @@ extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, 
     
     //MARK : Scrollview delegate
     func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-        hidingNavBarManager?.shouldScrollToTop()
+        //hidingNavBarManager?.shouldScrollToTop()
         
         return true
     }

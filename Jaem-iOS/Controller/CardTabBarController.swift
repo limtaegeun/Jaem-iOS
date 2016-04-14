@@ -14,6 +14,7 @@ struct Card {
     var color : String
 }
 
+
 class CardTabBarController: UITabBarController {
 
     var cardStackView : UICollectionView!
@@ -49,7 +50,7 @@ class CardTabBarController: UITabBarController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        super.viewDidAppear(animated)
         cardStackView.frame =  CGRectMake(0, view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)        
     }
     

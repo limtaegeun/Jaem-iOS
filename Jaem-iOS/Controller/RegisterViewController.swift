@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RegisterViewController: UIViewController {
 
@@ -19,7 +20,17 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var agreeLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var errorView: UIView!
+    
+    @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var errorViewTopConstraint: NSLayoutConstraint!
+    
+    var DataToSend = Dictionary<String,String>()
+
+    var userNameFlag = false
+    var emailFlag = false
+    var passwordFlag = false
+    
     var buttonBorderView : TextFieldBorderView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +89,10 @@ class RegisterViewController: UIViewController {
         return emailTest.evaluateWithObject(testStr)
     }
 
-    func appearErrorView()  {
-        
+    func appearErrorView(message: String)  {
+        errorView.hidden = false
         errorViewTopConstraint.constant = 0
-        
+        errorMessageLabel.text = message
         UIView.animateWithDuration(0.33, delay: 0, options: .CurveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }) { (_) in
@@ -115,6 +126,49 @@ class RegisterViewController: UIViewController {
     
     @IBAction func tapRegister(sender: AnyObject) {
         
+        let me = UserInfo()
+        if userNameFlag && emailFlag && passwordFlag {
+            
+        
+            if DataToSend["name"] != nil {
+                me.userName = DataToSend["name"]!
+            }
+            if DataToSend["email"] != nil {
+                me.email = DataToSend["email"]!
+            }
+            
+            let session = MySessionTask(sender: self)
+            if let url = MyHost().urlWtihPathNameAboutMainServer("user/regi") {
+                session.uploadTask(DataToSend, url: url, complete: { (data) in
+                    if data != nil {
+                        
+                        if data!["stat"] as? String == "success" {
+                            if let realm = try? Realm() {
+                                try! realm.write({
+                                    realm.add(me)
+                                })
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
+
+                        } else {
+                            self.appearErrorView("회원가입에 문제가 있습니다.")
+                        }
+                        
+                        
+                    } else {
+                        self.appearErrorView("회원가입에 문제가 있습니다.")
+                    }
+                    }, errorHandler: { 
+                        self.appearErrorView("네트워크에 문제가 있습니다.")
+                })
+            }
+            
+            
+            
+            
+        
+        }
+        
     }
     
     @IBAction func tapLogin(sender: AnyObject) {
@@ -145,8 +199,20 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == emailTextField {
+            if isValidEmail(textField.text!) {
+                DataToSend["email"] = textField.text
+                textField.resignFirstResponder()
+                return true
+            } else {
+                appearErrorView("이 이메일은 사용할 수 없습니다.")
+                return false
+            }
+        } else if textField == userNameTextField {
+            if textField.text
+        }
         return true
+        
     }
     
     

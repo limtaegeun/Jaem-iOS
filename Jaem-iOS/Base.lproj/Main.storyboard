@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5ky-zt-9dM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOb-To-zlQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,12 +22,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bft-cA-toM">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HI SEUNGHWAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlm-oF-zyH">
-                                        <rect key="frame" x="106" y="315" width="108" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJN-8M-sR5">
                                         <rect key="frame" x="26" y="311" width="25" height="25"/>
                                         <constraints>
@@ -202,6 +196,12 @@
                                             <constraint firstItem="siY-Kk-4he" firstAttribute="centerY" secondItem="HDu-AQ-UQO" secondAttribute="centerY" id="q3E-JA-tkN"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HI SEUNGHWAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlm-oF-zyH">
+                                        <rect key="frame" x="106" y="315" width="108" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="afN-Wh-ALj" secondAttribute="trailing" constant="16" id="3m1-S8-q8e"/>
@@ -251,11 +251,12 @@
                         <segue destination="C1F-za-lhT" kind="modal" identifier="GoMeasure" id="KfO-JD-r47"/>
                         <segue destination="dpf-nE-xvM" kind="modal" identifier="GoFit" id="in9-sE-5UI"/>
                         <segue destination="5ky-zt-9dM" kind="modal" identifier="GoSearch" id="Ltp-bx-7aT"/>
+                        <segue destination="HxW-mW-qo7" kind="modal" identifier="GoRegister" id="log-TQ-dxf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="-303"/>
+            <point key="canvasLocation" x="722" y="-240"/>
         </scene>
         <!--Regular Fit View Controller-->
         <scene sceneID="AF3-tK-GZ7">
@@ -975,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="1141"/>
+            <point key="canvasLocation" x="1184" y="1152"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="9db-VP-fzZ">
@@ -1124,7 +1125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pc2-yi-fwM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1905" y="419"/>
+            <point key="canvasLocation" x="2969" y="419"/>
         </scene>
         <!--Clothes Detail View Controller-->
         <scene sceneID="QCH-2J-Dem">
@@ -1298,7 +1299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eb-BJ-5ET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2379" y="415"/>
+            <point key="canvasLocation" x="3443" y="415"/>
         </scene>
         <!--Card Tab Bar Controller-->
         <scene sceneID="yxd-Ke-nYX">
@@ -1335,7 +1336,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gI2-d0-dI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="819"/>
+            <point key="canvasLocation" x="695" y="821"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="OtZ-7o-PVp">
@@ -1434,7 +1435,7 @@
                                     <action selector="tapLogin:" destination="HxW-mW-qo7" eventType="touchUpInside" id="1Au-7g-n6Y"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2YG-O4-n6p">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2YG-O4-n6p">
                                 <rect key="frame" x="0.0" y="-60" width="320" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 이메일은 다른 계정에서 사용하고 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-rp-nhE">
@@ -1468,6 +1469,8 @@
                     <connections>
                         <outlet property="agreeLabel" destination="DW3-a5-dNj" id="zmU-sQ-uvh"/>
                         <outlet property="emailTextField" destination="GIe-YU-qVU" id="6bB-N7-EcT"/>
+                        <outlet property="errorMessageLabel" destination="vNt-rp-nhE" id="c64-wP-Afs"/>
+                        <outlet property="errorView" destination="2YG-O4-n6p" id="2dz-MF-Wqq"/>
                         <outlet property="errorViewTopConstraint" destination="xDb-cM-vWK" id="NqN-5C-3Fz"/>
                         <outlet property="loginButton" destination="Psx-Hq-dmD" id="QiZ-hN-Jr7"/>
                         <outlet property="passwordTextField" destination="oby-2u-yxM" id="5NX-r0-8yH"/>
@@ -1479,7 +1482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzs-eE-Oox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="-1692"/>
+            <point key="canvasLocation" x="23" y="-1022"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="R0d-id-7Ba">
@@ -1583,7 +1586,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUg-6B-Vlx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1362" y="-1692"/>
+            <point key="canvasLocation" x="-358" y="-1022"/>
         </scene>
         <!--Find Password View Controller-->
         <scene sceneID="ztl-ng-rj2">
@@ -1686,7 +1689,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBV-nz-en8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756" y="-1692"/>
+            <point key="canvasLocation" x="-776" y="-1022"/>
         </scene>
         <!--Agreement View Controller-->
         <scene sceneID="2vX-QE-cnN">
@@ -1730,7 +1733,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSX-IY-gv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2193" y="-1690"/>
+            <point key="canvasLocation" x="417" y="-1448"/>
         </scene>
         <!--Measure Navi Controller-->
         <scene sceneID="zlc-L6-EXT">
@@ -1767,7 +1770,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UL-yK-a7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="-303"/>
+            <point key="canvasLocation" x="231" y="-240"/>
         </scene>
         <!--Fit Search View Controller-->
         <scene sceneID="UJQ-ey-Sdg">
@@ -1934,7 +1937,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQr-iU-Kzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2860" y="415"/>
+            <point key="canvasLocation" x="3924" y="415"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cne-sj-0fZ">
@@ -1952,7 +1955,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAx-g6-vdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="415"/>
+            <point key="canvasLocation" x="2015" y="415"/>
         </scene>
         <!--Pre Search View Controller-->
         <scene sceneID="Cau-bq-VZY">
@@ -2039,7 +2042,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53C-zt-eNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1389" y="415"/>
+            <point key="canvasLocation" x="2453" y="415"/>
         </scene>
     </scenes>
     <resources>
