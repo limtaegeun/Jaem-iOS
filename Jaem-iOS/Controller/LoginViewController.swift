@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController {
 
@@ -20,6 +21,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var helpLabel: UILabel!
     
     var buttonBorderView : TextFieldBorderView!
+    
+    var DataToSend = Dictionary<String,String>()
+    
+    var userNameFlag = false
+    var passwordFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +76,48 @@ class LoginViewController: UIViewController {
         return emailTest.evaluateWithObject(testStr)
     }
     
+    func alertPresent(title : String, message: String) {
+        let alert = UIAlertController(title: title , message: message, preferredStyle: .Alert)
+        
+        let action = UIAlertAction(title: "다시시도", style: .Default, handler: nil)
+        alert.addAction(action)
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
     //MARK : ACTION
 
+    @IBAction func tapLogin(sender: AnyObject) {
+        if userNameFlag && passwordFlag {
+            /*
+            let name = DataToSend["name"]!
+            let password = DataToSend["password"]!
+            if let url = MyHost().urlWtihPathNameAboutMainServer("user/login?name="+name+"&password="+password) {
+                Alamofire.request(.GET, url,  encoding: .JSON).responseJSON { response in
+                    debugPrint(response)
+                    if response.result.value!["stat"] as! String == "login_success" {
+                        self.performSegueWithIdentifier("GoMain", sender: self)
+                        
+                    } else if response.result.value!["stat"] as! String == "not_found_name" {
+                        self.alertPresent("잘못된 사용자 이름", message: "입력하신 사용자 이름을 계정에서 찾을 수 없습니다. 사용자 이름을 확인하고 다시 시도해보세요")
+                    } else if response.result.value!["stat"] as! String == "not_found_password" {
+                        self.alertPresent(name+"님의 비밀번호를 잊으셨나요?", message: "입력하신 사용자 이름과 비밀번호가 일치하지 않습니다. 비밀번호를 확인하고 다시 시도해보세요.")
+                    } else if response.result.value!["stat"] as! String == "err" {
+                        self.alertPresent("서버 오류", message: "네트워크 혹은 서버에 문제가 있습니다.")
+                    }
+                    
+                }
+                
+            }
+            
+            */
+            
+            
+        }
+    }
 
+    @IBAction func tapRegister(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation
@@ -88,6 +133,18 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
+        if textField == userNameTextField {
+            if textField.text?.characters.count > 0 {
+                DataToSend["name"] = textField.text
+                userNameFlag = true
+            }
+        } else if textField == passwordTextField {
+            if textField.text?.characters.count > 0 {
+                DataToSend["password"] = textField.text
+                passwordFlag = true
+            }
+        }
+        
         if userNameTextField.text?.characters.count != 0 && passwordTextField.text?.characters.count != 0 {
             buttonBorderView.changeFillAlpha(true)
             LoginButton.userInteractionEnabled = true

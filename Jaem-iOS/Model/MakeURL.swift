@@ -1,8 +1,8 @@
 //
-//  NetworkModule.swift
+//  MakeURL.swift
 //  Jaem-iOS
 //
-//  Created by 임태근 on 2016. 4. 14..
+//  Created by 임태근 on 2016. 4. 15..
 //  Copyright © 2016년 whataday. All rights reserved.
 //
 
@@ -25,6 +25,3 @@ struct MyHost {
         return url
     }
 }
-
-
- 

@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'Jaem-iOS' do
@@ -6,7 +6,7 @@ target 'Jaem-iOS' do
 pod 'RealmSwift'
 pod 'HidingNavigationBar', '~> 0.3'
 pod 'AKPickerView-Swift'
-
+pod 'Alamofire', '~> 3.3'
 end
 
 target 'Jaem-iOSTests' do
@@ -14,7 +14,7 @@ target 'Jaem-iOSTests' do
 pod 'RealmSwift'
 pod 'HidingNavigationBar', '~> 0.3'
 pod 'AKPickerView-Swift'
-
+pod 'Alamofire', '~> 3.3'
 end
 
 target 'Jaem-iOSUITests' do
@@ -22,6 +22,6 @@ target 'Jaem-iOSUITests' do
 pod 'RealmSwift'
 pod 'HidingNavigationBar', '~> 0.3'
 pod 'AKPickerView-Swift'
-
+pod 'Alamofire', '~> 3.3'
 end
 

@@ -10,16 +10,12 @@ import UIKit
 import HidingNavigationBar
 import RealmSwift
 
-struct dummyData {
+struct ParsingData {
     var section : String
     var title : String
-    
     var value : CGFloat
-    
     var require : Bool
-    
     var unit : String
-    
     
 }
 
@@ -28,14 +24,23 @@ var test = true
 class BodyViewController: UIViewController {
 
     @IBOutlet weak var AvatarView: UIView!
-    //var hidingNavBarManager: HidingNavigationBarManager?
+    var hidingNavBarManager: HidingNavigationBarManager?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     
-    var SizeDataSet : [dummyData]?
+    var SizeDataSet : [ParsingData]?
     
     @IBOutlet weak var LeftCircleView: UIView!
     @IBOutlet weak var RightCircleView: UIView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var graphButton: UIButton!
+    @IBOutlet weak var measureButton: UIButton!
+    
+    var userName : String!
+    
     
     var interactionController : PanGestureInteractionController?
     
@@ -43,16 +48,24 @@ class BodyViewController: UIViewController {
         super.viewDidLoad()
         tabBarController?.tabBar.hidden = true
         //test
+        
         if test == true {
             let realm = try! Realm()
+            
+            
             try! realm.write({
-                realm.deleteAll()
+                realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"fuckingOri"], update: true)
             })
+            
+            
         }
-        SizeDataSet =  makeDummyData()
         
+        let realm = try! Realm()
+        userName = realm.objects(UserInfo).first!.userName
+        
+                
         //set hidingNavBar
-        //hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: scrollView)
+        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: scrollView)
         
         //navigationBar background clearColor
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -72,16 +85,52 @@ class BodyViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //hidingNavBarManager?.viewWillAppear(animated)
+        hidingNavBarManager?.viewWillAppear(animated)
+        
+        //set SizeData
+        let realm = try! Realm()
+        if let bodySize = realm.objects(MyBodySize).last {
+            //avatarImageView.image =
+            SizeDataSet = makeParsingData(bodySize)
+            
+            //set recently Measure Time
+            let recentDate = bodySize.date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy'.'MM'.'dd"
+            
+            dateLabel.text = dateFormatter.stringFromDate(recentDate)
+            
+        } else {
+            avatarImageView.image = JaemViewStyleKit.imageOfEmptyAvatar
+            
+            //set recently Measure Time
+            let recentDate = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy'.'MM'.'dd"
+            dateLabel.text = dateFormatter.stringFromDate(recentDate)
+            
+            let zero = MyBodySize()
+            SizeDataSet = makeParsingData(zero)
+        }
+        
+        //set Views
+        graphButton.setImage(JaemIconStyleKit.imageOfGraphIcon, forState: .Normal)
+        measureButton.setImage(JaemIconStyleKit.imageOfMeasureButton, forState: .Normal)
+        userNameLabel.text = "HI " + userName.uppercaseString
+        
+        
+        sizeCollectionView.reloadData()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewdidappear")
+        
+        //print("viewDidAppear")
         
         let realm = try! Realm()
         if let _ = realm.objects(UserInfo).first {
-            print("realm there")
+            print("realm userinfo exist")
             return
         } else {
             print("segue")
@@ -90,38 +139,39 @@ class BodyViewController: UIViewController {
         }
         
         
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        //hidingNavBarManager?.viewWillDisappear(animated)
+        hidingNavBarManager?.viewWillDisappear(animated)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func makeDummyData() -> [dummyData] {
-        var set = [dummyData]()
-        
-        set.append(dummyData(section: "body", title: "HEIGHT", value: 181, require: true, unit: "cm"))
-        set.append(dummyData(section: "body", title: "WEIGHT", value: 76, require: true, unit: "kg"))
-        set.append(dummyData(section: "top", title: "HEAD", value: 22, require: true, unit: "cm"))
-        set.append(dummyData(section: "top", title: "NECK", value: 20.5, require: true, unit: "cm"))
-        set.append(dummyData(section: "top", title: "SHOULDER", value: 54, require: true, unit: "cm"))
-        set.append(dummyData(section: "top", title: "CHEST", value: 92, require: true, unit: "cm"))
-        set.append(dummyData(section: "top", title: "UPPERARM", value: 33, require: true, unit: "cm"))
-        set.append(dummyData(section: "top", title: "WRIST", value: 18, require: false, unit: "cm"))
-        set.append(dummyData(section: "top", title: "STOMACH", value: 81, require: false, unit: "cm"))
-        set.append(dummyData(section: "top", title: "SHIRT LENGTH", value: 106, require: false, unit: "cm"))
-        set.append(dummyData(section: "bottom", title: "WAIST", value: 86, require: true, unit: "cm"))
-        set.append(dummyData(section: "bottom", title: "HIPS", value: 98, require: true, unit: "cm"))
-        set.append(dummyData(section: "bottom", title: "THIGH", value: 56.5, require: true, unit: "cm"))
-        set.append(dummyData(section: "bottom", title: "RISE", value: 33, require: false, unit: "cm"))
-        set.append(dummyData(section: "bottom", title: "CUFF", value: 24, require: false, unit: "cm"))
-        set.append(dummyData(section: "bottom", title: "LEG LENGTH", value: 93, require: false, unit: "cm"))
-        
+    func makeParsingData(object : MyBodySize?) -> [ParsingData] {
+        var set = [ParsingData]()
+        if object != nil {
+            set.append(ParsingData(section: "body", title: "HEIGHT", value: CGFloat( object!.height ) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "body", title: "WEIGHT", value: CGFloat( object!.weight) , require: true, unit: "kg"))
+            set.append(ParsingData(section: "top", title: "HEAD", value: CGFloat( object!.head) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "NECK", value: CGFloat( object!.neck) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "SHOULDER", value: CGFloat( object!.shoulder) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "CHEST", value: CGFloat( object!.chest) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "UPPERARM", value: CGFloat( object!.upperArm) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "WRIST", value: CGFloat( object!.wrist) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "STOMACH", value: CGFloat( object!.stomach), require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "SHIRT LENGTH", value: CGFloat( object!.shirtLength) ?? 0, require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "WAIST", value: CGFloat( object!.waist), require: true, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "HIPS", value: CGFloat( object!.hips), require: true, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "THIGH", value: CGFloat( object!.thigh), require: true, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "RISE", value: CGFloat( object!.rise), require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "CUFF", value: CGFloat( object!.cuff), require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "LEG LENGTH", value: CGFloat( object!.legLength), require: false, unit: "cm"))
+        }
         return set
     }
 
@@ -137,6 +187,7 @@ class BodyViewController: UIViewController {
         } else if segue.identifier == "GoFit" {
             let dv = segue.destinationViewController as! RegularFitViewController
             dv.interactionController = interactionController
+            dv.userName = userName
         }
         
         
@@ -192,11 +243,21 @@ extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return 2
+            let datas = SizeDataSet?.filter({ (data : ParsingData) -> Bool in
+                data.section == "body"
+                
+            })
+            return datas!.count
         } else if section == 1 {
-            return 8
+            let datas = SizeDataSet?.filter({ (data : ParsingData) -> Bool in
+                data.section == "top"
+            })
+            return datas!.count
         } else {
-            return 6
+            let datas = SizeDataSet?.filter({ (data : ParsingData) -> Bool in
+                data.section == "bottom"
+            })
+            return datas!.count
         }
     }
     
@@ -221,19 +282,25 @@ extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, 
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let datas = SizeDataSet?.filter({ (data : dummyData) -> Bool in
+            let datas = SizeDataSet?.filter({ (data : ParsingData) -> Bool in
                 data.section == "body"
                 
             })
-            
+            let cell : SizeDataCell
             let data = datas![indexPath.row]
-            
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CMCell", forIndexPath: indexPath) as! SizeDataCell
+            if data.unit == "cm" {
+                cell = collectionView.dequeueReusableCellWithReuseIdentifier("CMCell", forIndexPath: indexPath) as! SizeDataCell
+
+            } else {
+                cell = collectionView.dequeueReusableCellWithReuseIdentifier("KGCell", forIndexPath: indexPath) as! SizeDataCell
+
+            }
             cell.title.text = data.title
-            cell.value.text = "\(data.value)"
+            cell.value.text = (data.value != 0) ?  "\(data.value)" : "__"
+            
             return cell
         } else if indexPath.section == 1 {
-            let datas = SizeDataSet?.filter({ (data : dummyData) -> Bool in
+            let datas = SizeDataSet?.filter({ (data : ParsingData) -> Bool in
                 data.section == "top"
             })
             
@@ -241,14 +308,14 @@ extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, 
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CMCell", forIndexPath: indexPath) as! SizeDataCell
             cell.title.text = data.title
-            cell.value.text = "\(data.value)"
+            cell.value.text = (data.value != 0) ?  "\(data.value)" : "__"
             if data.require == false {
                 cell.title.alpha = 0.5
                 cell.value.alpha = 0.5
             }
             return cell
         } else {
-            let datas = SizeDataSet?.filter({ (data : dummyData) -> Bool in
+            let datas = SizeDataSet?.filter({ (data : ParsingData) -> Bool in
                 data.section == "bottom"
             })
             
@@ -256,7 +323,7 @@ extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, 
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CMCell", forIndexPath: indexPath) as! SizeDataCell
             cell.title.text = data.title
-            cell.value.text = "\(data.value)"
+            cell.value.text = (data.value != 0) ?  "\(data.value)" : "__"
             if data.require == false {
                 cell.title.alpha = 0.5
                 cell.value.alpha = 0.5

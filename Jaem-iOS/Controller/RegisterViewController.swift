@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
 
 class RegisterViewController: UIViewController {
 
@@ -138,33 +139,33 @@ class RegisterViewController: UIViewController {
                 me.email = DataToSend["email"]!
             }
             
-            let session = MySessionTask(sender: self)
             if let url = MyHost().urlWtihPathNameAboutMainServer("user/regi") {
-                session.uploadTask(DataToSend, url: url, complete: { (data) in
-                    if data != nil {
-                        
-                        if data!["stat"] as? String == "regi_success" {
+                Alamofire.request(.POST, url, parameters: DataToSend, encoding: .JSON).responseJSON{response in
+                    debugPrint(response)
+                    
+                    switch response.result {
+                    case .Success(let json):
+                        if json as! String == "regi_success" {
                             if let realm = try? Realm() {
                                 try! realm.write({
                                     realm.add(me)
                                 })
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             }
-
                         } else {
-                            self.appearErrorView("회원가입에 문제가 있습니다.")
+                            self.appearErrorView("서버에 문제가 있습니다.")
                         }
-                        
-                        
-                    } else {
-                        self.appearErrorView("회원가입에 문제가 있습니다.")
-                    }
-                    }, errorHandler: { 
+                    case .Failure(let _):
                         self.appearErrorView("네트워크에 문제가 있습니다.")
-                })
+                    
+                        
+                        
+                    }
+                    
+                    
+                    
+                }
             }
-            
-            
             
             
         
@@ -173,6 +174,9 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func tapLogin(sender: AnyObject) {
+        
+        performSegueWithIdentifier("GoLogin", sender: self)
+        
     }
     
     func tapping(recognizer : UITapGestureRecognizer)  {
@@ -195,16 +199,49 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        
         if textField == emailTextField {
+            /*
             if isValidEmail(textField.text!) {
-                DataToSend["email"] = textField.text
-                emailFlag = true
+                let email = textField.text!
+                if let url = MyHost().urlWtihPathNameAboutMainServer("user/check/email?email="+email) {
+                    Alamofire.request(.GET, url, encoding: .JSON).responseJSON { response in
+                        debugPrint(response)
+                        if response.result.value!["stat"] as! String == "duplicate" {
+                            self.appearErrorView("이미 존재하는 이메일입니다.")
+                        } else if response.result.value!["stat"] as! String == "usefull" {
+                            self.appearErrorView("사용가능한 이메일입니다.")
+                            self.DataToSend["email"] = textField.text
+                            self.emailFlag = true
+                        } else {
+                            self.appearErrorView("오류가 발생하였습니다.")
+                        }
+                    }
+                }
+                
             } else {
                 appearErrorView("이 이메일은 사용할 수 없습니다.")
                 
             }
         } else if textField == userNameTextField {
             if textField.text?.characters.count > 0 {
+                
+                let name = textField.text!
+                if let url = MyHost().urlWtihPathNameAboutMainServer("user/check/email?name="+name) {
+                    Alamofire.request(.GET, url, encoding: .JSON).responseJSON { response in
+                        debugPrint(response)
+                        if response.result.value!["stat"] as! String == "duplicate" {
+                            self.appearErrorView("이미 존재하는 이메일입니다.")
+                        } else if response.result.value!["stat"] as! String == "usefull" {
+                            self.appearErrorView("사용가능한 이메일입니다.")
+                            self.DataToSend["email"] = textField.text
+                            self.emailFlag = true
+                        } else {
+                            self.appearErrorView("오류가 발생하였습니다.")
+                        }
+                    }
+                }
+                
                 DataToSend["name"] = textField.text
                 userNameFlag = true
             }
@@ -229,8 +266,9 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
             regiButton.userInteractionEnabled = false
             regiButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
             
-            
+           */
         }
+ 
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

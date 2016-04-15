@@ -28,7 +28,6 @@
 		AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63ADDD1CAFA59C00029E77 /* JaemViewStyleKit.swift */; };
 		AF63ADE01CAFA8CA00029E77 /* TextFieldBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63ADDF1CAFA8CA00029E77 /* TextFieldBorderView.swift */; };
 		AF63ADE21CB00A6000029E77 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */; };
-		AF6488FF1CBF5C7100F22F99 /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6488FE1CBF5C7100F22F99 /* NetworkModule.swift */; };
 		AF655F2C1CB619510015EE28 /* RegularFitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */; };
 		AF655F2E1CB61A580015EE28 /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2D1CB61A580015EE28 /* AddButtonView.swift */; };
 		AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2F1CB63C250015EE28 /* TypeCell.swift */; };
@@ -40,6 +39,7 @@
 		AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */; };
 		AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */; };
 		AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */; };
+		AFDC15921CC0D22C001253CA /* MakeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC15911CC0D22B001253CA /* MakeURL.swift */; };
 		AFDD17E11CA9779C005AF8BC /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */; };
 		AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */; };
 		AFDD17E51CAA649B005AF8BC /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */; };
@@ -115,7 +115,6 @@
 		AF63ADDD1CAFA59C00029E77 /* JaemViewStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemViewStyleKit.swift; sourceTree = "<group>"; };
 		AF63ADDF1CAFA8CA00029E77 /* TextFieldBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldBorderView.swift; path = View/TextFieldBorderView.swift; sourceTree = "<group>"; };
 		AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindPasswordViewController.swift; path = Controller/FindPasswordViewController.swift; sourceTree = "<group>"; };
-		AF6488FE1CBF5C7100F22F99 /* NetworkModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
 		AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegularFitViewController.swift; path = Controller/RegularFitViewController.swift; sourceTree = "<group>"; };
 		AF655F2D1CB61A580015EE28 /* AddButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddButtonView.swift; path = View/AddButtonView.swift; sourceTree = "<group>"; };
 		AF655F2F1CB63C250015EE28 /* TypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeCell.swift; path = Controller/TypeCell.swift; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleTransitionAnimationController.swift; path = Controller/CircleTransitionAnimationController.swift; sourceTree = "<group>"; };
 		AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureNaviController.swift; path = Controller/MeasureNaviController.swift; sourceTree = "<group>"; };
 		AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardTabBarController.swift; path = Controller/CardTabBarController.swift; sourceTree = "<group>"; };
+		AFDC15911CC0D22B001253CA /* MakeURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeURL.swift; sourceTree = "<group>"; };
 		AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureViewController.swift; path = Controller/MeasureViewController.swift; sourceTree = "<group>"; };
 		AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionViewController.swift; path = Controller/ConnectionViewController.swift; sourceTree = "<group>"; };
 		AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListTableViewController.swift; path = Controller/DeviceListTableViewController.swift; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 			children = (
 				AFFBBC4C1CA0019900879BDC /* BLE */,
 				AF03E1361CBE896D00D1F1FC /* RealmModel.swift */,
-				AF6488FE1CBF5C7100F22F99 /* NetworkModule.swift */,
+				AFDC15911CC0D22B001253CA /* MakeURL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -680,6 +680,7 @@
 				AF63ADDA1CAF9E1E00029E77 /* LoginViewController.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
 				AF45544E1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift in Sources */,
+				AFDC15921CC0D22C001253CA /* MakeURL.swift in Sources */,
 				AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */,
 				AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */,
 				AFEADDF11CBBAFE80017BAD9 /* SearchViewController.swift in Sources */,
@@ -697,7 +698,6 @@
 				AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */,
 				AF63ADE21CB00A6000029E77 /* FindPasswordViewController.swift in Sources */,
 				AFFBBC4B1CA0017A00879BDC /* BTService.swift in Sources */,
-				AF6488FF1CBF5C7100F22F99 /* NetworkModule.swift in Sources */,
 				AFFBBC4A1CA0017A00879BDC /* BTDiscovery.swift in Sources */,
 				AF03E1351CBE67C000D1F1FC /* SearchTextCell.swift in Sources */,
 				AF63ADE01CAFA8CA00029E77 /* TextFieldBorderView.swift in Sources */,

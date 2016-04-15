@@ -7,12 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct ClothesType {
-    var title : String
-    
-    
-}
+
 
 class RegularFitViewController: UIViewController {
 
@@ -30,6 +27,7 @@ class RegularFitViewController: UIViewController {
     
     var clothesSet = [AnyObject]()
     var types : [ClothesType]!
+    var userName : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +49,10 @@ class RegularFitViewController: UIViewController {
         
         clothesCollectionView.collectionViewLayout = layout
         
+        titleLabel.text = userName + "'S REGULAR FIT"
         
+        fitCollectionView.alpha = 0
+        compareCollectionView.alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,18 +86,18 @@ class RegularFitViewController: UIViewController {
     func setDefaultTypes() -> [ClothesType]{
         
         var set = [ClothesType]()
-        set.append(ClothesType(title: "runningShirt"))
-        set.append(ClothesType(title: "Tshirts"))
-        set.append(ClothesType(title: "sweater"))
-        set.append(ClothesType(title: "shirts"))
-        set.append(ClothesType(title: "vest"))
-        set.append(ClothesType(title: "jacket"))
-        set.append(ClothesType(title: "jumper"))
-        set.append(ClothesType(title: "coats"))
-        set.append(ClothesType(title: "padding"))
-        set.append(ClothesType(title: "pants"))
-        set.append(ClothesType(title: "shorts"))
-        set.append(ClothesType(title: "skirt"))
+        set.append(ClothesType.runningShirt)
+        set.append(ClothesType.Tshirts)
+        set.append(ClothesType.sweater)
+        set.append(ClothesType.shirts)
+        set.append(ClothesType.vest)
+        set.append(ClothesType.jacket)
+        set.append(ClothesType.jumper)
+        set.append(ClothesType.coats)
+        set.append(ClothesType.padding)
+        set.append(ClothesType.pants)
+        set.append(ClothesType.shorts)
+        set.append(ClothesType.skirt)
         return set
 
     }
@@ -139,7 +140,7 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
         
         if collectionView == clothesCollectionView {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TypeCell", forIndexPath: indexPath) as! TypeCell
-            cell.icon.image =  UIImage(named: types[indexPath.row].title)
+            cell.icon.image =  UIImage(named: types[indexPath.row].rawValue)
             return cell
         } else if collectionView == fitCollectionView {
            
@@ -162,7 +163,18 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
     }
     
     
-    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if collectionView == clothesCollectionView {
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseOut, animations: { 
+                self.fitCollectionView.alpha = 1.0
+                self.compareCollectionView.alpha = 1.0
+                }, completion: nil)
+            
+            let type = types[indexPath.row]
+            
+            
+        }
+    }
     
     
     

@@ -20,7 +20,7 @@ class RulerView: UIView {
     func drawCanvas1(frame frame: CGRect = CGRect(x: 0, y: 0, width: 510, height: 55)) {
         //// Color Declarations
         let strokeColor = UIColor(red: 0.920, green: 0.331, blue: 0.117, alpha: 1.000)
-        let strokeColor2 = UIColor(red: 0.812, green: 0.812, blue: 0.812, alpha: 1.000)
+        _ = UIColor(red: 0.812, green: 0.812, blue: 0.812, alpha: 1.000)
         
         //// Group 5
         //// Line Drawing
