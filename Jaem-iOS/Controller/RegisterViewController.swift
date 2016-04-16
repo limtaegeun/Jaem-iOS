@@ -155,9 +155,9 @@ class RegisterViewController: UIViewController {
                         } else {
                             self.appearErrorView("서버에 문제가 있습니다.")
                         }
-                    case .Failure(let _):
+                    case .Failure(_):
                         self.appearErrorView("네트워크에 문제가 있습니다.")
-                    
+                        
                         
                         
                     }

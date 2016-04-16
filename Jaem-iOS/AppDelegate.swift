@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-var RealmSchemaVersion: UInt64 = 2
+var RealmSchemaVersion: UInt64 = 3
 
 
 @UIApplicationMain

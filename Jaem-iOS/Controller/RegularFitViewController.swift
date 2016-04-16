@@ -29,9 +29,15 @@ class RegularFitViewController: UIViewController {
     var types : [ClothesType]!
     var userName : String!
     
+    
+    var recommendSizeArray = [Dictionary<String,String>]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //test
+        userName = "FUCKINGORI"
+        
         types = setDefaultTypes()
         
         //set uicollectionView delegate
@@ -87,19 +93,83 @@ class RegularFitViewController: UIViewController {
         
         var set = [ClothesType]()
         set.append(ClothesType.runningShirt)
-        set.append(ClothesType.Tshirts)
+        set.append(ClothesType.longsleevedTshirts)
         set.append(ClothesType.sweater)
         set.append(ClothesType.shirts)
         set.append(ClothesType.vest)
         set.append(ClothesType.jacket)
         set.append(ClothesType.jumper)
         set.append(ClothesType.coats)
-        set.append(ClothesType.padding)
+        set.append(ClothesType.heavyOuter)
         set.append(ClothesType.pants)
         set.append(ClothesType.shorts)
         set.append(ClothesType.skirt)
         return set
 
+    }
+    
+    func parseToArray(object :SizeRecommend) -> [Dictionary<String,String>] {
+        var array = [Dictionary<String,String>]()
+        var dic = [String:String]()
+        if object.shoulderWidth != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.shoulderWidth)"
+            array.append(dic)
+        }
+        if object.chestSize != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.chestSize)"
+            array.append(dic)
+
+        }
+        if object.chestLength != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.chestLength)"
+            array.append(dic)
+
+        }
+        if object.armHole != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.armHole)"
+            array.append(dic)
+
+        }
+        if object.waistSize != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.waistSize)"
+            array.append(dic)
+        }
+        if object.waistLength != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.waistLength)"
+            array.append(dic)
+
+        }
+        if object.hipSize != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.hipSize)"
+            array.append(dic)
+
+        }
+        if object.hipLength != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.hipLength)"
+            array.append(dic)
+
+        }
+        if object.thighSize != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.thighSize)"
+            array.append(dic)
+
+        }
+        if object.thighLength != 0 {
+            dic["title"] = "어깨너비"
+            dic["value"] = "\(object.thighLength)"
+            array.append(dic)
+
+        }
+        return array
     }
     
     // MARK: ACTION
@@ -145,6 +215,8 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
         } else if collectionView == fitCollectionView {
            
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyRegularFitCell", forIndexPath: indexPath) as! MyRegularFitCell
+            cell.sizeArray = recommendSizeArray
+            
             return cell
             
             
@@ -172,6 +244,15 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
             
             let type = types[indexPath.row]
             
+            let realm = try! Realm()
+            let recommend = realm.objects(SizeRecommend).filter("type = %@", type.rawValue)
+            if recommend.count != 0 {
+                let data = recommend.first
+                recommendSizeArray = parseToArray(data!)
+            } else {
+                recommendSizeArray.append(["title":"추천치수가 없습니다.","value":"__"])
+            }
+            fitCollectionView.reloadData()
             
         }
     }
