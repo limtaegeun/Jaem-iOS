@@ -37,7 +37,19 @@ class RegularFitViewController: UIViewController {
 
         //test
         userName = "FUCKINGORI"
+        /*
+        let realm = try! Realm()
+        let object = SizeRecommend()
+        object.category = ClothesCategory.TOP.rawValue
+        object.type = ClothesType.longsleevedTshirts.rawValue
+        object.shoulderWidth = 80
+        object.armHole = 90
+        object.hipLength = 100
         
+        try! realm.write {
+            realm.add(object)
+        }
+        */
         types = setDefaultTypes()
         
         //set uicollectionView delegate
@@ -48,17 +60,13 @@ class RegularFitViewController: UIViewController {
         compareCollectionView.delegate = self
         compareCollectionView.dataSource = self
         
-        //set collectionViewFlowlayout
-        let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width / 4 - 8
-        layout.itemSize = CGSize(width: width, height: width)
-        
-        clothesCollectionView.collectionViewLayout = layout
         
         titleLabel.text = userName + "'S REGULAR FIT"
         
         fitCollectionView.alpha = 0
         compareCollectionView.alpha = 0
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,6 +85,13 @@ class RegularFitViewController: UIViewController {
         layout.itemSize = CGSize(width: width, height: width)
         
         clothesCollectionView.collectionViewLayout = layout
+        
+        let layout2 = UICollectionViewFlowLayout()
+        let width2 = view.frame.width / 2
+        layout2.itemSize = CGSize(width: width2, height: 250)
+        
+        fitCollectionView.collectionViewLayout = layout2
+        
         
         exitButton.setImage(JaemIconStyleKit.imageOfExitButton, forState: UIControlState.Normal)
         exitButton.tintColor = UIColor.whiteColor()
@@ -117,54 +132,54 @@ class RegularFitViewController: UIViewController {
             array.append(dic)
         }
         if object.chestSize != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "가슴둘레"
             dic["value"] = "\(object.chestSize)"
             array.append(dic)
 
         }
         if object.chestLength != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "가슴단면"
             dic["value"] = "\(object.chestLength)"
             array.append(dic)
 
         }
         if object.armHole != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "암홀"
             dic["value"] = "\(object.armHole)"
             array.append(dic)
 
         }
         if object.waistSize != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "허리둘레"
             dic["value"] = "\(object.waistSize)"
             array.append(dic)
         }
         if object.waistLength != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "허리단면"
             dic["value"] = "\(object.waistLength)"
             array.append(dic)
 
         }
         if object.hipSize != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "엉덩이둘레"
             dic["value"] = "\(object.hipSize)"
             array.append(dic)
 
         }
         if object.hipLength != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "엉덩이단면"
             dic["value"] = "\(object.hipLength)"
             array.append(dic)
 
         }
         if object.thighSize != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "허벅지둘레"
             dic["value"] = "\(object.thighSize)"
             array.append(dic)
 
         }
         if object.thighLength != 0 {
-            dic["title"] = "어깨너비"
+            dic["title"] = "허벅지단면"
             dic["value"] = "\(object.thighLength)"
             array.append(dic)
 
@@ -199,7 +214,9 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
         if collectionView == clothesCollectionView {
             return 12
         } else if collectionView == fitCollectionView {
+            
             return 1
+            
         } else {
             return clothesSet.count + 1
             
@@ -217,6 +234,9 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyRegularFitCell", forIndexPath: indexPath) as! MyRegularFitCell
             cell.sizeArray = recommendSizeArray
             
+            
+            
+            cell.addLabels()
             return cell
             
             
@@ -248,10 +268,15 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
             let recommend = realm.objects(SizeRecommend).filter("type = %@", type.rawValue)
             if recommend.count != 0 {
                 let data = recommend.first
+                recommendSizeArray.removeAll()
                 recommendSizeArray = parseToArray(data!)
             } else {
-                recommendSizeArray.append(["title":"추천치수가 없습니다.","value":"__"])
+                recommendSizeArray.removeAll()
+                recommendSizeArray.append(["title":"추천치수가 없습니다.","value":""])
             }
+            
+            
+            
             fitCollectionView.reloadData()
             
         }

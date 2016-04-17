@@ -11,24 +11,42 @@ import UIKit
 class MyRegularFitCell: UICollectionViewCell {
     
     @IBOutlet weak var defaultLabel: UILabel!
-    var sizeArray : [Dictionary<String,String>]!
-    override func awakeFromNib() {
-        let offsetX = defaultLabel.frame.origin.x
+    var sizeArray : [Dictionary<String,String>]?
+    var labels = [UILabel]()
+    func addLabels() {
+        let LeftOffsetX = defaultLabel.frame.origin.x
+        let RightOffsetX = self.frame.maxX - 65
         var offsetY = CGRectGetMaxY(defaultLabel.frame)
         
-        for dic in sizeArray {
-            let label = UILabel(frame: CGRect(x: offsetX, y: offsetY + 17, width: self.frame.maxX - offsetX, height: 18))
+        for dic in sizeArray! {
+            let label = UILabel(frame: CGRect(x: LeftOffsetX, y: offsetY + 17, width: 100, height: 18))
             label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 10)!
             label.textColor = defaultLabel.textColor
+            label.text = dic["title"]
             
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string:dic["title"]! + "     " + dic["value"]!)
+            let label2 = UILabel(frame: CGRect(x: RightOffsetX, y: offsetY + 17, width: self.frame.maxX - RightOffsetX, height: 18))
+            label2.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 10)!
+            label2.textColor = defaultLabel.textColor
             
-            attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(16, 3))
-            label.attributedText = attributeString
+            let attributeString : NSMutableAttributedString
+            if dic["value"] != "" {
+                attributeString =  NSMutableAttributedString(string:dic["value"]! + "CM")
+                attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 15)!, range: NSMakeRange(0, 4))
+                label2.attributedText = attributeString
+                addSubview(label2)
+                labels.append(label2)
+            }
             
+            addSubview(label)
+            labels.append(label)
             offsetY = CGRectGetMaxY(label.frame)
         }
-        
+    }
+    
+    override func prepareForReuse() {
+        for label in labels {
+            label.removeFromSuperview()
+        }
     }
     
 }

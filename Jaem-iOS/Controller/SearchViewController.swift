@@ -33,6 +33,9 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var numberOfResult: UILabel!
     
+    var hidingNavBarManager : HidingNavigationBarManager?
+    var searchedText : String?
+    
     var searchResults = [Result]()
     var hasSearched = false
     var categorys = [CategoryButton]()
@@ -41,24 +44,45 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //set tableview contentInset
-        tableView.contentInset = UIEdgeInsets(top: 104, left: 0, bottom: 0, right: 0)
         
         //set delegate
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
+        searchBar.text = searchedText
         
-        
-        
+        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        hidingNavBarManager?.viewWillAppear(animated)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        //navigationBar background clearColor
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.translucent = true
+        
+        tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        
+        
         categoryView = addExtensionView()
         view.addSubview(categoryView)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //hidingNavBarManager?.viewDidLayoutSubviews()
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        hidingNavBarManager?.viewWillDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,9 +162,7 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
-        for _ in 0...2 {
-            searchResults.append(Result(brand: "유니클로", name: "개 멋진 티셔츠", image: UIImage(named: "IMG_0272 Copy 2.png")!))
-        }
+        //Todo: network
         
         tableView.reloadData()
     }
@@ -171,6 +193,10 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
         print("didselect")
     }
     
+    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        hidingNavBarManager?.shouldScrollToTop()
+        return true
+    }
 }
 
 
