@@ -33,6 +33,7 @@
 		AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2F1CB63C250015EE28 /* TypeCell.swift */; };
 		AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */; };
 		AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F331CB63CCD0015EE28 /* ClothesCell.swift */; };
+		AF70D4201CC3AA60005A395D /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70D41F1CC3AA60005A395D /* NetworkModule.swift */; };
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
 		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
@@ -120,6 +121,7 @@
 		AF655F2F1CB63C250015EE28 /* TypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeCell.swift; path = Controller/TypeCell.swift; sourceTree = "<group>"; };
 		AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRegularFitCell.swift; path = Controller/MyRegularFitCell.swift; sourceTree = "<group>"; };
 		AF655F331CB63CCD0015EE28 /* ClothesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesCell.swift; path = View/ClothesCell.swift; sourceTree = "<group>"; };
+		AF70D41F1CC3AA60005A395D /* NetworkModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
 		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				AFFBBC4C1CA0019900879BDC /* BLE */,
 				AF03E1361CBE896D00D1F1FC /* RealmModel.swift */,
 				AFDC15911CC0D22B001253CA /* MakeURL.swift */,
+				AF70D41F1CC3AA60005A395D /* NetworkModule.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				AF03E1351CBE67C000D1F1FC /* SearchTextCell.swift in Sources */,
 				AF63ADE01CAFA8CA00029E77 /* TextFieldBorderView.swift in Sources */,
 				AFFBBC531CA0241400879BDC /* CardStackLayout.swift in Sources */,
+				AF70D4201CC3AA60005A395D /* NetworkModule.swift in Sources */,
 				AF03E12D1CBE387200D1F1FC /* PreSearchViewController.swift in Sources */,
 				AF45544B1CB76C0600775D65 /* PanGestureInteractionController.swift in Sources */,
 				AFDD17E51CAA649B005AF8BC /* DeviceListTableViewController.swift in Sources */,

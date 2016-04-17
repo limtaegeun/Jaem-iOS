@@ -8,23 +8,23 @@
 
 import UIKit
 
-struct MyHost {
-    var AmazonMainHost : String =  "http://ec2-52-193-85-231.ap-northeast-1.compute.amazonaws.com:9000"
-    
-    func urlWithPathName(PathName: String, host : String) -> NSURL? {
-        let path = NSString(string: PathName)
-        let newPath = path.stringByReplacingOccurrencesOfString(" ", withString: "+")
-        let url = NSURL(string: host + "/" + newPath)
-        return url
-    }
-    
-    func urlWtihPathNameAboutMainServer(PathName: String) -> NSURL? {
-        let path = NSString(string: PathName)
-        let newPath = path.stringByReplacingOccurrencesOfString(" ", withString: "+")
-        let url = NSURL(string: AmazonMainHost + "/" + newPath)
-        return url
+class ParseJSON {
+    class func parseJSONToDictionary(json:AnyObject) -> [String:AnyObject]? {
+        if let dic = json as? [String:AnyObject] {
+            return dic
+        } else {
+            return nil
+        }
     }
 }
 
-
- 
+class Alert {
+    class func networkErrorAlertPresent(sender:UIViewController , title : String, message: String) {
+        let alert = UIAlertController(title: title , message: message, preferredStyle: .Alert)
+        
+        let action = UIAlertAction(title: "다시시도", style: .Default, handler: nil)
+        alert.addAction(action)
+        
+        sender.presentViewController(alert, animated: true, completion: nil)
+    }
+}

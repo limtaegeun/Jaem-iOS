@@ -8,6 +8,7 @@
 
 import UIKit
 import HidingNavigationBar
+import Alamofire
 
 struct Result {
     var brand : String
@@ -53,7 +54,33 @@ class SearchViewController: UIViewController {
         searchBar.text = searchedText
         
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
-        // Do any additional setup after loading the view.
+        
+        //search
+        let url_encoding = searchedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=all") {
+            Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
+                debugPrint(response)
+                
+                switch response.result {
+                case .Success(let json):
+                    if let dic = ParseJSON.parseJSONToDictionary(json) {
+                        if dic["stat"] as! String == "success" {
+                            
+                        } else {
+                            Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
+                        }
+                    }
+                    
+                case .Failure(_):
+                    Alert.networkErrorAlertPresent(self, title: "네트워크에 문제가 있습니다.", message: "다시 시도해보세요")
+                    
+                    
+                    
+                }
+            })
+
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
