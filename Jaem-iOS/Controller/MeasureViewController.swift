@@ -75,12 +75,12 @@ class MeasureViewController: UIViewController {
     
     @IBAction func nextStep(sender: AnyObject) {
         currentMeasureStep(currentStep + 1)
+        pickerView.selectItem(50, animated: true)
     }
     
     func currentMeasureStep(step : Int)  {
         currentStep = step
         let collectionView = containerViewController.collectionView
-        
         
         containerViewController.selectStep(collectionView!, step: step)
         

@@ -36,6 +36,13 @@ class FitSearchViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         exitButton.setImage(JaemIconStyleKit.imageOfExitButton, forState: UIControlState.Normal)
         exitButton.tintColor = UIColor.whiteColor()
+        
+        let layout = UICollectionViewFlowLayout()
+        let width = view.frame.width / 2
+        layout.itemSize = CGSize(width: width, height: 250)
+        
+        fitCollectionView.collectionViewLayout = layout
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -232,11 +232,11 @@ extension RegularFitViewController : UICollectionViewDelegate, UICollectionViewD
         } else if collectionView == fitCollectionView {
            
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyRegularFitCell", forIndexPath: indexPath) as! MyRegularFitCell
+            
             cell.sizeArray = recommendSizeArray
-            
-            
-            
+            //present SizeData
             cell.addLabels()
+            
             return cell
             
             

@@ -281,10 +281,11 @@ extension PreSearchViewController : UISearchBarDelegate , UITableViewDelegate, U
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if searchBar.text?.characters.count == 0 {
             tableViewAppear(false)
-            searchedText = searchBar.text
+            
             
         } else {
             tableViewAppear(false)
+            searchedText = searchBar.text
             performSegueWithIdentifier("GoSearchResult", sender: self)
         }
         

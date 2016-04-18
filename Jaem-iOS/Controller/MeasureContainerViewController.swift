@@ -74,8 +74,13 @@ class MeasureContainerViewController: UICollectionViewController {
     func selectStep(collectionView : UICollectionView  , step : Int ){
         currentStep = step
         
+        //to animated Change
         collectionView.performBatchUpdates({
             collectionView.reloadSections(NSIndexSet(index: 0))
+            }, completion: nil)
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { 
+            collectionView.contentOffset.x = min(CGFloat( 57 * step), collectionView.contentSize.width - self.view.frame.width)
             }, completion: nil)
         
     

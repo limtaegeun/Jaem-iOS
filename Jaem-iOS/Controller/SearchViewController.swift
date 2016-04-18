@@ -11,9 +11,13 @@ import HidingNavigationBar
 import Alamofire
 
 struct Result {
-    var brand : String
+    var code : Int
     var name : String
-    var image : UIImage
+    var brandKo : String
+    var brandEn : String
+    var ImageURLBack : String
+    var ImageURLFront : String
+    
 }
 
 enum Category : Int{
@@ -53,11 +57,11 @@ class SearchViewController: UIViewController {
         
         searchBar.text = searchedText
         
-        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
+        //hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
         
         //search
         let url_encoding = searchedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=all") {
+        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=all&pagenation=0") {
             Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
                 debugPrint(response)
                 
@@ -65,7 +69,8 @@ class SearchViewController: UIViewController {
                 case .Success(let json):
                     if let dic = ParseJSON.parseJSONToDictionary(json) {
                         if dic["stat"] as! String == "success" {
-                            
+                            self.parseToResultObject(dic)
+                            self.tableView.reloadData()
                         } else {
                             Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
                         }
@@ -96,7 +101,7 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.translucent = true
         
-        tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
         
         
         categoryView = addExtensionView()
@@ -115,6 +120,24 @@ class SearchViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func parseToResultObject(json :[String: AnyObject]) {
+        searchResults.removeAll()
+        if let array = json["result"] as? [AnyObject] {
+            for data in array {
+                let result = Result(code: data["c_key"]! as! Int,
+                                    name: data["title"]! as! String,
+                                    brandKo: data["brand_name_ko"] as! String,
+                                    brandEn: data["brand_name_en"] as! String,
+                                    ImageURLBack: data["color_back"] as! String,
+                                    ImageURLFront: data["color_front"] as! String)
+                searchResults.append(result)
+            }
+        }
+        
+        print(searchResults)
+        
     }
     
     func addExtensionView() -> UIView {
@@ -168,13 +191,14 @@ class SearchViewController: UIViewController {
 
     //MARK : ACTION
     
-    func tapButton(sender : AnyObject) {
+    func tapButton(sender : CategoryButton) {
         for button in categorys {
             button.changeFillAlpha(false)
             
         }
+        
         sender.changeFillAlpha(true)
-        currentCategory = Category(rawValue: categorys.indexOf(sender as! CategoryButton)!)!
+        currentCategory = Category(rawValue: categorys.indexOf(sender)!)!
         print(currentCategory)
     }
     
@@ -187,11 +211,32 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        
+        let url_encoding = searchBar.text!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=all&pagenation=0") {
+            Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
+                debugPrint(response)
+                
+                switch response.result {
+                case .Success(let json):
+                    if let dic = ParseJSON.parseJSONToDictionary(json) {
+                        if dic["stat"] as! String == "success" {
+                            self.parseToResultObject(dic)
+                            self.tableView.reloadData()
+                        } else {
+                            Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
+                        }
+                    }
+                    
+                case .Failure(_):
+                    Alert.networkErrorAlertPresent(self, title: "네트워크에 문제가 있습니다.", message: "다시 시도해보세요")
+                    
+                }
+            })
+            
+        }
         searchBar.resignFirstResponder()
-        
-        //Todo: network
-        
-        tableView.reloadData()
     }
     
     //MARK : TABLE VIEW Delegate
@@ -209,9 +254,10 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("SearchResultCell", forIndexPath: indexPath) as! SearchResultCell
-        cell.brandLabel.text = searchResults[indexPath.row].brand
+        cell.brandLabel.text = searchResults[indexPath.row].brandKo
         cell.nameLabel.text = searchResults[indexPath.row].name
-        cell.clothesImage.image = searchResults[indexPath.row].image
+        cell.configureForImageResult(searchResults[indexPath.row].ImageURLFront)
+        
         return cell
     }
     

@@ -72,7 +72,7 @@ class SizeRecommend: Object {
 }
 
 class TopAndOuter: Object {
-    dynamic var code : String = ""
+    dynamic var code = 0
     dynamic var category : String = ""
     dynamic var type : String = ""
     dynamic var gender = ""
@@ -89,7 +89,7 @@ class TopAndOuter: Object {
 }
 
 class Bottom: Object {
-    dynamic var code : String = ""
+    dynamic var code = 0
     dynamic var category : String = ""
     dynamic var type : String = ""
     dynamic var gender = ""
@@ -106,7 +106,7 @@ class Bottom: Object {
 }
 
 class SuitTop: Object {
-    dynamic var code : String = ""
+    dynamic var code = 0
     dynamic var category : String = ""
     dynamic var type : String = ""
     dynamic var gender = ""
@@ -123,7 +123,7 @@ class SuitTop: Object {
 }
 
 class SuitBottom: Object {
-    dynamic var code : String = ""
+    dynamic var code = 0
     dynamic var category : String = ""
     dynamic var type : String = ""
     dynamic var gender = ""

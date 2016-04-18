@@ -33,6 +33,7 @@
 		AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F2F1CB63C250015EE28 /* TypeCell.swift */; };
 		AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */; };
 		AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F331CB63CCD0015EE28 /* ClothesCell.swift */; };
+		AF696F331CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */; };
 		AF70D4201CC3AA60005A395D /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70D41F1CC3AA60005A395D /* NetworkModule.swift */; };
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
@@ -121,6 +122,7 @@
 		AF655F2F1CB63C250015EE28 /* TypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeCell.swift; path = Controller/TypeCell.swift; sourceTree = "<group>"; };
 		AF655F311CB63C910015EE28 /* MyRegularFitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRegularFitCell.swift; path = Controller/MyRegularFitCell.swift; sourceTree = "<group>"; };
 		AF655F331CB63CCD0015EE28 /* ClothesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesCell.swift; path = View/ClothesCell.swift; sourceTree = "<group>"; };
+		AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		AF70D41F1CC3AA60005A395D /* NetworkModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				AF03E1361CBE896D00D1F1FC /* RealmModel.swift */,
 				AFDC15911CC0D22B001253CA /* MakeURL.swift */,
 				AF70D41F1CC3AA60005A395D /* NetworkModule.swift */,
+				AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */,
 				AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */,
 				AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */,
+				AF696F331CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift in Sources */,
 				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
 				AFEADDF71CBBD8A50017BAD9 /* CategoryButton.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
