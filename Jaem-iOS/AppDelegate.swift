@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-var RealmSchemaVersion: UInt64 = 4
+var RealmSchemaVersion: UInt64 = 5
 
 
 @UIApplicationMain
@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         realmMigration()
         
         
+        
+
         return true
     }
 

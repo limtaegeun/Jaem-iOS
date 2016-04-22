@@ -13,11 +13,14 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
 
     var centralManager : CBCentralManager?
     
+    @IBOutlet weak var connectButton: UIButton!
+    @IBOutlet weak var noDeviceButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        btDiscoverySharedInstance.startScanning()
-        btDiscoverySharedInstance.delegate = self
+        btDiscoverySharedInstance
         // Do any additional setup after loading the view.
     }
 
@@ -26,12 +29,16 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func BTDiscovery(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        centralManager = central
+    
 
+    @IBAction func tapConnect(sender: AnyObject) {
         performSegueWithIdentifier("GoDeviceList", sender: self)
     }
-
+    
+    @IBAction func tapNoDevice(sender: AnyObject) {
+        performSegueWithIdentifier("SkipConnection", sender: self)
+    }
+    
     
     // MARK: - Navigation
 

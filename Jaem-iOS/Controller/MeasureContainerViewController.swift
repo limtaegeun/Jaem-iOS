@@ -12,18 +12,25 @@ private let reuseIdentifier = "Cell"
 
 struct MeasureTerm {
     var title : String
-    var require : Bool
-    var top : Bool
+    var write : Bool
+}
+
+protocol MeasureContainerViewDelegate : class{
+    func measureContainerView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
 }
 
 class MeasureContainerViewController: UICollectionViewController {
 
     var measureStep : [MeasureTerm]!
     var currentStep : Int = 0
+    var requireStep = true
+
+    var delegate : MeasureContainerViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        measureStep = setMeasureTerm()
+        setMeasureTerm(true)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,7 +44,10 @@ class MeasureContainerViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        collectionView?.contentOffset.x = (collectionView!.contentSize.width - self.view.frame.width) / 2
+    }
     /*
     // MARK: - Navigation
 
@@ -48,40 +58,44 @@ class MeasureContainerViewController: UICollectionViewController {
     }
     */
     
-    func setMeasureTerm() -> [MeasureTerm] {
+    func setMeasureTerm(require : Bool)  {
         var set = [MeasureTerm]()
+        if require == true {
+            set.append(MeasureTerm(title: "SHOULDER",write: false))
+            set.append(MeasureTerm(title: "CHEST", write: false))
+            set.append(MeasureTerm(title: "WAIST",write: false))
+            set.append(MeasureTerm(title: "HIPS",write: false))
+            set.append(MeasureTerm(title: "THIGH",write: false))
+
+        } else {
+            set.append(MeasureTerm(title: "HEAD",write: false))
+            set.append(MeasureTerm(title: "NECK",write: false))
+            set.append(MeasureTerm(title: "PELVIS",write: false))
+            set.append(MeasureTerm(title: "UPPERARM",write: false))
+            set.append(MeasureTerm(title: "CALF",write: false))
+            set.append(MeasureTerm(title: "REACH",write: false))
+            set.append(MeasureTerm(title: "LEG LENGTH",write: false))
+            requireStep = false
+        }
         
-        set.append(MeasureTerm(title: "HEAD", require: true, top: true))
-        set.append(MeasureTerm(title: "NECK", require: true, top: true))
-        set.append(MeasureTerm(title: "SHOULDER", require: true, top: true))
-        set.append(MeasureTerm(title: "CHEST", require: true, top: true))
-        set.append(MeasureTerm(title: "UPPERARM", require: true, top: true))
-        set.append(MeasureTerm(title: "WRIST", require: false, top: true))
-        set.append(MeasureTerm(title: "STOMACH", require: false, top: true))
-        set.append(MeasureTerm(title: "SHIRT LENGTH", require: false, top: true))
-        set.append(MeasureTerm(title: "WAIST", require: true, top: false))
-        set.append(MeasureTerm(title: "HIPS", require: true, top: false))
-        set.append(MeasureTerm(title: "THIGH", require: true, top: false))
-        set.append(MeasureTerm(title: "RISE", require: false, top: false))
-        set.append(MeasureTerm(title: "CUFF", require: false, top: false))
-        set.append(MeasureTerm(title: "LEG LENGTH", require: false, top: false))
-        
-        return set
-        
+        measureStep = set
+        collectionView?.reloadData()
         
     }
     
     func selectStep(collectionView : UICollectionView  , step : Int ){
         currentStep = step
-        
+        if requireStep == false {
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: {
+                collectionView.contentOffset.x = min(CGFloat( 57 * step), collectionView.contentSize.width - self.view.frame.width)
+                }, completion: nil)
+        }
         //to animated Change
         collectionView.performBatchUpdates({
             collectionView.reloadSections(NSIndexSet(index: 0))
             }, completion: nil)
         
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { 
-            collectionView.contentOffset.x = min(CGFloat( 57 * step), collectionView.contentSize.width - self.view.frame.width)
-            }, completion: nil)
+        
         
     
     }
@@ -96,7 +110,7 @@ class MeasureContainerViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 14
+        return measureStep.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -104,11 +118,10 @@ class MeasureContainerViewController: UICollectionViewController {
         
         cell.titleLabel.text = measureStep[indexPath.row].title
         if currentStep == indexPath.row {
-            cell.changeOvalColor(measureStep[indexPath.row].require, active: true)
+            cell.changeOvalColor(measureStep[indexPath.row].write, active: true)
         } else {
-            cell.changeOvalColor(measureStep[indexPath.row].require, active: false)
+            cell.changeOvalColor(measureStep[indexPath.row].write, active: false)
         }
-        
         
         return cell
     }
@@ -118,7 +131,7 @@ class MeasureContainerViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         
-        selectStep(collectionView, step: indexPath.row)
+        delegate?.measureContainerView(collectionView, didSelectItemAtIndexPath: indexPath)
         
                 
     }

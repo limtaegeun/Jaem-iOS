@@ -12,6 +12,7 @@ import RealmSwift
 struct Card {
     var title : String
     var color : String
+    var index : Int
 }
 
 
@@ -81,9 +82,9 @@ class CardTabBarController: UITabBarController {
     
     func setCard() -> [Card] {
         var cardSet = [Card]()
-        cardSet.append(Card(title: "MY BODY", color: "green"))
-        cardSet.append(Card(title: "MY CLOSET", color: "red"))
-        cardSet.append(Card(title: "MY STYLE", color: "yellow"))
+        cardSet.append(Card(title: "MY BODY", color: "green",index: 0))
+        cardSet.append(Card(title: "MY CLOSET", color: "red", index: 1))
+        cardSet.append(Card(title: "MY STYLE", color: "yellow",index: 2))
         
         return cardSet
     }
@@ -187,8 +188,11 @@ extension CardTabBarController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        let removed = cardData.removeAtIndex(indexPath.row)
+        cardData.insert(removed, atIndex: 0)
         print("select \(indexPath.row)")
-        self.selectedIndex = indexPath.row
+        self.selectedIndex = removed.index
+        collectionView.reloadData()
     }
     
     

@@ -20,11 +20,12 @@ struct PeripheralInfo {
 @objc protocol BTDiscoveryDelegate : class {
     optional func BTDiscovery(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber)
     optional func BTDiscovery(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral)
+    optional func BTdiscovery(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?)
 }
 
 class BTDiscovery: NSObject, CBCentralManagerDelegate {
     
-    private var centralManager: CBCentralManager?
+    var centralManager: CBCentralManager?
     private var peripheralBLE: CBPeripheral?
     
     var delegate : BTDiscoveryDelegate?
@@ -40,7 +41,7 @@ class BTDiscovery: NSObject, CBCentralManagerDelegate {
     
     func startScanning() {
         if let central = centralManager {
-            central.scanForPeripheralsWithServices([DeviceInfoUUID,CUST1_SVC_UUID_128], options: nil)
+            central.scanForPeripheralsWithServices([DeviceInfoUUID], options: nil)
         }
     }
     
@@ -64,9 +65,15 @@ class BTDiscovery: NSObject, CBCentralManagerDelegate {
         
         if localName?.length > 0 {
             print("Found the Jaem : \(localName)")
+            let myPeripheral = PeripheralInfo(localName: localName as! String, peripheral: peripheral,RSSI: RSSI)
+            if peripheralList.filter({(data : PeripheralInfo) -> Bool in
+                data.peripheral == myPeripheral.peripheral
             
-            let peripheral = PeripheralInfo(localName: localName as! String, peripheral: peripheral,RSSI: RSSI)
-            peripheralList.append(peripheral)
+            }).count == 0 {
+                peripheralList.append(myPeripheral)
+
+            } 
+            
             
         }
         delegate?.BTDiscovery?(central, didDiscoverPeripheral: peripheral, advertisementData: advertisementData, RSSI: RSSI)
@@ -87,10 +94,13 @@ class BTDiscovery: NSObject, CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         print("didFailToconnectPeripheral")
+        
+        
+        
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        
+        print("didDisconnectPeripheral")
         // See if it was our peripheral that disconnected
         if (peripheral == self.peripheralBLE) {
             self.bleService = nil;

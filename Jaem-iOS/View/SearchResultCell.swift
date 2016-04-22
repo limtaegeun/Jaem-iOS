@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultCell: UITableViewCell {
+class SearchResultCell: UICollectionViewCell {
 
     @IBOutlet weak var clothesImage: UIImageView!
     @IBOutlet weak var brandLabel: UILabel!
@@ -30,11 +30,7 @@ class SearchResultCell: UITableViewCell {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
+   
 
     
     override func prepareForReuse() {

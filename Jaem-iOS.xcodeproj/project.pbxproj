@@ -35,6 +35,7 @@
 		AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F331CB63CCD0015EE28 /* ClothesCell.swift */; };
 		AF696F331CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */; };
 		AF70D4201CC3AA60005A395D /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70D41F1CC3AA60005A395D /* NetworkModule.swift */; };
+		AF8D739D1CCA6087003C977B /* ClothesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */; };
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
 		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
@@ -124,6 +125,7 @@
 		AF655F331CB63CCD0015EE28 /* ClothesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesCell.swift; path = View/ClothesCell.swift; sourceTree = "<group>"; };
 		AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		AF70D41F1CC3AA60005A395D /* NetworkModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
+		AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesHeaderView.swift; path = View/ClothesHeaderView.swift; sourceTree = "<group>"; };
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
 		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				AF655F331CB63CCD0015EE28 /* ClothesCell.swift */,
 				AFEADDEE1CBB8E3C0017BAD9 /* AddCell.swift */,
 				AFEADDF41CBBBE1B0017BAD9 /* SearchResultCell.swift */,
+				AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -312,10 +315,10 @@
 				AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */,
 				AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */,
 				AFF70E131CABAC0D00E869A6 /* MeasureContainerViewController.swift */,
+				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
 				AF63ADD91CAF9E1E00029E77 /* LoginViewController.swift */,
 				AF63ADDB1CAF9E3E00029E77 /* RegisterViewController.swift */,
 				AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */,
-				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
 				AF655F2B1CB619510015EE28 /* RegularFitViewController.swift */,
 				AF03E12C1CBE387200D1F1FC /* PreSearchViewController.swift */,
 				AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */,
@@ -670,6 +673,7 @@
 				AFEADDF71CBBD8A50017BAD9 /* CategoryButton.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
 				AF03E12B1CBE24C900D1F1FC /* AgreementViewController.swift in Sources */,
+				AF8D739D1CCA6087003C977B /* ClothesHeaderView.swift in Sources */,
 				AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */,
 				AFF70E121CABA5FA00E869A6 /* MeasureStepCell.swift in Sources */,
 				AF4DCD9D1CA414B000E5CC15 /* SectionHeaderView.swift in Sources */,
@@ -854,6 +858,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -866,6 +871,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

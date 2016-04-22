@@ -10,6 +10,7 @@ import UIKit
 
 class ClosetViewController: UIViewController {
 
+    @IBOutlet weak var closetCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

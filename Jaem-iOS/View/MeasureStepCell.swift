@@ -21,17 +21,17 @@ class MeasureStepCell: UICollectionViewCell {
         ovalView.layer.addSublayer(ovalLayer)
     }
     
-    func changeOvalColor(require : Bool, active: Bool)  {
+    func changeOvalColor(write : Bool, active: Bool)  {
         let activeColor = UIColor(red: 241/255, green: 107/255, blue: 38/255, alpha: 1.0)
-        let optionColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1.0)
+        let unwriteColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1.0)
         
         if active == true {
             ovalLayer.fillColor = activeColor.CGColor
         } else {
-            if require == true {
+            if write == true {
                 ovalLayer.fillColor = UIColor.blackColor().CGColor
             } else {
-                ovalLayer.fillColor = optionColor.CGColor
+                ovalLayer.fillColor = unwriteColor.CGColor
             }
         }
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AdditionInfoViewController: UIViewController {
 
@@ -176,6 +177,18 @@ class AdditionInfoViewController: UIViewController {
         
         
     }
+    
+    //MARK : - ACTION
+    
+    @IBAction func tapComplete(sender: AnyObject) {
+        
+        let realm = try! Realm()
+        try! realm.write {
+            //To Do: write realm
+            //To Do: network
+        }
+    }
+    
     
     /*
     // MARK: - Navigation

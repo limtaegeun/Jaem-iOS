@@ -13,10 +13,13 @@ class SelectGenderViewController: UIViewController {
     @IBOutlet weak var maleImageView: UIImageView!
     
     @IBOutlet weak var femaleImageView: UIImageView!
+   
+    @IBOutlet weak var exitButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        exitButton.image = JaemIconStyleKit.imageOfExit_black
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SelectGenderViewController.tapping(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -38,8 +41,8 @@ class SelectGenderViewController: UIViewController {
         }
     }
     
-    @IBAction func tapBackButton(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func tapExit(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*

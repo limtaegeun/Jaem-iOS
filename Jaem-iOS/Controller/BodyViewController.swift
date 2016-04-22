@@ -157,19 +157,20 @@ class BodyViewController: UIViewController {
         if object != nil {
             set.append(ParsingData(section: "body", title: "HEIGHT", value: CGFloat( object!.height ) , require: true, unit: "cm"))
             set.append(ParsingData(section: "body", title: "WEIGHT", value: CGFloat( object!.weight) , require: true, unit: "kg"))
-            set.append(ParsingData(section: "top", title: "HEAD", value: CGFloat( object!.head) , require: true, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "NECK", value: CGFloat( object!.neck) , require: true, unit: "cm"))
+            
             set.append(ParsingData(section: "top", title: "SHOULDER", value: CGFloat( object!.shoulder) , require: true, unit: "cm"))
             set.append(ParsingData(section: "top", title: "CHEST", value: CGFloat( object!.chest) , require: true, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "UPPERARM", value: CGFloat( object!.upperArm) , require: true, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "WRIST", value: CGFloat( object!.wrist) , require: false, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "STOMACH", value: CGFloat( object!.stomach), require: false, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "SHIRT LENGTH", value: CGFloat( object!.shirtLength) ?? 0, require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "HEAD", value: CGFloat( object!.head) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "NECK", value: CGFloat( object!.neck) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "PELVIS", value: CGFloat( object!.pelvis) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "UPPERARM", value: CGFloat( object!.upperArm) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "REACH", value: CGFloat( object!.reach), require: false, unit: "cm"))
+            
+            
             set.append(ParsingData(section: "bottom", title: "WAIST", value: CGFloat( object!.waist), require: true, unit: "cm"))
             set.append(ParsingData(section: "bottom", title: "HIPS", value: CGFloat( object!.hips), require: true, unit: "cm"))
             set.append(ParsingData(section: "bottom", title: "THIGH", value: CGFloat( object!.thigh), require: true, unit: "cm"))
-            set.append(ParsingData(section: "bottom", title: "RISE", value: CGFloat( object!.rise), require: false, unit: "cm"))
-            set.append(ParsingData(section: "bottom", title: "CUFF", value: CGFloat( object!.cuff), require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "CALF", value: CGFloat( object!.calf), require: false, unit: "cm"))
             set.append(ParsingData(section: "bottom", title: "LEG LENGTH", value: CGFloat( object!.legLength), require: false, unit: "cm"))
         }
         return set

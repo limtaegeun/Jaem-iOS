@@ -30,6 +30,7 @@ class CardStackLayout: UICollectionViewLayout {
         
         for indexPath in visibleIndexPaths {
             let attribute = layoutAttributesForItemAtIndexPath(indexPath)
+            attribute?.zIndex = indexPath.row
             attributes.append(attribute!)
             
         }

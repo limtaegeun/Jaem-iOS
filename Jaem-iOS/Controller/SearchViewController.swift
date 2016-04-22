@@ -33,10 +33,9 @@ enum Category : Int{
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var searchCollectionView: UICollectionView!
     
-    @IBOutlet weak var numberOfResult: UILabel!
+    @IBOutlet weak var patternIcon: UIBarButtonItem!
     
     var hidingNavBarManager : HidingNavigationBarManager?
     var searchedText : String?
@@ -52,11 +51,17 @@ class SearchViewController: UIViewController {
         
         //set delegate
         searchBar.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+        searchCollectionView.delegate = self
+        searchCollectionView.dataSource = self
         
         searchBar.text = searchedText
-        
+        /*
+        //custom back button
+        let backbuttonImage = JaemIconStyleKit.imageOfExitBlackArrow
+        self.navigationController?.navigationBar.backIndicatorImage = backbuttonImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backbuttonImage
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+         */
         //hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
         
         //search
@@ -70,7 +75,7 @@ class SearchViewController: UIViewController {
                     if let dic = ParseJSON.parseJSONToDictionary(json) {
                         if dic["stat"] as! String == "success" {
                             self.parseToResultObject(dic)
-                            self.tableView.reloadData()
+                            self.searchCollectionView.reloadData()
                         } else {
                             Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
                         }
@@ -101,11 +106,19 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.translucent = true
         
-        tableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
+        searchCollectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        let layout = UICollectionViewFlowLayout()
+        let width = view.frame.width
+        layout.itemSize = CGSize(width: width, height: 180)
         
+        searchCollectionView.collectionViewLayout = layout
         
         categoryView = addExtensionView()
         view.addSubview(categoryView)
+        
+        patternIcon.image = JaemIconStyleKit.imageOfPattonIcon
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -170,6 +183,8 @@ class SearchViewController: UIViewController {
             stackX += categorys[i].bounds.width
         }
         
+        categorys[1].changeFillAlpha(true)
+        
         //set action
         for button in categorys {
             button.addTarget(self, action: #selector(SearchViewController.tapButton(_:)), forControlEvents: .TouchUpInside)
@@ -204,7 +219,7 @@ class SearchViewController: UIViewController {
     
 }
 
-extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController : UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return .TopAttached
@@ -223,7 +238,7 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
                     if let dic = ParseJSON.parseJSONToDictionary(json) {
                         if dic["stat"] as! String == "success" {
                             self.parseToResultObject(dic)
-                            self.tableView.reloadData()
+                            self.searchCollectionView.reloadData()
                         } else {
                             Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
                         }
@@ -239,21 +254,19 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
         searchBar.resignFirstResponder()
     }
     
-    //MARK : TABLE VIEW Delegate
+    //MARK : collectionView Delegate
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchResults.count == 0 {
             return 0
         } else {
             return searchResults.count
-
+            
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("SearchResultCell", forIndexPath: indexPath) as! SearchResultCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SearchResultCell", forIndexPath: indexPath) as! SearchResultCell
         cell.brandLabel.text = searchResults[indexPath.row].brandKo
         cell.nameLabel.text = searchResults[indexPath.row].name
         cell.configureForImageResult(searchResults[indexPath.row].ImageURLFront)
@@ -261,10 +274,12 @@ extension SearchViewController : UISearchBarDelegate, UITableViewDelegate, UITab
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print("didselect")
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        print("didSelect")
     }
+    
+    
     
     func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
         hidingNavBarManager?.shouldScrollToTop()

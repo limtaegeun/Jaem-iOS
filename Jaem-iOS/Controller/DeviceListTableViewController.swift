@@ -15,6 +15,7 @@ class DeviceListTableViewController: UITableViewController ,BTDiscoveryDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        centralManager = btDiscoverySharedInstance.centralManager
         btDiscoverySharedInstance.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -50,22 +51,21 @@ class DeviceListTableViewController: UITableViewController ,BTDiscoveryDelegate 
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         centralManager?.connectPeripheral(btDiscoverySharedInstance.peripheralList[indexPath.row].peripheral, options: nil)
+    }
+    
+    func BTDiscovery(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+        tableView.reloadData()
     }
     
     func BTDiscovery(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         performSegueWithIdentifier("GoMeasure", sender: self)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func BTdiscovery(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        Alert.networkErrorAlertPresent(self, title: "연결에 실패했습니다", message: "디바이스 상태를 확인한 후 다시 시도해보세요.")
     }
-    */
-
+    
+    
 }
