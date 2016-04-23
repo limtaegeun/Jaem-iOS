@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+
 
 struct MeasureTerm {
     var title : String

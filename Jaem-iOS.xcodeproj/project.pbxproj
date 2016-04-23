@@ -13,6 +13,19 @@
 		AF03E1331CBE677700D1F1FC /* SearchTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF03E1321CBE677700D1F1FC /* SearchTextCell.xib */; };
 		AF03E1351CBE67C000D1F1FC /* SearchTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */; };
 		AF03E1371CBE896D00D1F1FC /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03E1361CBE896D00D1F1FC /* RealmModel.swift */; };
+		AF04FD1C1CCB478D00289730 /* ClosetClothesInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04FD1B1CCB478D00289730 /* ClosetClothesInfoCell.swift */; };
+		AF04FD1E1CCB518800289730 /* ClosetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04FD1D1CCB518800289730 /* ClosetCell.swift */; };
+		AF04FD201CCB534100289730 /* CoordiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04FD1F1CCB534100289730 /* CoordiCell.swift */; };
+		AF04FD2C1CCB5E5B00289730 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD221CCB5E5B00289730 /* 1.png */; };
+		AF04FD2D1CCB5E5B00289730 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD231CCB5E5B00289730 /* 2.png */; };
+		AF04FD2E1CCB5E5B00289730 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD241CCB5E5B00289730 /* 3.png */; };
+		AF04FD2F1CCB5E5B00289730 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD251CCB5E5B00289730 /* 4.png */; };
+		AF04FD301CCB5E5B00289730 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD261CCB5E5B00289730 /* 5.png */; };
+		AF04FD311CCB5E5B00289730 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD271CCB5E5B00289730 /* 6.png */; };
+		AF04FD321CCB5E5B00289730 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD281CCB5E5B00289730 /* 7.png */; };
+		AF04FD331CCB5E5B00289730 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD291CCB5E5B00289730 /* 8.png */; };
+		AF04FD341CCB5E5B00289730 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD2A1CCB5E5B00289730 /* 9.png */; };
+		AF04FD351CCB5E5B00289730 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD2B1CCB5E5B00289730 /* 10.png */; };
 		AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */; };
 		AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */; };
 		AF45544B1CB76C0600775D65 /* PanGestureInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */; };
@@ -103,6 +116,19 @@
 		AF03E1321CBE677700D1F1FC /* SearchTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchTextCell.xib; path = View/SearchTextCell.xib; sourceTree = "<group>"; };
 		AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTextCell.swift; path = View/SearchTextCell.swift; sourceTree = "<group>"; };
 		AF03E1361CBE896D00D1F1FC /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		AF04FD1B1CCB478D00289730 /* ClosetClothesInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosetClothesInfoCell.swift; path = View/ClosetClothesInfoCell.swift; sourceTree = "<group>"; };
+		AF04FD1D1CCB518800289730 /* ClosetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosetCell.swift; path = View/ClosetCell.swift; sourceTree = "<group>"; };
+		AF04FD1F1CCB534100289730 /* CoordiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoordiCell.swift; path = View/CoordiCell.swift; sourceTree = "<group>"; };
+		AF04FD221CCB5E5B00289730 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = ../../Resource/1.png; sourceTree = "<group>"; };
+		AF04FD231CCB5E5B00289730 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2.png; path = ../../Resource/2.png; sourceTree = "<group>"; };
+		AF04FD241CCB5E5B00289730 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3.png; path = ../../Resource/3.png; sourceTree = "<group>"; };
+		AF04FD251CCB5E5B00289730 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 4.png; path = ../../Resource/4.png; sourceTree = "<group>"; };
+		AF04FD261CCB5E5B00289730 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 5.png; path = ../../Resource/5.png; sourceTree = "<group>"; };
+		AF04FD271CCB5E5B00289730 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 6.png; path = ../../Resource/6.png; sourceTree = "<group>"; };
+		AF04FD281CCB5E5B00289730 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 7.png; path = ../../Resource/7.png; sourceTree = "<group>"; };
+		AF04FD291CCB5E5B00289730 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 8.png; path = ../../Resource/8.png; sourceTree = "<group>"; };
+		AF04FD2A1CCB5E5B00289730 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 9.png; path = ../../Resource/9.png; sourceTree = "<group>"; };
+		AF04FD2B1CCB5E5B00289730 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 10.png; path = ../../Resource/10.png; sourceTree = "<group>"; };
 		AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdditionInfoViewController.swift; path = Controller/AdditionInfoViewController.swift; sourceTree = "<group>"; };
 		AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectGenderViewController.swift; path = Controller/SelectGenderViewController.swift; sourceTree = "<group>"; };
 		AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanGestureInteractionController.swift; path = Controller/PanGestureInteractionController.swift; sourceTree = "<group>"; };
@@ -197,6 +223,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF04FD211CCB5E4700289730 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				AF04FD221CCB5E5B00289730 /* 1.png */,
+				AF04FD231CCB5E5B00289730 /* 2.png */,
+				AF04FD241CCB5E5B00289730 /* 3.png */,
+				AF04FD251CCB5E5B00289730 /* 4.png */,
+				AF04FD261CCB5E5B00289730 /* 5.png */,
+				AF04FD271CCB5E5B00289730 /* 6.png */,
+				AF04FD281CCB5E5B00289730 /* 7.png */,
+				AF04FD291CCB5E5B00289730 /* 8.png */,
+				AF04FD2A1CCB5E5B00289730 /* 9.png */,
+				AF04FD2B1CCB5E5B00289730 /* 10.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
 		AF45544C1CB78EF500775D65 /* extention */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,9 +251,10 @@
 		AFC24B311CA252C7002FA07B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AF4DCD9C1CA414B000E5CC15 /* SectionHeaderView.swift */,
+				AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */,
 				AFC24B321CA2533D002FA07B /* CardStackCell.swift */,
 				AF4DCD9A1CA40C8700E5CC15 /* SizeDataCell.swift */,
-				AF4DCD9C1CA414B000E5CC15 /* SectionHeaderView.swift */,
 				AFDD17E61CAA9312005AF8BC /* PeripheralCell.swift */,
 				AFF70E111CABA5FA00E869A6 /* MeasureStepCell.swift */,
 				AF655F2F1CB63C250015EE28 /* TypeCell.swift */,
@@ -218,7 +262,9 @@
 				AF655F331CB63CCD0015EE28 /* ClothesCell.swift */,
 				AFEADDEE1CBB8E3C0017BAD9 /* AddCell.swift */,
 				AFEADDF41CBBBE1B0017BAD9 /* SearchResultCell.swift */,
-				AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */,
+				AF04FD1B1CCB478D00289730 /* ClosetClothesInfoCell.swift */,
+				AF04FD1D1CCB518800289730 /* ClosetCell.swift */,
+				AF04FD1F1CCB534100289730 /* CoordiCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -281,6 +327,7 @@
 				AFFBBC231C9FFB3A00879BDC /* Info.plist */,
 				AF4DCD981CA3B2AE00E5CC15 /* newyork_2705424b.jpg */,
 				AFEADDF21CBBBD860017BAD9 /* IMG_0272 Copy 2.png */,
+				AF04FD211CCB5E4700289730 /* image */,
 			);
 			path = "Jaem-iOS";
 			sourceTree = "<group>";
@@ -511,12 +558,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF04FD301CCB5E5B00289730 /* 5.png in Resources */,
+				AF04FD321CCB5E5B00289730 /* 7.png in Resources */,
 				AFFBBC221C9FFB3A00879BDC /* LaunchScreen.storyboard in Resources */,
+				AF04FD341CCB5E5B00289730 /* 9.png in Resources */,
 				AFFBBC1F1C9FFB3A00879BDC /* Assets.xcassets in Resources */,
+				AF04FD2D1CCB5E5B00289730 /* 2.png in Resources */,
+				AF04FD2E1CCB5E5B00289730 /* 3.png in Resources */,
+				AF04FD331CCB5E5B00289730 /* 8.png in Resources */,
 				AFEADDF31CBBBD860017BAD9 /* IMG_0272 Copy 2.png in Resources */,
+				AF04FD311CCB5E5B00289730 /* 6.png in Resources */,
+				AF04FD351CCB5E5B00289730 /* 10.png in Resources */,
 				AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */,
 				AF03E1331CBE677700D1F1FC /* SearchTextCell.xib in Resources */,
 				AF4DCD991CA3B2AE00E5CC15 /* newyork_2705424b.jpg in Resources */,
+				AF04FD2F1CCB5E5B00289730 /* 4.png in Resources */,
+				AF04FD2C1CCB5E5B00289730 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +721,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF04FD1C1CCB478D00289730 /* ClosetClothesInfoCell.swift in Sources */,
 				AFEADDFD1CBD09E20017BAD9 /* ClothesDetailViewController.swift in Sources */,
 				AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */,
 				AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */,
@@ -696,6 +754,7 @@
 				AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */,
 				AFEADDF11CBBAFE80017BAD9 /* SearchViewController.swift in Sources */,
 				AF4554521CB7D79200775D65 /* CirclePresentationController.swift in Sources */,
+				AF04FD1E1CCB518800289730 /* ClosetCell.swift in Sources */,
 				AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */,
 				AF655F2E1CB61A580015EE28 /* AddButtonView.swift in Sources */,
 				AFEADDFF1CBD32000017BAD9 /* FitSearchViewController.swift in Sources */,
@@ -705,6 +764,7 @@
 				AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */,
 				AF03E1371CBE896D00D1F1FC /* RealmModel.swift in Sources */,
 				AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */,
+				AF04FD201CCB534100289730 /* CoordiCell.swift in Sources */,
 				AFF70E161CAC111200E869A6 /* RulerView.swift in Sources */,
 				AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */,
 				AF63ADE21CB00A6000029E77 /* FindPasswordViewController.swift in Sources */,
