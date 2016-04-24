@@ -48,6 +48,9 @@
 		AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655F331CB63CCD0015EE28 /* ClothesCell.swift */; };
 		AF696F331CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */; };
 		AF70D4201CC3AA60005A395D /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70D41F1CC3AA60005A395D /* NetworkModule.swift */; };
+		AF7CCCCA1CCCA0E00045BDEF /* SizeClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CCCC91CCCA0E00045BDEF /* SizeClickView.swift */; };
+		AF7CCCCD1CCD19210045BDEF /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF7CCCCC1CCD19210045BDEF /* OpenSans-Regular.ttf */; };
+		AF7CCCCF1CCD19650045BDEF /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF7CCCCE1CCD19650045BDEF /* OpenSans-Semibold.ttf */; };
 		AF8D739D1CCA6087003C977B /* ClothesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */; };
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
@@ -151,6 +154,10 @@
 		AF655F331CB63CCD0015EE28 /* ClothesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesCell.swift; path = View/ClothesCell.swift; sourceTree = "<group>"; };
 		AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		AF70D41F1CC3AA60005A395D /* NetworkModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
+		AF7CCCC91CCCA0E00045BDEF /* SizeClickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SizeClickView.swift; path = View/SizeClickView.swift; sourceTree = "<group>"; };
+		AF7CCCCC1CCD19210045BDEF /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		AF7CCCCE1CCD19650045BDEF /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		AF7CCCD01CCD198A0045BDEF /* Typo_Round_Regular_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Regular_Demo.otf; sourceTree = "<group>"; };
 		AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesHeaderView.swift; path = View/ClothesHeaderView.swift; sourceTree = "<group>"; };
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
@@ -248,6 +255,16 @@
 			name = extention;
 			sourceTree = "<group>";
 		};
+		AF7CCCCB1CCD18E50045BDEF /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				AF7CCCCC1CCD19210045BDEF /* OpenSans-Regular.ttf */,
+				AF7CCCCE1CCD19650045BDEF /* OpenSans-Semibold.ttf */,
+				AF7CCCD01CCD198A0045BDEF /* Typo_Round_Regular_Demo.otf */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
 		AFC24B311CA252C7002FA07B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +331,7 @@
 		AFFBBC141C9FFB3A00879BDC /* Jaem-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AF7CCCCB1CCD18E50045BDEF /* Font */,
 				AF45544C1CB78EF500775D65 /* extention */,
 				AFC24B341CA2CF40002FA07B /* StyleKit */,
 				AFFBBC511CA023DA00879BDC /* Layout */,
@@ -390,6 +408,7 @@
 				AFEADDFA1CBD01790017BAD9 /* BottomCardView.swift */,
 				AF03E1321CBE677700D1F1FC /* SearchTextCell.xib */,
 				AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */,
+				AF7CCCC91CCCA0E00045BDEF /* SizeClickView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -570,8 +589,10 @@
 				AF04FD311CCB5E5B00289730 /* 6.png in Resources */,
 				AF04FD351CCB5E5B00289730 /* 10.png in Resources */,
 				AFFBBC1D1C9FFB3A00879BDC /* Main.storyboard in Resources */,
+				AF7CCCCF1CCD19650045BDEF /* OpenSans-Semibold.ttf in Resources */,
 				AF03E1331CBE677700D1F1FC /* SearchTextCell.xib in Resources */,
 				AF4DCD991CA3B2AE00E5CC15 /* newyork_2705424b.jpg in Resources */,
+				AF7CCCCD1CCD19210045BDEF /* OpenSans-Regular.ttf in Resources */,
 				AF04FD2F1CCB5E5B00289730 /* 4.png in Resources */,
 				AF04FD2C1CCB5E5B00289730 /* 1.png in Resources */,
 			);
@@ -747,6 +768,7 @@
 				AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */,
 				AF655F2C1CB619510015EE28 /* RegularFitViewController.swift in Sources */,
 				AF63ADDA1CAF9E1E00029E77 /* LoginViewController.swift in Sources */,
+				AF7CCCCA1CCCA0E00045BDEF /* SizeClickView.swift in Sources */,
 				AFFBBC161C9FFB3A00879BDC /* AppDelegate.swift in Sources */,
 				AF45544E1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift in Sources */,
 				AFDC15921CC0D22C001253CA /* MakeURL.swift in Sources */,

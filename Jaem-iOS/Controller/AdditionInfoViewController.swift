@@ -21,6 +21,9 @@ class AdditionInfoViewController: UIViewController {
     
     @IBOutlet weak var completeButton: UIButton!
     
+    @IBOutlet weak var topSizeClickView: SizeClickView!
+    @IBOutlet weak var bottomSizeClickView: SizeClickView!
+    
     var picker : UIPickerView?
     var datePicker : UIDatePicker?
     
@@ -42,26 +45,30 @@ class AdditionInfoViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = NSTextAlignment.Center
+        /*
         let attributes = [
             NSForegroundColorAttributeName : UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1),
             NSFontAttributeName : UIFont(name: "AppleSDGothicNeo-Regular", size: 12)!,
             NSParagraphStyleAttributeName : paragraphStyle
         ]
+        
         let placeHolder = NSAttributedString(string: "CLCIK HERE !", attributes: attributes)
         heightTextField.attributedPlaceholder = placeHolder
         weightTextField.attributedPlaceholder = placeHolder
         birthTextField.attributedPlaceholder = placeHolder
+        */
         
-        let backgroundImage = JaemViewStyleKit.imageOfUnderLine(frame: heightTextField.bounds)
-        heightTextField.background = backgroundImage
-        weightTextField.background = backgroundImage
-        birthTextField.background = backgroundImage
         
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "COMPLETE")
+        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "기록 완료")
         
-        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 8))
+        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 5))
         completeButton.titleLabel?.attributedText = attributeString2
+        
+        topSizeClickView.setButton(85, max: 115, term: 5)
+        bottomSizeClickView.setButton(28, max: 36, term: 1)
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -106,7 +113,7 @@ class AdditionInfoViewController: UIViewController {
     
     func setDatePickerView() {
         datePicker = UIDatePicker()
-        
+        datePicker?.addTarget(self, action: #selector(self.dateIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         if let picker = self.datePicker {
             picker.sizeToFit()
             picker.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
@@ -137,7 +144,16 @@ class AdditionInfoViewController: UIViewController {
         }
         
     }
-    
+    func dateIsChanged(sender: AnyObject) {
+        // change birth nsdate to string
+        let birthNSDate = datePicker?.date
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = " yy'.'MM'.'dd"
+        let birthString = dateFormatter.stringFromDate(birthNSDate!)
+        
+        birthTextField.text = birthString
+        
+    }
     func checkData(){
         //check
     }
@@ -173,6 +189,14 @@ class AdditionInfoViewController: UIViewController {
             //self.DataToSend["age"] =  "\(ages[presentAgePickerRow])"
             
             
+        } else if birthTextField.isFirstResponder() {
+            // change birth nsdate to string
+            let birthNSDate = datePicker?.date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = " yy'.'MM'.'dd"
+            let birthString = dateFormatter.stringFromDate(birthNSDate!)
+            
+            birthTextField.text = birthString
         }
         
         
@@ -211,13 +235,7 @@ extension AdditionInfoViewController : UITextFieldDelegate , UIPickerViewDelegat
     
     func textFieldDidEndEditing(textField: UITextField) {
         if textField == birthTextField {
-            // change birth nsdate to string
-            let birthNSDate = datePicker?.date
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = " MMM'.' dd yyyy"
-            let birthString = dateFormatter.stringFromDate(birthNSDate!)
             
-            birthTextField.text = birthString
             
         }
     }
