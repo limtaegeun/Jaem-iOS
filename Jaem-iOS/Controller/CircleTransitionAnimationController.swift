@@ -29,6 +29,7 @@ class CircleTransitionAnimationController: NSObject, UIViewControllerAnimatedTra
         let containerView = transitionContext.containerView()
         if present == true {
             // set present animation
+            /*
             if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? RegularFitViewController {
                 let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! CardTabBarController
                 let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
@@ -59,7 +60,8 @@ class CircleTransitionAnimationController: NSObject, UIViewControllerAnimatedTra
                 maskLayerAnimation.duration = self.transitionDuration(transitionContext)
                 maskLayerAnimation.delegate = self
                 maskLayer.addAnimation(maskLayerAnimation, forKey: "path")
-            } else if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? FitSearchViewController {
+            } else */
+            if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? FitSearchViewController {
                 
                 let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! ClothesDetailViewController
                 let toView = transitionContext.viewForKey(UITransitionContextToViewKey)

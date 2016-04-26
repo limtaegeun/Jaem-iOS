@@ -17,7 +17,6 @@ class RegularFitViewController: UIViewController {
     
     @IBOutlet weak var exitButton: UIButton!
     
-    @IBOutlet weak var clothesCollectionView: UICollectionView!
     @IBOutlet weak var fitCollectionView: UICollectionView!
     @IBOutlet weak var compareCollectionView: UICollectionView!
     

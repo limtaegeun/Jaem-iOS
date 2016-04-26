@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 enum ClothesType : String {
-    case shortsleevedTshirts, runningShirt, longsleevedTshirts, sweater, shirts, vest, jacket, jumper, cardigan, coats, heavyOuter, pants, shorts, skirt
+    case shortsleevedTshirts, runningShirt, longsleevedTshirts, sweater, shirts, vest, jacket, jumper, cardigan, coats, heavyOuter, pants, shorts, skirt, acc
 }
 enum Gender : String {
     case Male , Female, Unisex
@@ -66,7 +66,7 @@ class SizeRecommend: Object {
     dynamic var waistSize = 0.0 // 허리둘레
     dynamic var waistLength = 0.0 // 허리단면
     dynamic var hipSize = 0.0 // 엉덩이둘레
-    dynamic var hipLength = 0.0 // 엉덩이 단면
+    dynamic var hipLength = 0.0 // 엉덩이단면
     dynamic var thighSize = 0.0 // 허벅지둘레
     dynamic var thighLength = 0.0 // 허벅지단면
     
@@ -82,6 +82,9 @@ class TopAndOuter: Object {
     dynamic var name  = ""
     dynamic var cost = ""
     dynamic var image = NSData()
+    dynamic var typicalSize = ""
+    dynamic var rating = 0
+    dynamic var fitting = 0
     dynamic var sizeRequired : TopSizeRequired?
     dynamic var siseOption : TopSizeOption?
     let anotherColor = List<TopAndOuter>()
@@ -98,7 +101,10 @@ class Bottom: Object {
     dynamic var brand = ""
     dynamic var name  = ""
     dynamic var cost = ""
+    dynamic var rating = 0
+    dynamic var fitting = 0
     dynamic var image = NSData()
+    dynamic var typicalSize = ""
     dynamic var sizeRequired : BottomSizeRequired?
     dynamic var siseOption : BottomSizeOption?
     let anotherColor = List<Bottom>()
@@ -115,7 +121,10 @@ class SuitTop: Object {
     dynamic var brand = ""
     dynamic var name  = ""
     dynamic var cost = ""
+    dynamic var rating = 0
+    dynamic var fitting = 0
     dynamic var image = NSData()
+    dynamic var typicalSize = ""
     dynamic var sizeRequired : SuitTopSizeRequired?
     dynamic var siseOption : SuitTopSizeOption?
     let anotherColor = List<SuitTop>()
@@ -132,7 +141,10 @@ class SuitBottom: Object {
     dynamic var brand = ""
     dynamic var name  = ""
     dynamic var cost = ""
+    dynamic var rating = 0
+    dynamic var fitting = 0
     dynamic var image = NSData()
+    dynamic var typicalSize = ""
     dynamic var sizeRequired : BottomSizeRequired?
     dynamic var siseOption : SuitBottomSizeOption?
     let anotherColor = List<SuitBottom>()

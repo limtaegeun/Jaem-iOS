@@ -28,6 +28,7 @@ class CardStackCell: UICollectionViewCell {
         title = UILabel(frame: CGRect(x: center.x - 100 , y: CGRectGetMaxY(dragIconView.frame) + 5, width: 200, height: 15))
         title.textAlignment = NSTextAlignment.Center
         title.textColor = UIColor.whiteColor()
+        title.font = UIFont(name: "OpenSans-Regular", size: 13)
         addSubview(dragIconView)
         addSubview(title)
     }
@@ -47,14 +48,14 @@ class CardStackCell: UICollectionViewCell {
         cardView.clipsToBounds = true
         cardView.userInteractionEnabled = false
         self.contentView.insertSubview(cardView, belowSubview: dragIconView)
-        
+        /*
         self.layer.shadowColor = UIColor.blackColor().CGColor
         self.layer.shadowOffset = CGSize(width: 0, height: -1)
         self.layer.shadowOpacity = 0.5
         self.layer.shadowPath = UIBezierPath(roundedRect: CGRectMake(bounds.origin.x + 3, bounds.origin.y, bounds.width - 6, bounds.height - 6) , cornerRadius: 10.0).CGPath
         self.layer.shadowRadius = 3
         self.clipsToBounds = false
-        
+        */
     }
     
     

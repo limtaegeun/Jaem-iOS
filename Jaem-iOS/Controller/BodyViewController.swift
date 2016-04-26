@@ -55,8 +55,14 @@ class BodyViewController: UIViewController {
             
             try! realm.write({
                 realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"fuckingOri"], update: true)
+                realm.create(MyBodySize.self, value: ["index":0,
+                    "date":NSDate(),
+                    "shoulder": 95.5,
+                    "chest": 90,
+                    "waist": 88,
+                    "hips": 88,
+                    ], update: true)
             })
-            
             
         }
         
@@ -160,14 +166,13 @@ class BodyViewController: UIViewController {
             
             set.append(ParsingData(section: "top", title: "SHOULDER", value: CGFloat( object!.shoulder) , require: true, unit: "cm"))
             set.append(ParsingData(section: "top", title: "CHEST", value: CGFloat( object!.chest) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "WAIST", value: CGFloat( object!.waist), require: true, unit: "cm"))
             set.append(ParsingData(section: "top", title: "HEAD", value: CGFloat( object!.head) , require: false, unit: "cm"))
             set.append(ParsingData(section: "top", title: "NECK", value: CGFloat( object!.neck) , require: false, unit: "cm"))
             set.append(ParsingData(section: "top", title: "PELVIS", value: CGFloat( object!.pelvis) , require: false, unit: "cm"))
             set.append(ParsingData(section: "top", title: "UPPERARM", value: CGFloat( object!.upperArm) , require: false, unit: "cm"))
             set.append(ParsingData(section: "top", title: "REACH", value: CGFloat( object!.reach), require: false, unit: "cm"))
             
-            
-            set.append(ParsingData(section: "bottom", title: "WAIST", value: CGFloat( object!.waist), require: true, unit: "cm"))
             set.append(ParsingData(section: "bottom", title: "HIPS", value: CGFloat( object!.hips), require: true, unit: "cm"))
             set.append(ParsingData(section: "bottom", title: "THIGH", value: CGFloat( object!.thigh), require: true, unit: "cm"))
             set.append(ParsingData(section: "bottom", title: "CALF", value: CGFloat( object!.calf), require: false, unit: "cm"))
@@ -183,13 +188,7 @@ class BodyViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "GoMeasure" {
-            
-        } else if segue.identifier == "GoFit" {
-            let dv = segue.destinationViewController as! RegularFitViewController
-            dv.interactionController = interactionController
-            dv.userName = userName
-        }
+        
         
         
     }

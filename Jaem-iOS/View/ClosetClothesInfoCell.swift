@@ -19,6 +19,7 @@ class ClosetClothesInfoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cancelButton.setImage(JaemIconStyleKit.imageOfGrayFillCancel, forState: .Normal)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

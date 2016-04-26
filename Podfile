@@ -7,6 +7,7 @@ pod 'RealmSwift'
 pod 'HidingNavigationBar', '~> 0.3'
 pod 'AKPickerView-Swift'
 pod 'Alamofire', '~> 3.3'
+pod 'HCSStarRatingView', '~> 1.4.5'
 end
 
 target 'Jaem-iOSTests' do

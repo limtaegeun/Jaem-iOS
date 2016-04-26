@@ -1,12 +1,16 @@
 //
 //  ClothesHeaderView.swift
-//  Jaem-iOS
+//
 //
 //  Created by 임태근 on 2016. 4. 22..
 //  Copyright © 2016년 whataday. All rights reserved.
 //
 
 import UIKit
+
+protocol ClothesHeaderViewDelegate : class {
+    func clothesHeaderView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+}
 
 class ClothesHeaderView: UICollectionReusableView {
         
@@ -16,9 +20,33 @@ class ClothesHeaderView: UICollectionReusableView {
     @IBOutlet weak var infoTableView: UITableView!
     @IBOutlet weak var categoryView: UIView!
     
+    var delegate : ClothesHeaderViewDelegate?
     var categorys : [CategoryButton]!
     var currentCategory = Category.ALL
+    
+    var coordiSet = [JaemClothes]()
+    
+    var saveCoordi : JaemClothes {
+        get {
+            return coordiSet[0]
+        }
+        set(newVal) {
+            if coordiSet.count != 0 {
+                coordiSet[0] = newVal
+            } else {
+                coordiSet.append(newVal)
+            }
+            
+        }
+    }
+    
     override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        coordiCollectionView.delegate = self
+        coordiCollectionView.dataSource = self
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
         
     }
     
@@ -52,11 +80,11 @@ class ClothesHeaderView: UICollectionReusableView {
             stackX += categorys[i].bounds.width
         }
         
-        categorys[1].changeFillAlpha(true)
+        categorys[0].changeFillAlpha(true)
         
         //set action
         for button in categorys {
-            button.addTarget(self, action: #selector(SearchViewController.tapButton(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(self.tapButton(_:)), forControlEvents: .TouchUpInside)
         }
         
         
@@ -75,4 +103,48 @@ class ClothesHeaderView: UICollectionReusableView {
         print(currentCategory)
     }
  
+}
+
+extension ClothesHeaderView : UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK : UICollectionViewDelegate , UICollectionViewDataSource
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return coordiSet.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CoordiCell", forIndexPath: indexPath) as! CoordiCell
+        cell.imageView.image = coordiSet[indexPath.row].image
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        delegate?.clothesHeaderView(collectionView, didSelectItemAtIndexPath: indexPath)
+    }
+    
+    
+    //MARK : UITableViewDelegate, UITableViewDataSource
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return coordiSet.count
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return coordiSet.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ClosetClothesInfoCell", forIndexPath: indexPath) as! ClosetClothesInfoCell
+        cell.brandLabel.text = coordiSet[indexPath.row].brand
+        cell.nameLabel.text = coordiSet[indexPath.row].name
+        let category = coordiSet[indexPath.row].category
+        cell.categoryLabel.text = category.rawValue
+        
+        return cell
+    }
+    
 }

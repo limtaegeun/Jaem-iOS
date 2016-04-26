@@ -89,8 +89,8 @@ class CardTabBarController: UITabBarController {
         return cardSet
     }
     func getColor(color: String) -> UIColor{
-        let Green = UIColor(red: 98 / 255, green: 214 / 255, blue: 181 / 255, alpha: 1)
-        let Red = UIColor(red: 240 / 255, green: 118 / 255, blue: 131 / 255, alpha: 1)
+        let Green = UIColor(red: 68 / 255, green: 205 / 255, blue: 203 / 255, alpha: 1)
+        let Red = UIColor(red: 255 / 255, green: 102 / 255, blue: 102 / 255, alpha: 1)
         let yellow = UIColor(red: 249 / 255, green: 202 / 255, blue: 70 / 255, alpha: 1)
         
         if color == "green" {
