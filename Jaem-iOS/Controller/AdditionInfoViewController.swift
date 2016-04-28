@@ -11,9 +11,6 @@ import RealmSwift
 
 class AdditionInfoViewController: UIViewController {
 
-    @IBOutlet weak var heightView: UIView!
-    @IBOutlet weak var weightView: UIView!
-    @IBOutlet weak var birthView: UIView!
     
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
@@ -31,6 +28,9 @@ class AdditionInfoViewController: UIViewController {
     
     var presentHeightRow = 170
     var presentWeightRow = 70
+    
+    var dataToSave : MyBodySize!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,9 +43,10 @@ class AdditionInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        /*
         let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = NSTextAlignment.Center
-        /*
+        
         let attributes = [
             NSForegroundColorAttributeName : UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1),
             NSFontAttributeName : UIFont(name: "AppleSDGothicNeo-Regular", size: 12)!,
@@ -135,10 +136,12 @@ class AdditionInfoViewController: UIViewController {
     func dismissPicker() {
         if heightTextField.isFirstResponder() {
             heightTextField.resignFirstResponder()
+            dataToSave.height = Double( presentHeightRow )
         }
             
         else if weightTextField.isFirstResponder() {
             weightTextField.resignFirstResponder()
+            dataToSave.weight = Double(presentWeightRow)
         } else {
             birthTextField.resignFirstResponder()
         }
@@ -206,9 +209,11 @@ class AdditionInfoViewController: UIViewController {
     
     @IBAction func tapComplete(sender: AnyObject) {
         
+        //설정되지 않는 값을 기존 값으로 채워 넣기
+        
         let realm = try! Realm()
         try! realm.write {
-            //To Do: write realm
+            //realm.add(dataToSave)
             //To Do: network
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-var RealmSchemaVersion: UInt64 = 7
+var RealmSchemaVersion: UInt64 = 9
 
 
 @UIApplicationMain
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         realmMigration()
         
-        
+        //getListOfFont()
         
 
         return true
@@ -75,7 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         _ = try! Realm()
     }
     
-    
+    func getListOfFont() {
+        let fontFamilies = UIFont.familyNames()
+        for i in fontFamilies {
+            let fontFamily = i
+            let fontName = UIFont.fontNamesForFamilyName(i)
+            print("fontFamily:" + fontFamily   )
+            print(fontName)
+        }
+    }
     
     
     

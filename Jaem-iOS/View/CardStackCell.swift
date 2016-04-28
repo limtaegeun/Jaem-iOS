@@ -28,7 +28,7 @@ class CardStackCell: UICollectionViewCell {
         title = UILabel(frame: CGRect(x: center.x - 100 , y: CGRectGetMaxY(dragIconView.frame) + 5, width: 200, height: 15))
         title.textAlignment = NSTextAlignment.Center
         title.textColor = UIColor.whiteColor()
-        title.font = UIFont(name: "OpenSans-Regular", size: 13)
+        title.font = UIFont(name: "OpenSans", size: 13)
         addSubview(dragIconView)
         addSubview(title)
     }

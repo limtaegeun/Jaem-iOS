@@ -16,9 +16,21 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var noDeviceButton: UIButton!
     
+    @IBOutlet weak var connectImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        connectImageView.image = UIImage(named: "connect")
+        
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "지금은 디바이스가 없어요")
+        
+        attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+        noDeviceButton.titleLabel!.attributedText = attributeString
+        
+        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "가입하면 jaem의 약관 및 개인정보취급방침에 동의하게 됩니다")
+        
+        attributeString2.addAttribute(NSFontAttributeName, value: UIFont(name:"TypoRoundRegularDemo",size: 17)! , range: NSMakeRange(0,4))
+        connectButton.titleLabel!.attributedText = attributeString
         
         btDiscoverySharedInstance
         // Do any additional setup after loading the view.

@@ -23,6 +23,11 @@ enum ClothesCategory : String {
 class UserInfo: Object {
     dynamic var userName = ""
     dynamic var email = ""
+    dynamic var gender = ""
+    dynamic var birthDay = NSDate()
+    dynamic var favoriteTopSize = 0.0
+    dynamic var favoriteBottomSize = 0.0
+    
     override static func primaryKey() -> String? {
         return "userName"
     }
@@ -53,6 +58,18 @@ class MyBodySize: Object {
     
     override static func primaryKey() -> String? {
         return "index"
+    }
+    
+    func IncrementaID() -> Int{
+        let realm = try! Realm()
+        let object: NSArray = Array(realm.objects(MyBodySize).sorted("index"))
+        let last = object.lastObject
+        if object.count > 0 {
+            let valor = last?.valueForKey("index") as? Int
+            return valor! + 1
+        } else {
+            return 1
+        }
     }
 }
 

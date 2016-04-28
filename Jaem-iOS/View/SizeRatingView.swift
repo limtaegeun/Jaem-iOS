@@ -8,31 +8,41 @@
 
 import UIKit
 
+protocol SizeRatingViewDelegate {
+    func sizeRatingTapButton(value : Int)
+}
+
 class SizeRatingView: UIView {
 
     
     var buttons = [UIButton]()
+    var selectedValue = 0
+    
+    private var grayCharacters : [UIImage]!
+    private var blueCharacters : [UIImage]!
+    
+    var delegate : SizeRatingViewDelegate?
     
     func setButton() {
         //init button
         
         var wholeWidth :CGFloat = 0
         
-        let grayCharacters = [JaemCharacterStyleKit.imageOfGray1,
-                              JaemCharacterStyleKit.imageOfGray2,
-                              JaemCharacterStyleKit.imageOfGray3,
-                              JaemCharacterStyleKit.imageOfGray4,
-                              JaemCharacterStyleKit.imageOfGray5]
-        let blueCharacters = [JaemCharacterStyleKit.imageOfBlue1,
-                              JaemCharacterStyleKit.imageOfBlue2,
-                              JaemCharacterStyleKit.imageOfBlue3,
-                              JaemCharacterStyleKit.imageOfBlue4,
-                              JaemCharacterStyleKit.imageOfBlue5]
+        grayCharacters = [JaemCharacterStyleKit.imageOfGray1,
+                          JaemCharacterStyleKit.imageOfGray2,
+                          JaemCharacterStyleKit.imageOfGray3,
+                          JaemCharacterStyleKit.imageOfGray4,
+                          JaemCharacterStyleKit.imageOfGray5]
+        
+        blueCharacters = [JaemCharacterStyleKit.imageOfBlue1,
+                          JaemCharacterStyleKit.imageOfBlue2,
+                          JaemCharacterStyleKit.imageOfBlue3,
+                          JaemCharacterStyleKit.imageOfBlue4,
+                          JaemCharacterStyleKit.imageOfBlue5]
         
         for i in 0...4 {
             let button = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 44))
             button.setImage(grayCharacters[i], forState: .Normal)
-            button.setImage(blueCharacters[i], forState: .Highlighted)
             buttons.append(button)
             
             wholeWidth += button.bounds.width
@@ -59,6 +69,18 @@ class SizeRatingView: UIView {
     
     func tapButton(sender : CategoryButton) {
         
+        for button in buttons {
+            let i = buttons.indexOf(button)
+            button.setImage(grayCharacters[i!], forState: .Normal)
+            button.bounds = CGRect(x: 0, y: 0, width: 35, height: 44)
+        }
+        
+        let index = buttons.indexOf(sender)
+        sender.setImage(blueCharacters[index!], forState: .Normal)
+        sender.frame = CGRectInset(sender.frame, -7, -9)
+        selectedValue = index! + 1
+        
+        delegate?.sizeRatingTapButton(selectedValue)
     }
     
 }

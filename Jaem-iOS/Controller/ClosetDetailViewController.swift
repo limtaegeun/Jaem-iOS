@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import HCSStarRatingView
 
 class ClosetDetailViewController: UIViewController {
 
@@ -17,7 +18,12 @@ class ClosetDetailViewController: UIViewController {
     @IBOutlet weak var compareCollectionView: UICollectionView!
     
     @IBOutlet weak var sizeRatingView: SizeRatingView!
+    @IBOutlet weak var heartRatingView: HCSStarRatingView!
+    
+    
+    @IBOutlet weak var fittingLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    
     var mySize : MyBodySize!
     var mySizeArray : [Dictionary<String,String>]!
     var targetClothes : JaemClothes!
@@ -36,9 +42,11 @@ class ClosetDetailViewController: UIViewController {
         compareCollectionView.delegate = self
         compareCollectionView.dataSource = self
         
+        sizeRatingView.delegate = self
+        
         let realm = try! Realm()
         let data = realm.objects(MyBodySize)
-        mySize = data.first
+        mySize = data.last
         
         mySizeArray = parseToArray(mySize)
         // Do any additional setup after loading the view.
@@ -75,7 +83,7 @@ class ClosetDetailViewController: UIViewController {
         var array = [Dictionary<String,String>]()
         var dic = [String:String]()
         
-        if targetClothes.category == .TOP && targetClothes.category == .OUTER && targetClothes.category == .SUIT && targetClothes.category == .DRESS {
+        if targetClothes.category == .TOP || targetClothes.category == .OUTER || targetClothes.category == .SUIT || targetClothes.category == .DRESS {
             if object.shoulder != 0 {
                 dic["title"] = "어깨너비"
                 dic["value"] = "\(object.shoulder)"
@@ -148,7 +156,11 @@ class ClosetDetailViewController: UIViewController {
         
         return array
     }
-
+    
+    func tapFitting(value : Int) {
+        
+    }
+    
     @IBAction func tapExit(sender: AnyObject) {
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -163,9 +175,24 @@ class ClosetDetailViewController: UIViewController {
     }
     */
 
+    @IBAction func heartValueChanged(sender: AnyObject) {
+        if heartRatingView.value > 0 && heartRatingView.value <= 1 {
+            ratingLabel.text = "완전 별로에요"
+            
+        } else if heartRatingView.value > 1 && heartRatingView.value <= 2 {
+            ratingLabel.text = "마음에 안들어요"
+        } else if heartRatingView.value > 2 && heartRatingView.value <= 3 {
+            ratingLabel.text = "그럭저럭 괜찮아요"
+        } else if heartRatingView.value > 3 && heartRatingView.value <= 4 {
+            ratingLabel.text = "마음에 들어요"
+        } else if heartRatingView.value > 4 && heartRatingView.value <= 5 {
+            ratingLabel.text = "완전 내 스타일이에요"
+        }
+        
+    }
 }
 
-extension ClosetDetailViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate {
+extension ClosetDetailViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate , SizeRatingViewDelegate {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
         
@@ -218,5 +245,24 @@ extension ClosetDetailViewController : UICollectionViewDelegate, UICollectionVie
     
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
         return DimmingPresentationController(presentedViewController: presented, presentingViewController: presenting)
+    }
+    
+    //SizeRatingViewDelegate
+    
+    func sizeRatingTapButton(value : Int) {
+        switch value {
+        case 1:
+            fittingLabel.text = "너무 작아요"
+        case 2:
+            fittingLabel.text = "좀 작은 편이에요"
+        case 3:
+            fittingLabel.text = "딱 내 사이즈에요"
+        case 4:
+            fittingLabel.text = "좀 큰 편이에요"
+        case 5:
+            fittingLabel.text = "너무 커요"
+        default:
+            fittingLabel.text = "..."
+        }
     }
 }

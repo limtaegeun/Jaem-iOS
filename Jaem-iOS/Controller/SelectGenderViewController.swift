@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SelectGenderViewController: UIViewController {
 
@@ -19,7 +20,15 @@ class SelectGenderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //navigationBar background clearColor
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.translucent = true
+        
         exitButton.image = JaemIconStyleKit.imageOfExit_black
+        
+        maleImageView.image = UIImage(named: "BasicMale")
+        femaleImageView.image = UIImage(named: "BasicFemale")
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SelectGenderViewController.tapping(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -34,9 +43,18 @@ class SelectGenderViewController: UIViewController {
     func tapping(recognizer : UITapGestureRecognizer) {
         let location = recognizer.locationInView(view)
         
+        let realm = try! Realm()
+        let me = realm.objects(UserInfo).first
+        
         if CGRectContainsPoint(maleImageView.frame, location) {
+            try! realm.write({ 
+                me?.gender = Gender.Male.rawValue
+            })
             performSegueWithIdentifier("NextStep", sender: self)
         } else if CGRectContainsPoint(femaleImageView.frame, location) {
+            try! realm.write({
+                me?.gender = Gender.Female.rawValue
+            })
             performSegueWithIdentifier("NextStep", sender: self)
         }
     }

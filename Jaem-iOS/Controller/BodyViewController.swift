@@ -52,17 +52,41 @@ class BodyViewController: UIViewController {
         if test == true {
             let realm = try! Realm()
             
+            let testSize = MyBodySize()
+            testSize.index = 0
+            testSize.shoulder = 90
+            testSize.chest = 99
+            testSize.waist = 90
+            testSize.hips = 88
+            testSize.thigh = 48
+            testSize.head = 40
+            testSize.neck = 33
+            testSize.pelvis = 44
+            testSize.upperArm = 33
+            testSize.calf = 40
+            testSize.height = 176
+            testSize.weight = 70
             
             try! realm.write({
+                
                 realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"fuckingOri"], update: true)
-                realm.create(MyBodySize.self, value: ["index":0,
-                    "date":NSDate(),
-                    "shoulder": 95.5,
-                    "chest": 90,
-                    "waist": 88,
-                    "hips": 88,
-                    ], update: true)
+                
+                realm.add(testSize, update:  true)
+                /*
+                realm.create(MyBodySize.self, value:["index" : 0,
+                    "shoulder": 90.0,
+                    "chest":99.0,
+                    "waist":88.0,
+                    "hips":99.0,
+                    "head":33.0,
+                    "neck":33.0,
+                    "pelvis": 33.0,
+                    "legLength":33.0,
+                    "height":176.0,
+                    "weight":70.0] , update:)
+                 */
             })
+ 
             
         }
         
@@ -85,8 +109,7 @@ class BodyViewController: UIViewController {
         
         //interactionController = PanGestureInteractionController(view: AvatarView, direction: .Right)
         //interactionController?.delegate = self
-        let tapGestrueRecognizer = UITapGestureRecognizer(target: self, action: #selector(BodyViewController.tapping(_:)))
-        AvatarView.addGestureRecognizer(tapGestrueRecognizer)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -137,14 +160,19 @@ class BodyViewController: UIViewController {
         let realm = try! Realm()
         if let _ = realm.objects(UserInfo).first {
             print("realm userinfo exist")
-            return
+            
         } else {
             print("segue")
 
             performSegueWithIdentifier("GoRegister", sender: self)
         }
         
-        
+        if let _ = realm.objects(MyBodySize).first {
+            print("realm mybodySize exist")
+            
+        } else {
+            print("dont have size")
+        }
         
     }
     
@@ -214,15 +242,7 @@ class BodyViewController: UIViewController {
     @IBAction func tapGraphButton(sender: AnyObject) {
     }
     
-    func tapping(recognizer : UITapGestureRecognizer)  {
-        let location = recognizer.locationInView(view)
-        
-        if CGRectContainsPoint(CGRectOffset(LeftCircleView.frame, 0, AvatarView.frame.origin.y - scrollView.contentOffset.y ), location) {
-            performSegueWithIdentifier("GoFit", sender: self)
-
-        }
-        
-    }
+    
 }
 
 extension BodyViewController : UIScrollViewDelegate , UICollectionViewDelegate, UICollectionViewDataSource, PanGestureInteractionControllerDelegate {

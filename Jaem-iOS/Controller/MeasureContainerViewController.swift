@@ -36,7 +36,7 @@ class MeasureContainerViewController: UICollectionViewController {
 
         // Register cell classes
         
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -68,6 +68,7 @@ class MeasureContainerViewController: UICollectionViewController {
             set.append(MeasureTerm(title: "THIGH",write: false))
 
         } else {
+            measureStep.removeAll()
             set.append(MeasureTerm(title: "HEAD",write: false))
             set.append(MeasureTerm(title: "NECK",write: false))
             set.append(MeasureTerm(title: "PELVIS",write: false))
