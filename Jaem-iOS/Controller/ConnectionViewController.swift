@@ -48,7 +48,7 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
     }
     
     @IBAction func tapNoDevice(sender: AnyObject) {
-        performSegueWithIdentifier("SkipConnection", sender: self)
+        performSegueWithIdentifier("NoDevice", sender: self)
     }
     
     
@@ -58,8 +58,13 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let dv = segue.destinationViewController as! DeviceListTableViewController
-        dv.centralManager = centralManager
+        if segue.identifier == "GoDeviceList" {
+            let dv = segue.destinationViewController as! DeviceListTableViewController
+            dv.centralManager = centralManager
+        } else if segue.identifier == "NoDevice" {
+            
+        }
+        
         
     }
     

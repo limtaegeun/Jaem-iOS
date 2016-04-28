@@ -111,12 +111,12 @@ class NoDeviceViewController: UIViewController {
             toolbar.tintColor = nil
             toolbar.sizeToFit()
             
-            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(AdditionInfoViewController.dismissPicker) )
+            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.dismissPicker) )
             toolbar.setItems([doneButton], animated: false)
             
             textField.inputAccessoryView = toolbar
             // set Notification
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AdditionInfoViewController.pickerViewWillshow(_:)), name: "UITextFieldTextDidBeginEditingNotification", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.pickerViewWillshow(_:)), name: "UITextFieldTextDidBeginEditingNotification", object: nil)
             
             //creat ages Array
             for index in 0...250 {
@@ -219,6 +219,7 @@ class NoDeviceViewController: UIViewController {
             let dv = segue.destinationViewController as! AdditionInfoViewController
             dv.dataToSave = self.dataToSave
         }
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 

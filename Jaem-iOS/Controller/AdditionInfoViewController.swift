@@ -96,13 +96,13 @@ class AdditionInfoViewController: UIViewController {
             toolbar.tintColor = nil
             toolbar.sizeToFit()
             
-            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(AdditionInfoViewController.dismissPicker) )
+            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.dismissPicker) )
             toolbar.setItems([doneButton], animated: false)
             
             heightTextField.inputAccessoryView = toolbar
             weightTextField.inputAccessoryView = toolbar
             // set Notification
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AdditionInfoViewController.pickerViewWillshow(_:)), name: "UITextFieldTextDidBeginEditingNotification", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.pickerViewWillshow(_:)), name: "UITextFieldTextDidBeginEditingNotification", object: nil)
             
             //creat ages Array
             for index in 1...250 {
@@ -127,7 +127,7 @@ class AdditionInfoViewController: UIViewController {
             toolbar.tintColor = nil
             toolbar.sizeToFit()
             
-            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(AdditionInfoViewController.dismissPicker) )
+            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.dismissPicker) )
             toolbar.setItems([doneButton], animated: false)
             
             birthTextField.inputAccessoryView = toolbar
@@ -144,6 +144,15 @@ class AdditionInfoViewController: UIViewController {
             dataToSave.weight = Double(presentWeightRow)
         } else {
             birthTextField.resignFirstResponder()
+            
+            let realm =  try! Realm()
+            let me = realm.objects(UserInfo).first
+            
+            try! realm.write({
+                me?.birthDay = datePicker!.date
+            })
+            
+            
         }
         
     }
@@ -210,7 +219,7 @@ class AdditionInfoViewController: UIViewController {
     @IBAction func tapComplete(sender: AnyObject) {
         
         //설정되지 않는 값을 기존 값으로 채워 넣기
-        
+        print(dataToSave)
         let realm = try! Realm()
         try! realm.write {
             //realm.add(dataToSave)
