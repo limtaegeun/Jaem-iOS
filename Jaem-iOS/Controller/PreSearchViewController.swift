@@ -17,6 +17,7 @@ class PreSearchViewController: UIViewController {
     @IBOutlet weak var myFavoriteBrandView: UIView!
     @IBOutlet weak var barcodeButton: UIBarButtonItem!
     @IBOutlet weak var exitButton: UIBarButtonItem!
+    @IBOutlet weak var moreBrandButton: UIButton!
     
     private var fromNowSet = [String]()
     private var favoriteBrandSet = [String]()
@@ -26,7 +27,7 @@ class PreSearchViewController: UIViewController {
     private var recentlySearch = [String]()
     
     private var typeSearchText = false
-    private var searchedText : String!
+    var searchedText : String!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +77,11 @@ class PreSearchViewController: UIViewController {
         
         barcodeButton.image = JaemIconStyleKit.imageOfBarcode
         exitButton.image = JaemIconStyleKit.imageOfExit_black
+        
+        
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -186,7 +191,7 @@ class PreSearchViewController: UIViewController {
     func alertPresent(title : String, message: String) {
         let alert = UIAlertController(title: title , message: message, preferredStyle: .Alert)
         
-        let action = UIAlertAction(title: "다시시도", style: .Default, handler: nil)
+        let action = UIAlertAction(title: "확인", style: .Default, handler: nil)
         alert.addAction(action)
         
         presentViewController(alert, animated: true, completion: nil)
@@ -200,12 +205,14 @@ class PreSearchViewController: UIViewController {
     @IBAction func tapBarcode(sender: AnyObject) {
         alertPresent("준비중", message: "서비스준비중입니다.")
         
-        
     }
     
     func tapping (sender: AnyObject) {
+        
         let button = sender as! UIButton
         searchBar.text = button.titleLabel?.text
+        searchedText = searchBar.text
+        performSegueWithIdentifier("GoSearchResult", sender: self)
     }
     
     // MARK: - Navigation

@@ -51,6 +51,8 @@ class NoDeviceViewController: UIViewController {
         skipButton.titleLabel!.attributedText = attributeString
         
         dataToSave.index = dataToSave.IncrementaID()
+        
+        explainImageView.image = UIImage(named: "noDeviceDefault")
     }
 
     override func viewDidAppear(animated: Bool) {

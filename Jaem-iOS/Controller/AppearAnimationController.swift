@@ -17,7 +17,7 @@ class AppearAnimationController: NSObject, UIViewControllerAnimatedTransitioning
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         // slide appear
         
-        if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? ClosetDetailViewController {
+        if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)  {
             if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
                 toView.frame = transitionContext.finalFrameForViewController(toViewController)
                 let finalFrame = toView.frame

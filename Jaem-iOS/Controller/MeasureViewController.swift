@@ -9,7 +9,7 @@
 import UIKit
 import AKPickerView_Swift
 import CoreBluetooth
-
+import RealmSwift
 
 
 class MeasureViewController: UIViewController {
@@ -20,7 +20,9 @@ class MeasureViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var exitButton: UIBarButtonItem!
     
-    var bodySize = MyBodySize()
+    @IBOutlet weak var explainImageView: UIImageView!
+    
+    var dataToSave = MyBodySize()
     
     var containerViewController : MeasureContainerViewController!
     var minNumber : Int = 0
@@ -33,6 +35,7 @@ class MeasureViewController: UIViewController {
     
     var length : Int = 0
     var targetPeripheral : CBPeripheral?
+    var gender : Gender!
     override func viewDidLoad() {
         super.viewDidLoad()
         currentStep = 0
@@ -47,6 +50,19 @@ class MeasureViewController: UIViewController {
         
         btDiscoverySharedInstance.bleService?.delegate = self
         targetPeripheral = btDiscoverySharedInstance.bleService?.peripheral
+        
+        //get my gender
+        let realm = try! Realm()
+        let me = realm.objects(UserInfo).first
+        gender = Gender(rawValue: me!.gender)
+        
+        //first image 
+        if gender == .Male {
+            explainImageView.image = UIImage(named: "M1.png")
+            
+        } else {
+            explainImageView.image = UIImage(named: "F1.png")
+        }
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -96,6 +112,11 @@ class MeasureViewController: UIViewController {
             containerViewController = segue.destinationViewController as! MeasureContainerViewController
             containerViewController.delegate = self
         }
+        
+        if segue.identifier == "GetAnotherSize" {
+            let dv = segue.destinationViewController as! AdditionInfoViewController
+            dv.dataToSave = self.dataToSave
+        }
     }
     
     
@@ -111,13 +132,31 @@ class MeasureViewController: UIViewController {
     @IBAction func nextStep(sender: AnyObject) {
         currentMeasureStep(currentStep + 1)
         pickerView.selectItem(50, animated: true)
+        containerViewController.measureStep[currentStep].write = true
+        containerViewController.collectionView!.performBatchUpdates({
+            self.containerViewController.collectionView!.reloadSections(NSIndexSet(index: 0))
+            }, completion: nil)
     }
     
     func currentMeasureStep(step : Int)  {
         currentStep = step
         let collectionView = containerViewController.collectionView
         
-        
+        if gender == .Male {
+            if requireStep == true {
+                explainImageView.image = UIImage(named: "M\(step + 1).png")
+            } else {
+                explainImageView.image = UIImage(named: "M\(step + 6).png")
+                
+            }
+        } else {
+            if requireStep == true {
+                explainImageView.image = UIImage(named: "F\(step + 1).png")
+            } else {
+                explainImageView.image = UIImage(named: "F\(step + 6).png")
+                
+            }
+        }
         
         //question if you want skip?
         if requireStep == true {
@@ -126,7 +165,7 @@ class MeasureViewController: UIViewController {
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "NEXT")
                 
                 attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 4))
-                skipButton.titleLabel?.attributedText = attributeString
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
                 
             }
             if step == 5 {
@@ -214,6 +253,44 @@ class MeasureViewController: UIViewController {
         return text
     }
     
+    func saveData(data : Double, step: Int) {
+        switch step {
+        case 0:
+            dataToSave.shoulder = data
+        case 1:
+            dataToSave.waist = data
+        case 2:
+            dataToSave.chest = data
+        case 3:
+            dataToSave.hips = data
+        case 4:
+            dataToSave.thigh = data
+        case 5:
+            dataToSave.head = data
+        case 6:
+            dataToSave.upperArm = data
+        case 7:
+            dataToSave.neck = data
+        case 8:
+            dataToSave.calf = data
+        case 9:
+            dataToSave.pelvis = data
+        case 10:
+            dataToSave.reach = data
+        case 11:
+            dataToSave.legLength = data
+        default:
+            return
+        }
+        
+        //set write
+        containerViewController.measureStep[currentStep].write = true
+        containerViewController.collectionView!.performBatchUpdates({
+            self.containerViewController.collectionView!.reloadSections(NSIndexSet(index: 0))
+            }, completion: nil)
+    }
+    
+    
 }
 
 extension MeasureViewController : AKPickerViewDelegate, AKPickerViewDataSource, MeasureContainerViewDelegate, btServiceDelegate {
@@ -247,6 +324,8 @@ extension MeasureViewController : AKPickerViewDelegate, AKPickerViewDataSource, 
         print(out)
         length = Int(out)
         pickerView.selectItem(length, animated: true)
+        
+        
     }
     
     func getNextSig(characteristic: CBCharacteristic, error: NSError?) {
@@ -256,6 +335,8 @@ extension MeasureViewController : AKPickerViewDelegate, AKPickerViewDataSource, 
         data?.getBytes(&out, length: sizeof(UInt8))
         print("getNextSig:")
         print(out)
+        
+        
         
         if out == 1 {
             currentMeasureStep(currentStep + 1)

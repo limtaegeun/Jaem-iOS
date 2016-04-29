@@ -49,20 +49,21 @@ class ClosetViewController: UIViewController {
         view.addSubview(noClothesLabel)
         clothesSet = dummy()
         
-        
-        // Do any additional setup after loading the view.
-        
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        hidingNavBarManager?.viewWillAppear(animated)
-         /*
+        /*
          기준
          coordiCV height = 175
          tableView Cell height = 44
          category height = 50
          */
         closetCollectionView.contentInset = UIEdgeInsets(top: -coordiCVHeight - infoTableViewCellHeight , left: 0, bottom: 0, right: 0)
+        // Do any additional setup after loading the view.
+        
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        hidingNavBarManager?.viewWillAppear(animated)
+        
+        
         
     }
     override func viewWillDisappear(animated: Bool) {

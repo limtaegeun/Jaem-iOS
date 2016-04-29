@@ -15,7 +15,7 @@ class dismissAnimationController: NSObject , UIViewControllerAnimatedTransitioni
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        if let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? ClosetDetailViewController {
+        if let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)  {
             if let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)  {
                 fromView.frame = transitionContext.finalFrameForViewController(fromViewController)
                 

@@ -51,6 +51,9 @@
 		AF70D4201CC3AA60005A395D /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70D41F1CC3AA60005A395D /* NetworkModule.swift */; };
 		AF7CCCCA1CCCA0E00045BDEF /* SizeClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CCCC91CCCA0E00045BDEF /* SizeClickView.swift */; };
 		AF8D739D1CCA6087003C977B /* ClothesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */; };
+		AF8E3E451CD330FA0009123A /* BrandListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E3E441CD330FA0009123A /* BrandListViewController.swift */; };
+		AF8E3E471CD337B90009123A /* BrandListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E3E461CD337B90009123A /* BrandListCell.swift */; };
+		AF8E3E491CD38BBB0009123A /* ClothesSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E3E481CD38BBB0009123A /* ClothesSaveView.swift */; };
 		AFC24B331CA2533D002FA07B /* CardStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B321CA2533D002FA07B /* CardStackCell.swift */; };
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
 		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
@@ -215,6 +218,9 @@
 		AF70D41F1CC3AA60005A395D /* NetworkModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
 		AF7CCCC91CCCA0E00045BDEF /* SizeClickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SizeClickView.swift; path = View/SizeClickView.swift; sourceTree = "<group>"; };
 		AF8D739C1CCA6087003C977B /* ClothesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesHeaderView.swift; path = View/ClothesHeaderView.swift; sourceTree = "<group>"; };
+		AF8E3E441CD330FA0009123A /* BrandListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandListViewController.swift; path = Controller/BrandListViewController.swift; sourceTree = "<group>"; };
+		AF8E3E461CD337B90009123A /* BrandListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandListCell.swift; path = View/BrandListCell.swift; sourceTree = "<group>"; };
+		AF8E3E481CD38BBB0009123A /* ClothesSaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClothesSaveView.swift; path = View/ClothesSaveView.swift; sourceTree = "<group>"; };
 		AFC24B321CA2533D002FA07B /* CardStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackCell.swift; path = View/CardStackCell.swift; sourceTree = "<group>"; };
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
 		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
@@ -400,6 +406,7 @@
 				AF04FD1D1CCB518800289730 /* ClosetCell.swift */,
 				AF04FD1F1CCB534100289730 /* CoordiCell.swift */,
 				AFFA74CA1CD10469000CBA3F /* NoDeviceCell.swift */,
+				AF8E3E461CD337B90009123A /* BrandListCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -594,6 +601,7 @@
 				AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */,
 				AF03E12A1CBE24C900D1F1FC /* AgreementViewController.swift */,
 				AFFA74C81CD0D9B2000CBA3F /* NoDeviceViewController.swift */,
+				AF8E3E441CD330FA0009123A /* BrandListViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -614,6 +622,7 @@
 				AF03E1341CBE67C000D1F1FC /* SearchTextCell.swift */,
 				AF7CCCC91CCCA0E00045BDEF /* SizeClickView.swift */,
 				AF0236981CCF5CF300E348EF /* SizeRatingView.swift */,
+				AF8E3E481CD38BBB0009123A /* ClothesSaveView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1005,6 +1014,7 @@
 				AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */,
 				AF696F331CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift in Sources */,
 				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
+				AF8E3E451CD330FA0009123A /* BrandListViewController.swift in Sources */,
 				AFDF96C51CCDF0230077FBBA /* JaemClothes.swift in Sources */,
 				AFEADDF71CBBD8A50017BAD9 /* CategoryButton.swift in Sources */,
 				AF63ADDE1CAFA59C00029E77 /* JaemViewStyleKit.swift in Sources */,
@@ -1025,6 +1035,7 @@
 				AFF70E141CABAC0D00E869A6 /* MeasureContainerViewController.swift in Sources */,
 				AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */,
 				AFEADDF51CBBBE1B0017BAD9 /* SearchResultCell.swift in Sources */,
+				AF8E3E471CD337B90009123A /* BrandListCell.swift in Sources */,
 				AF655F301CB63C250015EE28 /* TypeCell.swift in Sources */,
 				AFDF96CD1CCE4CAB0077FBBA /* AppearAnimationController.swift in Sources */,
 				AFDF96CF1CCE4D1A0077FBBA /* dismissAnimationController.swift in Sources */,
@@ -1047,6 +1058,7 @@
 				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
 				AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */,
+				AF8E3E491CD38BBB0009123A /* ClothesSaveView.swift in Sources */,
 				AF4DCD951CA385A000E5CC15 /* BodyViewController.swift in Sources */,
 				AF03E1371CBE896D00D1F1FC /* RealmModel.swift in Sources */,
 				AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */,

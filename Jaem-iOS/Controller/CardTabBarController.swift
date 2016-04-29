@@ -193,6 +193,13 @@ extension CardTabBarController : UICollectionViewDelegate, UICollectionViewDataS
         print("select \(indexPath.row)")
         self.selectedIndex = removed.index
         collectionView.reloadData()
+        
+        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            
+            self.cardStackView.frame = CGRectMake(0, self.view.frame.height - CardStackLayoutConstant.Cell().visibleCellHeight - 8 , self.view.frame.width , 2 * CardStackLayoutConstant.Cell().visibleCellHeight + CardStackLayoutConstant.Cell().actualCellHeight  + 8)
+            self.cardIsExpanded = false
+            
+            }, completion: nil)
     }
     
     

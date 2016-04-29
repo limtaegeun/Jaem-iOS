@@ -183,7 +183,7 @@ class SearchViewController: UIViewController {
             stackX += categorys[i].bounds.width
         }
         
-        categorys[1].changeFillAlpha(true)
+        categorys[0].changeFillAlpha(true)
         
         //set action
         for button in categorys {
