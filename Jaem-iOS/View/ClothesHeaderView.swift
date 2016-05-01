@@ -24,9 +24,9 @@ class ClothesHeaderView: UICollectionReusableView {
     var categorys : [CategoryButton]!
     var currentCategory = Category.ALL
     
-    var coordiSet = [JaemClothes]()
+    var coordiSet = [Clothes]()
     
-    var saveCoordi : JaemClothes {
+    var saveCoordi : Clothes {
         get {
             return coordiSet[0]
         }
@@ -118,7 +118,7 @@ extension ClothesHeaderView : UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CoordiCell", forIndexPath: indexPath) as! CoordiCell
-        cell.imageView.image = coordiSet[indexPath.row].image
+        cell.imageView.image = UIImage(data: coordiSet[indexPath.row].image )
         return cell
     }
     
@@ -142,7 +142,7 @@ extension ClothesHeaderView : UICollectionViewDelegate, UICollectionViewDataSour
         cell.brandLabel.text = coordiSet[indexPath.row].brand
         cell.nameLabel.text = coordiSet[indexPath.row].name
         let category = coordiSet[indexPath.row].category
-        cell.categoryLabel.text = category.rawValue
+        cell.categoryLabel.text = category
         
         return cell
     }

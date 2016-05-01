@@ -69,7 +69,7 @@ class BodyViewController: UIViewController {
             
             try! realm.write({
                 
-                realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"fuckingOri"], update: true)
+                realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"seung hwan"], update: true)
                 
                 realm.add(testSize, update:  true)
                 /*
@@ -91,8 +91,9 @@ class BodyViewController: UIViewController {
         }
         
         let realm = try! Realm()
-        userName = realm.objects(UserInfo).first!.userName
-        
+        let me = realm.objects(UserInfo).first!
+        userName = me.userName
+        let gender = me.gender
                 
         //set hidingNavBar
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: scrollView)
@@ -106,6 +107,13 @@ class BodyViewController: UIViewController {
         
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
+        
+        if Gender(rawValue: gender) == Gender.Male {
+            avatarImageView.image = UIImage(named: "MainMale")
+        } else {
+            avatarImageView.image = UIImage(named: "MainFemale")
+
+        }
         
         //interactionController = PanGestureInteractionController(view: AvatarView, direction: .Right)
         //interactionController?.delegate = self

@@ -13,18 +13,18 @@ class FitInfoView: UIView {
     var sizes = [String]()
     var labels = [UILabel]()
     
-    func setLabel() {
+    func setLabel(recommend : Int) {
         //init button
         sizes.insert("•", atIndex: 0)
         sizes.insert("•", atIndex: sizes.count)
         
-        let defaultColor = UIColor.blackColor()
+        let defaultColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         var wholeWidth :CGFloat = 0
         
         for i in 0...(sizes.count - 1) {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 22, height: 22))
             label.text = sizes[i]
-            label.textColor = defaultColor
+            label.textColor = (i  == recommend) ? UIColor.blackColor() : defaultColor
             label.font =  UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!
             labels.append(label)
             wholeWidth += label.bounds.width

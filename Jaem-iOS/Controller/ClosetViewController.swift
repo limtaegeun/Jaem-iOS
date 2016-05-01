@@ -8,6 +8,7 @@
 
 import UIKit
 import HidingNavigationBar
+import RealmSwift
 
 let coordiCVHeight : CGFloat = 175
 let infoTableViewCellHeight : CGFloat = 44
@@ -20,7 +21,7 @@ class ClosetViewController: UIViewController {
     var noClothesLabel : UILabel!
     var hidingNavBarManager: HidingNavigationBarManager?
     
-    var clothesSet = [JaemClothes]()
+    var clothesSet : Results<(Clothes)>!
     var header : ClothesHeaderView!
     var headerHeight : CGFloat = coordiCVHeight + infoTableViewCellHeight + categoryHeight
     
@@ -45,9 +46,12 @@ class ClosetViewController: UIViewController {
         noClothesLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!
         noClothesLabel.text = "등록된 옷이 없어요!"
         noClothesLabel.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
-        noClothesLabel.hidden = true
+        noClothesLabel.hidden =  true
         view.addSubview(noClothesLabel)
-        clothesSet = dummy()
+        
+        let realm = try! Realm()
+        
+        clothesSet = realm.objects(Clothes)
         
         /*
          기준
@@ -88,7 +92,7 @@ class ClosetViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    /*
     func dummy() -> [JaemClothes] {
         var set = [JaemClothes]()
         let sizeTest =  JaemClothes(category: ClothesCategory.TOP, type: ClothesType.shortsleevedTshirts ,brand: "8세컨즈", name: "흰색 후드", image: UIImage(named: "1.png" )!)
@@ -117,7 +121,7 @@ class ClosetViewController: UIViewController {
         
         return set
     }
-    
+    */
     
     
     //MARK : ACTION
@@ -168,7 +172,7 @@ extension ClosetViewController : UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClosetCell", forIndexPath: indexPath) as! ClosetCell
         
-        cell.imageView.image = clothesSet[indexPath.row].image
+        cell.imageView.image = UIImage(data: clothesSet[indexPath.row].image )
         
         return cell
     }

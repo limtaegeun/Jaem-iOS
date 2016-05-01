@@ -40,7 +40,7 @@ class SearchResultCell: UICollectionViewCell {
         
         let sizes = ["S","M","L","XL"]
         
-        let sizeView = ClothesSaveView(frame: CGRect(x: 0, y: 0 ,width: self.frame.width,height: 52 )  , sizes: sizes)
+        let sizeView = ClothesSaveView(frame: CGRect(x: 0, y: 0 ,width: self.frame.width,height: 52 )  , sizes: sizes , clothesSet : dataToAdd)
         sizeView.center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
         
         self.addSubview(sizeView)
@@ -55,12 +55,16 @@ class SearchResultCell: UICollectionViewCell {
             
             switch response.result {
             case .Success(let json):
-                if json["stat"] as! String == "success" {
-                    let array = json["result"] as![Dictionary<String,AnyObject>]
-                    self.dataToAdd  = self.parseToObject(array)
-                    
-                } else {
-                    
+                if let dic = self.parseJSONToDictionary(json) {
+                    if dic["stat"]  as! String == "success" {
+                        if let array = dic["result"] as? [Dictionary<String,AnyObject>] {
+                            self.dataToAdd  = self.parseToObject(array)
+                        }
+                        
+                        
+                    } else {
+                        
+                    }
                 }
             case .Failure(_): break
                 
@@ -68,6 +72,14 @@ class SearchResultCell: UICollectionViewCell {
                 
                 
             }
+        }
+    }
+    
+    func parseJSONToDictionary(json:AnyObject) -> [String:AnyObject]? {
+        if let dic = json as? [String:AnyObject] {
+            return dic
+        } else {
+            return nil
         }
     }
     
@@ -208,9 +220,7 @@ class SearchResultCell: UICollectionViewCell {
         return set
     }
     
-    func getRequiredSize(data: Dictionary<String,AnyObject>) {
-        
-    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()

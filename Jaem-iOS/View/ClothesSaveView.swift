@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ClothesSaveView: UIView {
 
-    var buttons = [UIButton]()
+    private var buttons = [UIButton]()
     var sizes = [String]()
+    var clothesSet : [Clothes]!
     
-    init(frame: CGRect, sizes : [String] ) {
+    init(frame: CGRect, sizes : [String], clothesSet: [Clothes] ) {
         super.init(frame: frame)
         self.sizes = sizes
+        self.clothesSet = clothesSet
         setButton()
         self.backgroundColor = UIColor.blackColor()
         self.alpha = 0.75
@@ -59,6 +62,18 @@ class ClothesSaveView: UIView {
     }
     
     func tapButton(sender: AnyObject) {
+        let index = buttons.indexOf(sender as! UIButton)
+        
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(clothesSet[index!],update:  true)
+        }
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.alpha = 0
+            }) { (finished) in
+                self.removeFromSuperview()
+        }
         
     }
     

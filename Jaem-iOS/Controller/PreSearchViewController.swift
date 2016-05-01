@@ -26,6 +26,7 @@ class PreSearchViewController: UIViewController {
     private var relatedSearch = [String]()
     private var recentlySearch = [String]()
     
+    var loaded = false
     private var typeSearchText = false
     var searchedText : String!
     override func viewDidLoad() {
@@ -70,16 +71,23 @@ class PreSearchViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
+        if myFavoriteBrandView.subviews.count == 0{
+            setButtons(favoriteBrandSet, view: myFavoriteBrandView, action: #selector(PreSearchViewController.tapping(_:)))
+        }
         
-        setButtons(favoriteBrandSet, view: myFavoriteBrandView, action: #selector(PreSearchViewController.tapping(_:)))
+        if loaded == false {
+            setSearchTableView()
+            
+            barcodeButton.image = JaemIconStyleKit.imageOfBarcode
+            exitButton.image = JaemIconStyleKit.imageOfExit_black
+            
+            loaded = true
+        }
         
-        setSearchTableView()
-        
-        barcodeButton.image = JaemIconStyleKit.imageOfBarcode
-        exitButton.image = JaemIconStyleKit.imageOfExit_black
         
         
     }
+    
     
     
     
