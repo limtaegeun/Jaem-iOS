@@ -16,7 +16,6 @@ class MeasureViewController: UIViewController {
 
     @IBOutlet weak var pickerView: AKPickerView!
     @IBOutlet weak var stepLabel: UILabel!
-    @IBOutlet weak var explainLabel: UILabel!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var exitButton: UIBarButtonItem!
     
@@ -187,7 +186,6 @@ class MeasureViewController: UIViewController {
             }
         }
         
-        explainLabel.text = presentExplainText(currentStep)
         containerViewController.selectStep(collectionView!, step: currentStep)
         
     }
@@ -322,7 +320,7 @@ extension MeasureViewController : AKPickerViewDelegate, AKPickerViewDataSource, 
         data?.getBytes(&out, length: sizeof(UInt8))
         print("getADC:")
         print(out)
-        length = Int(out)
+        length = Int(out) / 2
         pickerView.selectItem(length, animated: true)
         
         

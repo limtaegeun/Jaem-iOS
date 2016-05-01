@@ -194,15 +194,23 @@ class SearchViewController: UIViewController {
         
         return extensionView
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "GoClothesDetail" {
+            let dv = segue.destinationViewController as! ClothesDetailViewController
+            let cell = sender as! SearchResultCell
+            let indexRow = searchCollectionView.indexPathForCell(cell)
+            dv.result = searchResults[indexRow!.row]
+            dv.image = cell.clothesImage.image!
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
     //MARK : ACTION
     
@@ -216,6 +224,9 @@ class SearchViewController: UIViewController {
         currentCategory = Category(rawValue: categorys.indexOf(sender)!)!
         print(currentCategory)
     }
+    
+    
+    
     
 }
 
@@ -270,7 +281,7 @@ extension SearchViewController : UISearchBarDelegate, UICollectionViewDelegate, 
         cell.brandLabel.text = searchResults[indexPath.row].brandKo
         cell.nameLabel.text = searchResults[indexPath.row].name
         cell.configureForImageResult(searchResults[indexPath.row].ImageURLFront)
-        
+        cell.result = searchResults[indexPath.row]
         return cell
     }
     

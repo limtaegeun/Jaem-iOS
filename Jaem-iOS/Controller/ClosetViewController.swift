@@ -92,6 +92,7 @@ class ClosetViewController: UIViewController {
     func dummy() -> [JaemClothes] {
         var set = [JaemClothes]()
         let sizeTest =  JaemClothes(category: ClothesCategory.TOP, type: ClothesType.shortsleevedTshirts ,brand: "8세컨즈", name: "흰색 후드", image: UIImage(named: "1.png" )!)
+        /*
         let require = TopSizeRequired()
         require.shoulderWidth = 45.5
         require.chestLength = 52
@@ -102,7 +103,7 @@ class ClosetViewController: UIViewController {
         option.bottomSize = 14
         sizeTest.requiredSizeData = require
         sizeTest.optionSizeData = option
-        sizeTest.typicalSize = "L"
+        sizeTest.typicalSize = "L"*/
         set.append(sizeTest)
         set.append( JaemClothes(category: ClothesCategory.BOTTOM, type: ClothesType.pants, brand: "8세컨즈", name: "찢어진 청바지", image: UIImage(named: "2.png" )!))
         set.append( JaemClothes(category: ClothesCategory.OUTER, type: ClothesType.jacket, brand: "동대문", name: "검은색 바람막이", image: UIImage(named: "3.png" )!))

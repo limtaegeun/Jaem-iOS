@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import Alamofire
+import RealmSwift
 
 class ClothesDetailViewController: UIViewController {
 
     @IBOutlet weak var clothesBaseView: UIView!
     
     @IBOutlet weak var clothesImageView: UIImageView!
-    @IBOutlet weak var leftCircleView: PopCircleView!
-    @IBOutlet weak var rightCircleView: PopCircleView!
     
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var brandLabel: UILabel!
@@ -25,24 +25,40 @@ class ClothesDetailViewController: UIViewController {
     
     @IBOutlet weak var brandButton: UIButton!
     @IBOutlet weak var goStoreButton: BottomCardView!
+    @IBOutlet weak var checkOtherButton: UIButton!
     
+    var result : Result!
+    var image : UIImage!
+    var dataToAdd = [Clothes]()
+    var userName : String!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        clothesImageView.image = UIImage(named: "IMG_0272 Copy 2.png")
+        
+        let realm = try! Realm()
+        userName = realm.objects(UserInfo).first?.userName
+        
+        requestNetwork()
+        clothesImageView.image = image
         
         // add gestrueRecognizer
         let tapGestrueRecognizer = UITapGestureRecognizer(target: self, action: #selector(ClothesDetailViewController.tapping(_:)))
         clothesBaseView.addGestureRecognizer(tapGestrueRecognizer)
         
-        setFitInfoView()
+        
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "유니클로")
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "유니클로")
+        
+        attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 4))
+        brandButton.titleLabel!.attributedText = attributeString
+        
+        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "CHECK OTHER PEOPLE'S CHOICE")
         
         attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 4))
         brandButton.titleLabel!.attributedText = attributeString2
+        
+        setFitInfoView()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,25 +66,178 @@ class ClothesDetailViewController: UIViewController {
     }
     
     func setFitInfoView() {
-        fitInfoView.tightFit = "100"
-        fitInfoView.regularFit = "105"
-        fitInfoView.overFit = "110"
-        
-        fitInfoView.tightExplain = "아 시발 껴"
-        fitInfoView.regularExplain = "굿굿굿굿"
-        fitInfoView.overExplain = "개 커"
+        fitInfoView.sizes = ["S","M","L","XL"]
+        fitInfoView.setLabel()
     }
     
     //MARK: ACTION
     
     func tapping(recognizer : UITapGestureRecognizer)  {
-        let location = recognizer.locationInView(view)
         
-        if CGRectContainsPoint(CGRectOffset(leftCircleView.frame, 0, clothesBaseView.frame.origin.y ), location) {
-            performSegueWithIdentifier("GoCompare", sender: self)
+        
+        
+    }
+    
+    func requestNetwork() {
+        let url = MyHost().urlWtihPathNameAboutMainServer("user/recomend?name=" + userName + "&clothing_key=203")
+        Alamofire.request(.GET, url!, encoding: .JSON).responseJSON { (response) in
+            debugPrint(response)
             
+            switch response.result {
+            case .Success(let json):
+                if json["stat"] as! String == "success" {
+                    let array = json["result"] as![Dictionary<String,AnyObject>]
+                    self.dataToAdd  = self.parseToObject(array)
+                    
+                } else {
+                    
+                }
+            case .Failure(_): break
+                
+                
+                
+                
+            }
+        }
+    }
+    
+    func parseToObject(array : [Dictionary<String,AnyObject>]) -> [Clothes] {
+        var set = [Clothes]()
+        for data in array {
+            let object = Clothes()
+            object.code = data["c_key"] as! Int
+            let category = data["cloth_code"] as! Int
+            object.category = parseClothesCategory(category).rawValue
+            let gender = data["gender"] as! String
+            object.gender = parseGender(gender).rawValue
+            object.brand = result.brandKo
+            object.name = result.name
+            object.cost = data["price"] as! String
+            object.image = UIImagePNGRepresentation(clothesImageView.image!)!
+            object.typicalSize = data["size"] as! String
+            
+            //get size
+            if let value = data["ShoulderWidth"] as? Double {
+                let size = Size()
+                size.title = "shoulderWidth"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["BreastSide"] as? Double {
+                let size = Size()
+                size.title = "chestLength"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["BreastPeripheral"] as? Double {
+                let size = Size()
+                size.title = "bottomSize"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["SleeveLength"] as? Double {
+                let size = Size()
+                size.title = "sleeveLength"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["WaistSection"] as? Double {
+                let size = Size()
+                size.title = "waistLength"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["WaistCircumference"] as? Double {
+                let size = Size()
+                size.title = "waistSize"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["HipSection"] as? Double {
+                let size = Size()
+                size.title = "hipLength"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["HipCircumference"] as? Double {
+                let size = Size()
+                size.title = "hipSize"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["Thighsection"] as? Double {
+                let size = Size()
+                size.title = "thighLength"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["ThighCircumference"] as? Double {
+                let size = Size()
+                size.title = "thighSize"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["Rise"] as? Double {
+                let size = Size()
+                size.title = "rise"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            if let value = data["TotalLength"] as? Double {
+                let size = Size()
+                size.title = "totalLength"
+                size.value = value
+                
+                object.sizeRequired.append(size)
+            }
+            set.append(object)
+            print(object)
         }
         
+        return set
+    }
+    
+    func parseClothesCategory(int : Int) -> ClothesCategory {
+        switch int {
+        case 0:
+            return ClothesCategory.OUTER
+        case 1:
+            return ClothesCategory.TOP
+        case 2:
+            return ClothesCategory.BOTTOM
+        case 3:
+            return ClothesCategory.SUIT
+        case 4:
+            return ClothesCategory.DRESS
+        case 5:
+            return ClothesCategory.ACC
+        default:
+            return ClothesCategory.ACC
+        }
+    }
+    
+    func parseGender(string : String) -> Gender {
+        switch string {
+        case "all":
+            return Gender.Unisex
+        case "male":
+            return Gender.Male
+        case "female":
+            return Gender.Female
+        default:
+            return Gender.Unisex
+        }
     }
     /*
     // MARK: - Navigation

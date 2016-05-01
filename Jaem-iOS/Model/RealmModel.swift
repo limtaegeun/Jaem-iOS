@@ -73,6 +73,32 @@ class MyBodySize: Object {
     }
 }
 
+class Clothes: Object {
+    dynamic var code = 0
+    dynamic var category : String = ""
+    dynamic var gender = ""
+    dynamic var brand = ""
+    dynamic var name = ""
+    dynamic var cost = ""
+    dynamic var image = NSData()
+    dynamic var typicalSize = ""
+    dynamic var rating = 0
+    dynamic var fitting = 0
+    let sizeRequired = List<Size>()
+    let sizeOptional = List<Size>()
+    let anotherColor = List<Clothes>()
+    override static func primaryKey() -> String? {
+        return "code"
+    }
+}
+
+class Size: Object {
+    dynamic var title = ""
+    dynamic var value : Double = 0.0
+}
+
+
+/*
 class SizeRecommend: Object {
     dynamic var category : String = ""
     dynamic var type : String = ""
@@ -187,7 +213,7 @@ class TopSizeOption : Object {
     dynamic var bottomSize = 0.0 // 밑단둘레
     dynamic var bottomLength = 0.0 // 밑단단면 
     dynamic var sleeveSize = 0.0 //소매둘레
-    dynamic var sleeveLength = 0.0 // 소매단면
+    dynamic var sleeveSide = 0.0 // 소매단면
     dynamic var neckDepth  = 0.0  //네크 깊이
     dynamic var neckWidth = 0.0   // 네크 넓이
     dynamic var frontTotalLength = 0.0 // 앞 총기장
@@ -275,6 +301,6 @@ class DressSizeOption: Object {
 
 }
 
-
+*/
 
 
