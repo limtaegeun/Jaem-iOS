@@ -10,6 +10,7 @@ import UIKit
 
 protocol ClothesHeaderViewDelegate : class {
     func clothesHeaderView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    func tapCategoryButton(currentCategory: Category)
 }
 
 class ClothesHeaderView: UICollectionReusableView {
@@ -101,8 +102,11 @@ class ClothesHeaderView: UICollectionReusableView {
         sender.changeFillAlpha(true)
         currentCategory = Category(rawValue: categorys.indexOf(sender)!)!
         print(currentCategory)
+        delegate?.tapCategoryButton(currentCategory)
     }
  
+    
+    
 }
 
 extension ClothesHeaderView : UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {

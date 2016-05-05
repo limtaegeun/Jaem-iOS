@@ -17,7 +17,7 @@ class NoDeviceViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var explainImageView: UIImageView!
     
-    var measureStep : [MeasureTerm]!
+    var measureStep : [MeasureTerm]?
     var requireStep = true
     
     var picker : UIPickerView?
@@ -28,7 +28,7 @@ class NoDeviceViewController: UIViewController {
     var textfields = [UITextField]()
     var nowTextfield : UITextField?
     
-    var gender : Gender!
+    var gender : Gender?
     
     var dataToSave = MyBodySize()
     
@@ -55,11 +55,17 @@ class NoDeviceViewController: UIViewController {
         explainImageView.image = UIImage(named: "noDeviceDefault")
     }
 
+    
+    
     override func viewDidAppear(animated: Bool) {
         let width = (CGRectGetWidth(view.frame) - 32 - 10) / 2
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: 45)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationItem.title = ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -149,44 +155,44 @@ class NoDeviceViewController: UIViewController {
         
             if let textfield =  notification.object as? UITextField {
                 
-                let textfieldIndex = textfields.indexOf(textfield)!
+                if let textfieldIndex = textfields.indexOf(textfield) {
                 
-                picker?.reloadAllComponents()
-                picker?.selectRow(requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5], inComponent: 0, animated: true)
-                
-                if requireStep == true {
-                    stepLabel.text = "\(textfieldIndex + 1) OF 5 STEPS"
-                } else {
-                    stepLabel.text = "\(textfieldIndex + 1) OF 7 STEPS"
-                }
-                
-                //change image 
-                if gender == .Male {
+                    picker?.reloadAllComponents()
+                    picker?.selectRow(requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5], inComponent: 0, animated: true)
+                    
                     if requireStep == true {
-                        explainImageView.image = UIImage(named: "NM\(textfieldIndex + 1).png")
+                        stepLabel.text = "\(textfieldIndex + 1) OF 5 STEPS"
                     } else {
-                        explainImageView.image = UIImage(named: "NM\(textfieldIndex + 6).png")
+                        stepLabel.text = "\(textfieldIndex + 1) OF 7 STEPS"
+                    }
+                    
+                    //change image 
+                    if gender == .Male {
+                        if requireStep == true {
+                            explainImageView.image = UIImage(named: "NM\(textfieldIndex + 1).png")
+                        } else {
+                            explainImageView.image = UIImage(named: "NM\(textfieldIndex + 6).png")
 
-                    }
-                } else {
-                    if requireStep == true {
-                        explainImageView.image = UIImage(named: "NF\(textfieldIndex + 1).png")
+                        }
                     } else {
-                        explainImageView.image = UIImage(named: "NF\(textfieldIndex + 6).png")
-                        
+                        if requireStep == true {
+                            explainImageView.image = UIImage(named: "NF\(textfieldIndex + 1).png")
+                        } else {
+                            explainImageView.image = UIImage(named: "NF\(textfieldIndex + 6).png")
+                            
+                        }
                     }
+                    
+                    
+                    //set init value
+                    let pickerString = "\(indexs[requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5]])CM"
+                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
+                    
+                    attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
+                    
+                    nowTextfield?.attributedText = attributeString
+                
                 }
-                
-                
-                //set init value
-                let pickerString = "\(indexs[requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5]])CM"
-                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
-                
-                attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
-                
-                nowTextfield?.attributedText = attributeString
-                
-                
             }
         }
     }
@@ -304,24 +310,27 @@ extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return measureStep.count + 1
+        
+        return (measureStep?.count ?? 0) + 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("NoDeviceCell", forIndexPath: indexPath) as! NoDeviceCell
         
-        if indexPath.row == measureStep.count - 1 {
-            cell.titleLabel.text = ""
-            cell.sizeTextField.placeholder = ""
-            cell.sizeTextField.userInteractionEnabled = false
-        } else if indexPath.row == measureStep.count {
-            cell.titleLabel.text = measureStep[indexPath.row - 1].title
-            setPickerView(cell.sizeTextField)
-        } else {
-            cell.titleLabel.text = measureStep[indexPath.row].title
-            setPickerView(cell.sizeTextField)
+        if measureStep != nil {
+            if indexPath.row == measureStep!.count - 1 {
+                cell.titleLabel.text = ""
+                cell.sizeTextField.placeholder = ""
+                cell.sizeTextField.userInteractionEnabled = false
+            } else if indexPath.row == measureStep!.count {
+                cell.titleLabel.text = measureStep![indexPath.row - 1].title
+                setPickerView(cell.sizeTextField)
+            } else {
+                cell.titleLabel.text = measureStep![indexPath.row].title
+                setPickerView(cell.sizeTextField)
 
+            }
         }
         
         return cell

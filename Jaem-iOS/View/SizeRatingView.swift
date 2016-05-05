@@ -83,6 +83,21 @@ class SizeRatingView: UIView {
         delegate?.sizeRatingTapButton(selectedValue)
     }
     
+    func selectValue(index : Int) {
+        for button in buttons {
+            let i = buttons.indexOf(button)
+            button.setImage(grayCharacters[i!], forState: .Normal)
+            button.bounds = CGRect(x: 0, y: 0, width: 35, height: 44)
+        }
+        
+        let button = buttons[index - 1]
+        button.setImage(blueCharacters[index - 1], forState: .Normal)
+        button.frame = CGRectInset(button.frame, -7, -9)
+        
+        
+        delegate?.sizeRatingTapButton(index)
+    }
+    
 }
 
     

@@ -34,7 +34,7 @@ class ClothesSaveView: UIView {
         var wholeWidth :CGFloat = 0
         
         for i in 0...(sizes.count - 1) {
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 22 , height: 22))
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 30 , height: 22))
             button.setTitle(sizes[i], forState: .Normal)
             button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             button.titleLabel?.font =  UIFont(name: "AppleSDGothicNeo-Bold", size: 14)!

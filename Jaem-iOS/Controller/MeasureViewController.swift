@@ -32,9 +32,9 @@ class MeasureViewController: UIViewController {
     
     var size = [String]()
     
-    var length : Int = 0
+    var length : Double = 0
     var targetPeripheral : CBPeripheral?
-    var gender : Gender!
+    var gender : Gender?
     override func viewDidLoad() {
         super.viewDidLoad()
         currentStep = 0
@@ -52,24 +52,28 @@ class MeasureViewController: UIViewController {
         
         //get my gender
         let realm = try! Realm()
-        let me = realm.objects(UserInfo).first
-        gender = Gender(rawValue: me!.gender)
-        
-        //first image 
-        if gender == .Male {
-            explainImageView.image = UIImage(named: "M1.png")
+        if let me = realm.objects(UserInfo).first {
+            gender = Gender(rawValue: me.gender)
             
-        } else {
-            explainImageView.image = UIImage(named: "F1.png")
+            //first image
+            if gender == .Male {
+                explainImageView.image = UIImage(named: "M1.png")
+                
+            } else {
+                explainImageView.image = UIImage(named: "F1.png")
+            }
         }
+        
+        
+        dataToSave.index = dataToSave.IncrementaID()
+        
     }
 
-    override func viewDidDisappear(animated: Bool) {
-        btDiscoverySharedInstance.peripheralList.removeAll()
-        btDiscoverySharedInstance.bleService?.reset()
-        btDiscoverySharedInstance.centralManager?.cancelPeripheralConnection(targetPeripheral!)
-        
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationItem.title = ""
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,6 +122,8 @@ class MeasureViewController: UIViewController {
         }
     }
     
+    //MARK  : ACTION
+    
     
     
     @IBAction func tapSkip(sender: AnyObject) {
@@ -137,10 +143,15 @@ class MeasureViewController: UIViewController {
             }, completion: nil)
     }
     
+    @IBAction func tapExit(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     func currentMeasureStep(step : Int)  {
         currentStep = step
         let collectionView = containerViewController.collectionView
-        
+        pickerView.selectItem(0, animated: true)
         if gender == .Male {
             if requireStep == true {
                 explainImageView.image = UIImage(named: "M\(step + 1).png")
@@ -174,13 +185,19 @@ class MeasureViewController: UIViewController {
             }
         } else {
             stepLabel.text = "\(currentStep + 1) OF 7 STEPS"
-            if step == 8 {
+            if step == 0 {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "SKIP")
+                
+                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 4))
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
+            }
+            if step == 6 {
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "NEXT")
                 
                 attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 4))
-                skipButton.titleLabel?.attributedText = attributeString
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
             }
-            if step == 9 {
+            if step == 7 {
                 self.performSegueWithIdentifier("GetAnotherSize", sender: self)
                 return
             }
@@ -252,34 +269,44 @@ class MeasureViewController: UIViewController {
     }
     
     func saveData(data : Double, step: Int) {
-        switch step {
-        case 0:
-            dataToSave.shoulder = data
-        case 1:
-            dataToSave.waist = data
-        case 2:
-            dataToSave.chest = data
-        case 3:
-            dataToSave.hips = data
-        case 4:
-            dataToSave.thigh = data
-        case 5:
-            dataToSave.head = data
-        case 6:
-            dataToSave.upperArm = data
-        case 7:
-            dataToSave.neck = data
-        case 8:
-            dataToSave.calf = data
-        case 9:
-            dataToSave.pelvis = data
-        case 10:
-            dataToSave.reach = data
-        case 11:
-            dataToSave.legLength = data
-        default:
-            return
+        
+        if requireStep == true {
+            switch step {
+            case 0:
+                dataToSave.shoulder = data
+            case 1:
+                dataToSave.waist = data
+            case 2:
+                dataToSave.chest = data
+            case 3:
+                dataToSave.hips = data
+            case 4:
+                dataToSave.thigh = data
+            default : break
+            }
+        } else {
+            switch step {
+            case 0:
+                dataToSave.head = data
+            case 1:
+                dataToSave.upperArm = data
+            case 2:
+                dataToSave.neck = data
+            case 3:
+                dataToSave.calf = data
+            case 4:
+                dataToSave.pelvis = data
+            case 5:
+                dataToSave.reach = data
+            case 6:
+                dataToSave.legLength = data
+            default:
+                return
+            }
         }
+        
+        
+        
         
         //set write
         containerViewController.measureStep[currentStep].write = true
@@ -314,23 +341,25 @@ extension MeasureViewController : AKPickerViewDelegate, AKPickerViewDataSource, 
     }
     
     func getADCData(characteristic : CBCharacteristic, error : NSError?) {
-        var out : UInt8 = 0
+        var out : UInt32 = 0
         
         let data = characteristic.value
-        data?.getBytes(&out, length: sizeof(UInt8))
+        data?.getBytes(&out, length: sizeof(UInt32))
         print("getADC:")
         print(out)
-        length = Int(out) / 2
-        pickerView.selectItem(length, animated: true)
+        length = Double( Int(out) / 2)
+        pickerView.selectItem(Int(length), animated: true)
+        
+        saveData(length, step: currentStep)
         
         
     }
     
     func getNextSig(characteristic: CBCharacteristic, error: NSError?) {
-        var out : UInt8 = 0
+        var out : UInt32 = 0
         
         let data = characteristic.value
-        data?.getBytes(&out, length: sizeof(UInt8))
+        data?.getBytes(&out, length: sizeof(UInt32))
         print("getNextSig:")
         print(out)
         

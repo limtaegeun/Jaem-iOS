@@ -20,6 +20,14 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //navigationBar background clearColor
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.translucent = true
+        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        
         connectImageView.image = UIImage(named: "connect")
         
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "지금은 디바이스가 없어요")
@@ -41,7 +49,9 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationItem.title = ""
+    }
 
     @IBAction func tapConnect(sender: AnyObject) {
         performSegueWithIdentifier("GoDeviceList", sender: self)

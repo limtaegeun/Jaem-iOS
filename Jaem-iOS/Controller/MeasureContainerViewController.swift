@@ -21,7 +21,7 @@ protocol MeasureContainerViewDelegate : class{
 
 class MeasureContainerViewController: UICollectionViewController {
 
-    var measureStep : [MeasureTerm]!
+    var measureStep : [MeasureTerm]?
     var currentStep : Int = 0
     var requireStep = true
 
@@ -68,7 +68,10 @@ class MeasureContainerViewController: UICollectionViewController {
             set.append(MeasureTerm(title: "THIGH",write: false))
 
         } else {
-            measureStep.removeAll()
+            if measureStep != nil {
+                measureStep!.removeAll()
+            }
+            
             set.append(MeasureTerm(title: "HEAD",write: false))
             set.append(MeasureTerm(title: "NECK",write: false))
             set.append(MeasureTerm(title: "PELVIS",write: false))
@@ -111,18 +114,21 @@ class MeasureContainerViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return measureStep.count
+        return measureStep?.count ?? 0
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MeasureStepCell", forIndexPath: indexPath) as! MeasureStepCell
         
-        cell.titleLabel.text = measureStep[indexPath.row].title
-        if currentStep == indexPath.row {
-            cell.changeOvalColor(measureStep[indexPath.row].write, active: true)
-        } else {
-            cell.changeOvalColor(measureStep[indexPath.row].write, active: false)
+        if measureStep != nil {
+            cell.titleLabel.text = measureStep![indexPath.row].title
+            if currentStep == indexPath.row {
+                cell.changeOvalColor(measureStep![indexPath.row].write, active: true)
+            } else {
+                cell.changeOvalColor(measureStep![indexPath.row].write, active: false)
+            }
         }
+        
         
         return cell
     }

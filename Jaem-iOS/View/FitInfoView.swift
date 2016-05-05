@@ -22,7 +22,7 @@ class FitInfoView: UIView {
         var wholeWidth :CGFloat = 0
         
         for i in 0...(sizes.count - 1) {
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 22, height: 22))
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 22))
             label.text = sizes[i]
             label.textColor = (i  == recommend) ? UIColor.blackColor() : defaultColor
             label.font =  UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!

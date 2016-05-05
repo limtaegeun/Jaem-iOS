@@ -26,6 +26,7 @@ enum Category : Int{
     case TOP
     case BOTTOM
     case SUIT
+    case DRESS
     case ACC
     
 }
@@ -45,6 +46,8 @@ class SearchViewController: UIViewController {
     var categorys = [CategoryButton]()
     var currentCategory = Category.ALL
     var categoryView : UIView!
+    
+    var loaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
         //set tableview contentInset
@@ -55,6 +58,8 @@ class SearchViewController: UIViewController {
         searchCollectionView.dataSource = self
         
         searchBar.text = searchedText
+        
+        patternIcon.image = JaemIconStyleKit.imageOfPattonIcon
         /*
         //custom back button
         let backbuttonImage = JaemIconStyleKit.imageOfExitBlackArrow
@@ -65,31 +70,7 @@ class SearchViewController: UIViewController {
         //hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
         
         //search
-        let url_encoding = searchedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=all&pagenation=0") {
-            Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
-                debugPrint(response)
-                
-                switch response.result {
-                case .Success(let json):
-                    if let dic = ParseJSON.parseJSONToDictionary(json) {
-                        if dic["stat"] as! String == "success" {
-                            self.parseToResultObject(dic)
-                            self.searchCollectionView.reloadData()
-                        } else {
-                            Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
-                        }
-                    }
-                    
-                case .Failure(_):
-                    Alert.networkErrorAlertPresent(self, title: "네트워크에 문제가 있습니다.", message: "다시 시도해보세요")
-                    
-                    
-                    
-                }
-            })
-
-        }
+        searchNetworkRequest(Category.ALL, page: 0)
         
     }
     
@@ -97,26 +78,31 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
         hidingNavBarManager?.viewWillAppear(animated)
     }
+    
+    
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //navigationBar background clearColor
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.translucent = true
+        if loaded == false {
+            //navigationBar background clearColor
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.translucent = true
+            
+            searchCollectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+            let layout = UICollectionViewFlowLayout()
+            let width = view.frame.width
+            layout.itemSize = CGSize(width: width, height: 180)
+            
+            searchCollectionView.collectionViewLayout = layout
+            
+            categoryView = addExtensionView()
+            view.addSubview(categoryView)
+            loaded = true
+        }
         
-        searchCollectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
-        let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width
-        layout.itemSize = CGSize(width: width, height: 180)
         
-        searchCollectionView.collectionViewLayout = layout
-        
-        categoryView = addExtensionView()
-        view.addSubview(categoryView)
-        
-        patternIcon.image = JaemIconStyleKit.imageOfPattonIcon
         
         
     }
@@ -128,6 +114,7 @@ class SearchViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         hidingNavBarManager?.viewWillDisappear(animated)
+        self.navigationItem.title = ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -195,6 +182,35 @@ class SearchViewController: UIViewController {
         return extensionView
     }
     
+    func searchNetworkRequest(category : Category, page : Int ){
+        
+        let url_encoding = searchedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=\(category.rawValue)&pagenation=\(page)") {
+            Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
+                debugPrint(response)
+                
+                switch response.result {
+                case .Success(let json):
+                    if let dic = ParseJSON.parseJSONToDictionary(json) {
+                        if dic["stat"] as! String == "success" {
+                            self.parseToResultObject(dic)
+                            self.searchCollectionView.reloadData()
+                        } else {
+                            Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
+                        }
+                    }
+                    
+                case .Failure(_):
+                    Alert.networkErrorAlertPresent(self, title: "네트워크에 문제가 있습니다.", message: "다시 시도해보세요")
+                    
+                    
+                    
+                }
+            })
+            
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -222,6 +238,7 @@ class SearchViewController: UIViewController {
         
         sender.changeFillAlpha(true)
         currentCategory = Category(rawValue: categorys.indexOf(sender)!)!
+        searchNetworkRequest(currentCategory, page: 0)
         print(currentCategory)
     }
     

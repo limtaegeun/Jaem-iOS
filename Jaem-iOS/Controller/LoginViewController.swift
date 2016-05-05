@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
     
     var userNameFlag = false
     var passwordFlag = false
+    var loaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,30 +37,33 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
-        let borderView1 = TextFieldBorderView(frame: CGRect(x: userNameTextField.frame.origin.x - 10, y: userNameTextField.frame.origin.y, width: userNameTextField.frame.width + 20, height: userNameTextField.frame.height ))
-        let borderView2 = TextFieldBorderView(frame: CGRect(x: passwordTextField.frame.origin.x - 10, y: passwordTextField.frame.origin.y, width: passwordTextField.frame.width + 20, height: passwordTextField.frame.height ))
-        buttonBorderView = TextFieldBorderView(frame: LoginButton.frame)
+        if loaded == false {
+            let borderView1 = TextFieldBorderView(frame: CGRect(x: userNameTextField.frame.origin.x - 10, y: userNameTextField.frame.origin.y, width: userNameTextField.frame.width + 20, height: userNameTextField.frame.height ))
+            let borderView2 = TextFieldBorderView(frame: CGRect(x: passwordTextField.frame.origin.x - 10, y: passwordTextField.frame.origin.y, width: passwordTextField.frame.width + 20, height: passwordTextField.frame.height ))
+            buttonBorderView = TextFieldBorderView(frame: LoginButton.frame)
+            
+            borderView1.backgroundColor = UIColor.clearColor()
+            borderView2.backgroundColor = UIColor.clearColor()
+            buttonBorderView.backgroundColor = UIColor.clearColor()
+            
+            subView.insertSubview(borderView1, belowSubview: userNameTextField)
+            subView.insertSubview(borderView2, belowSubview: passwordTextField)
+            subView.insertSubview(buttonBorderView, belowSubview: LoginButton)
+            
+            LoginButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
+            
+            
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "로그인 상세 정보를 잊으셨나요? 로그인 관련 도움을 받으세요")
+            
+            attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(18, 9))
+            helpLabel.attributedText = attributeString
+            
+            let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "계정이 없으신가요?   가입하기")
+            
+            attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(13, 4))
+            regiButton.titleLabel!.attributedText = attributeString2
+        }
         
-        borderView1.backgroundColor = UIColor.clearColor()
-        borderView2.backgroundColor = UIColor.clearColor()
-        buttonBorderView.backgroundColor = UIColor.clearColor()
-
-        subView.insertSubview(borderView1, belowSubview: userNameTextField)
-        subView.insertSubview(borderView2, belowSubview: passwordTextField)
-        subView.insertSubview(buttonBorderView, belowSubview: LoginButton)
-        
-        LoginButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
-
-        
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "로그인 상세 정보를 잊으셨나요? 로그인 관련 도움을 받으세요")
-        
-        attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(18, 9))
-        helpLabel.attributedText = attributeString
-        
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "계정이 없으신가요?   가입하기")
-        
-        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(13, 4))
-        regiButton.titleLabel!.attributedText = attributeString2
     }
     
     

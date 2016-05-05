@@ -34,12 +34,12 @@ class ClothesDetailViewController: UIViewController {
     var dataToAdd = [Clothes]()
     var userName : String!
     var recommendSize : String!
-    
+    var loaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let realm = try! Realm()
-        userName = realm.objects(UserInfo).first?.userName
+        userName = realm.objects(UserInfo).last?.userName
         
         requestNetwork()
         clothesImageView.image = image
@@ -48,23 +48,33 @@ class ClothesDetailViewController: UIViewController {
         addButton.setImage(JaemIconStyleKit.imageOfAddButton2(), forState: .Normal)
         homeButton.image = JaemIconStyleKit.imageOfHome
         
+        brandLabel.text = dataToAdd.first?.brand
+        categoryLabel.text = dataToAdd.first?.category
+        nameLabel.text = dataToAdd.first?.name
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapping(_:)))
         tapGestureRecognizer.delegate = self
         self.view.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "유니클로")
+        if loaded == false {
+            loaded = true
+            
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: dataToAdd.first!.brand)
+            
+            attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            brandButton.setAttributedTitle(attributeString, forState: .Normal)
+            
+            let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "CHECK OTHER PEOPLE'S CHOICE")
+            
+            attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 27))
+            checkOtherButton.setAttributedTitle(attributeString2, forState: .Normal)
+            
+            setFitInfoView()
+        }
         
-        attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 4))
-        brandButton.setAttributedTitle(attributeString, forState: .Normal)
         
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "CHECK OTHER PEOPLE'S CHOICE")
-        
-        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 27))
-        checkOtherButton.setAttributedTitle(attributeString2, forState: .Normal)
-        
-        setFitInfoView()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,14 +82,27 @@ class ClothesDetailViewController: UIViewController {
     }
     
     func setFitInfoView() {
-        fitInfoView.sizes = ["S","M","L","XL"]
-        fitInfoView.setLabel(3)
+        var sizes = [String]()
+        for object in dataToAdd {
+            sizes.append(object.typicalSize)
+        }
+        fitInfoView.sizes = sizes
+        
+        if let recommendIndex = sizes.indexOf(recommendSize) {
+            fitInfoView.setLabel(recommendIndex + 1)
+        }
+        
+        
     }
     
-    
+    func  setNamelabel() {
+        brandLabel.text = dataToAdd.first?.brand
+        categoryLabel.text = dataToAdd.first?.category
+        nameLabel.text = dataToAdd.first?.name
+    }
     
     func requestNetwork() {
-        let url = MyHost().urlWtihPathNameAboutMainServer("user/recomend?name=" + userName + "&clothing_key=203")
+        let url = MyHost().urlWtihPathNameAboutMainServer("user/recomend?name=" + "ori" + "&clothing_key=\(result.code)")
         Alamofire.request(.GET, url!, encoding: .JSON).responseJSON { (response) in
             debugPrint(response)
             
@@ -89,9 +112,10 @@ class ClothesDetailViewController: UIViewController {
                     if dic["stat"]  as! String == "success" {
                         if let array = dic["result"] as? [Dictionary<String,AnyObject>] {
                             self.dataToAdd  = self.parseToObject(array)
+                            self.setNamelabel()
                         }
                         
-                        
+                        self.recommendSize = dic["recomend"] as! String
                     } else {
                         
                     }
@@ -120,7 +144,7 @@ class ClothesDetailViewController: UIViewController {
             let object = Clothes()
             object.code = data["c_key"] as! Int
             let category = data["cloth_code"] as! Int
-            object.category = parseClothesCategory(category).rawValue
+            object.category = Parse().parseIntToClothesCategory(category).rawValue
             let gender = data["gender"] as! String
             object.gender = parseGender(gender).rawValue
             object.brand = result.brandKo
@@ -131,88 +155,126 @@ class ClothesDetailViewController: UIViewController {
             
             //get size
             if let value = data["ShoulderWidth"] as? Double {
-                let size = Size()
-                size.title = "어깨너비"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "어깨너비"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+
+                }
                 
-                object.sizeRequired.append(size)
+                
             }
             if let value = data["BreastSide"] as? Double {
-                let size = Size()
-                size.title = "가슴단면"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "가슴단면"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["BreastPeripheral"] as? Double {
-                let size = Size()
-                size.title = "가슴둘레"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "가슴둘레"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["SleeveLength"] as? Double {
-                let size = Size()
-                size.title = "소매길이"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "소매길이"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["WaistSection"] as? Double {
-                let size = Size()
-                size.title = "허리단면"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "허리단면"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["WaistCircumference"] as? Double {
-                let size = Size()
-                size.title = "허리둘레"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "허리둘레"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["HipSection"] as? Double {
-                let size = Size()
-                size.title = "엉덩이단면"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "엉덩이단면"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["HipCircumference"] as? Double {
-                let size = Size()
-                size.title = "엉덩이둘레"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "엉덩이둘레"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["Thighsection"] as? Double {
-                let size = Size()
-                size.title = "허벅지단면"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "허벅지단면"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["ThighCircumference"] as? Double {
-                let size = Size()
-                size.title = "허벅지둘레"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "허벅지둘레"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["Rise"] as? Double {
-                let size = Size()
-                size.title = "밑위"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "밑위"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             if let value = data["TotalLength"] as? Double {
-                let size = Size()
-                size.title = "총기장"
-                size.value = value
+                if value != 0{
+                    let size = Size()
+                    size.title = "총기장"
+                    size.value = value
+                    
+                    object.sizeRequired.append(size)
+                }
                 
-                object.sizeRequired.append(size)
             }
             set.append(object)
             print(object)
@@ -221,32 +283,15 @@ class ClothesDetailViewController: UIViewController {
         return set
     }
     
-    func parseClothesCategory(int : Int) -> ClothesCategory {
-        switch int {
-        case 0:
-            return ClothesCategory.OUTER
-        case 1:
-            return ClothesCategory.TOP
-        case 2:
-            return ClothesCategory.BOTTOM
-        case 3:
-            return ClothesCategory.SUIT
-        case 4:
-            return ClothesCategory.DRESS
-        case 5:
-            return ClothesCategory.ACC
-        default:
-            return ClothesCategory.ACC
-        }
-    }
+    
     
     func parseGender(string : String) -> Gender {
         switch string {
         case "all":
             return Gender.Unisex
-        case "male":
+        case "men":
             return Gender.Male
-        case "female":
+        case "girl":
             return Gender.Female
         default:
             return Gender.Unisex
@@ -306,13 +351,19 @@ class ClothesDetailViewController: UIViewController {
         
     }
 
+    
+    @IBAction func tapHomeButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
 
 extension ClothesDetailViewController : UIGestureRecognizerDelegate{
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         
-        
-        if CGRectContainsPoint(clothesImageView.frame, touch.locationInView(view)) {
+        let offSetY = clothesBaseView.frame.origin.y
+
+        if CGRectContainsPoint(CGRectOffset(clothesImageView.frame, 0, offSetY), touch.locationInView(view)) {
             return true
         } else {
             return false

@@ -29,6 +29,8 @@
 		AF04FD341CCB5E5B00289730 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD2A1CCB5E5B00289730 /* 9.png */; };
 		AF04FD351CCB5E5B00289730 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = AF04FD2B1CCB5E5B00289730 /* 10.png */; };
 		AF0644171CB268F700EE3951 /* AdditionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */; };
+		AF0BD1941CD715D6007A9F4D /* ClosetCompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BD1931CD715D6007A9F4D /* ClosetCompareViewController.swift */; };
+		AF0BD19E1CD9DD00007A9F4D /* ParsingClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BD19D1CD9DD00007A9F4D /* ParsingClasses.swift */; };
 		AF2708331CA5746B00389A55 /* SelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */; };
 		AF45544B1CB76C0600775D65 /* PanGestureInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */; };
 		AF45544E1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45544D1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift */; };
@@ -58,7 +60,6 @@
 		AFC24B361CA2CF40002FA07B /* JaemIconStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */; };
 		AFC24B381CA2D064002FA07B /* CardStackIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC24B371CA2D064002FA07B /* CardStackIcon.swift */; };
 		AFC3589D1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */; };
-		AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */; };
 		AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */; };
 		AFDC15921CC0D22C001253CA /* MakeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC15911CC0D22B001253CA /* MakeURL.swift */; };
 		AFDD17E11CA9779C005AF8BC /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */; };
@@ -196,6 +197,8 @@
 		AF04FD2A1CCB5E5B00289730 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 9.png; path = ../../Resource/9.png; sourceTree = "<group>"; };
 		AF04FD2B1CCB5E5B00289730 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 10.png; path = ../../Resource/10.png; sourceTree = "<group>"; };
 		AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdditionInfoViewController.swift; path = Controller/AdditionInfoViewController.swift; sourceTree = "<group>"; };
+		AF0BD1931CD715D6007A9F4D /* ClosetCompareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosetCompareViewController.swift; path = Controller/ClosetCompareViewController.swift; sourceTree = "<group>"; };
+		AF0BD19D1CD9DD00007A9F4D /* ParsingClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingClasses.swift; sourceTree = "<group>"; };
 		AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectGenderViewController.swift; path = Controller/SelectGenderViewController.swift; sourceTree = "<group>"; };
 		AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanGestureInteractionController.swift; path = Controller/PanGestureInteractionController.swift; sourceTree = "<group>"; };
 		AF45544D1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIPanGestureRecognizer+Direction.swift"; path = "extention/UIPanGestureRecognizer+Direction.swift"; sourceTree = "<group>"; };
@@ -225,7 +228,6 @@
 		AFC24B351CA2CF40002FA07B /* JaemIconStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaemIconStyleKit.swift; sourceTree = "<group>"; };
 		AFC24B371CA2D064002FA07B /* CardStackIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardStackIcon.swift; path = View/CardStackIcon.swift; sourceTree = "<group>"; };
 		AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleTransitionAnimationController.swift; path = Controller/CircleTransitionAnimationController.swift; sourceTree = "<group>"; };
-		AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureNaviController.swift; path = Controller/MeasureNaviController.swift; sourceTree = "<group>"; };
 		AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardTabBarController.swift; path = Controller/CardTabBarController.swift; sourceTree = "<group>"; };
 		AFDC15911CC0D22B001253CA /* MakeURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeURL.swift; sourceTree = "<group>"; };
 		AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureViewController.swift; path = Controller/MeasureViewController.swift; sourceTree = "<group>"; };
@@ -370,6 +372,69 @@
 			name = image;
 			sourceTree = "<group>";
 		};
+		AF0BD1951CD715DB007A9F4D /* My body */ = {
+			isa = PBXGroup;
+			children = (
+				AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */,
+			);
+			name = "My body";
+			sourceTree = "<group>";
+		};
+		AF0BD1961CD715F0007A9F4D /* My closet */ = {
+			isa = PBXGroup;
+			children = (
+				AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */,
+				AFDF96C81CCE47790077FBBA /* ClosetDetailViewController.swift */,
+			);
+			name = "My closet";
+			sourceTree = "<group>";
+		};
+		AF0BD1971CD715FB007A9F4D /* My style */ = {
+			isa = PBXGroup;
+			children = (
+				AFDF96C61CCE2E1A0077FBBA /* StyleViewController.swift */,
+			);
+			name = "My style";
+			sourceTree = "<group>";
+		};
+		AF0BD1981CD71604007A9F4D /* search */ = {
+			isa = PBXGroup;
+			children = (
+				AF03E12C1CBE387200D1F1FC /* PreSearchViewController.swift */,
+				AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */,
+				AF8E3E441CD330FA0009123A /* BrandListViewController.swift */,
+				AFEADDFC1CBD09E20017BAD9 /* ClothesDetailViewController.swift */,
+				AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */,
+				AF0BD1931CD715D6007A9F4D /* ClosetCompareViewController.swift */,
+			);
+			name = search;
+			sourceTree = "<group>";
+		};
+		AF0BD1991CD71635007A9F4D /* measure */ = {
+			isa = PBXGroup;
+			children = (
+				AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */,
+				AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */,
+				AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */,
+				AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */,
+				AFF70E131CABAC0D00E869A6 /* MeasureContainerViewController.swift */,
+				AFFA74C81CD0D9B2000CBA3F /* NoDeviceViewController.swift */,
+				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
+			);
+			name = measure;
+			sourceTree = "<group>";
+		};
+		AF0BD19A1CD71660007A9F4D /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				AF63ADD91CAF9E1E00029E77 /* LoginViewController.swift */,
+				AF63ADDB1CAF9E3E00029E77 /* RegisterViewController.swift */,
+				AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */,
+				AF03E12A1CBE24C900D1F1FC /* AgreementViewController.swift */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
 		AF45544C1CB78EF500775D65 /* extention */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +490,6 @@
 			isa = PBXGroup;
 			children = (
 				AFC3589C1CB3E7A200A0CB1E /* CircleTransitionAnimationController.swift */,
-				AFC3589E1CB3EB8900A0CB1E /* MeasureNaviController.swift */,
 				AF45544A1CB76C0600775D65 /* PanGestureInteractionController.swift */,
 				AF4554511CB7D79200775D65 /* CirclePresentationController.swift */,
 				AFDF96CA1CCE4B240077FBBA /* DimmingPresentationController.swift */,
@@ -540,6 +604,7 @@
 		AFFBBC141C9FFB3A00879BDC /* Jaem-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */,
 				AF7CCCCB1CCD18E50045BDEF /* Font */,
 				AF45544C1CB78EF500775D65 /* extention */,
 				AFC24B341CA2CF40002FA07B /* StyleKit */,
@@ -547,7 +612,6 @@
 				AFFBBC471CA0017A00879BDC /* Model */,
 				AFFBBC461CA0012200879BDC /* View */,
 				AFFBBC451CA0010E00879BDC /* Controller */,
-				AFFBBC151C9FFB3A00879BDC /* AppDelegate.swift */,
 				AFFBBC1B1C9FFB3A00879BDC /* Main.storyboard */,
 				AFFBBC1E1C9FFB3A00879BDC /* Assets.xcassets */,
 				AFFBBC201C9FFB3A00879BDC /* LaunchScreen.storyboard */,
@@ -580,28 +644,14 @@
 		AFFBBC451CA0010E00879BDC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AFC3589B1CB3E74300A0CB1E /* Transition */,
 				AFC358A01CB3FFA400A0CB1E /* CardTabBarController.swift */,
-				AF4DCD941CA385A000E5CC15 /* BodyViewController.swift */,
-				AF4DCD961CA385B300E5CC15 /* ClosetViewController.swift */,
-				AFDF96C81CCE47790077FBBA /* ClosetDetailViewController.swift */,
-				AFDF96C61CCE2E1A0077FBBA /* StyleViewController.swift */,
-				AF2708321CA5746B00389A55 /* SelectGenderViewController.swift */,
-				AFDD17E21CAA5531005AF8BC /* ConnectionViewController.swift */,
-				AFDD17E41CAA649B005AF8BC /* DeviceListTableViewController.swift */,
-				AFDD17E01CA9779C005AF8BC /* MeasureViewController.swift */,
-				AFF70E131CABAC0D00E869A6 /* MeasureContainerViewController.swift */,
-				AF0644161CB268F700EE3951 /* AdditionInfoViewController.swift */,
-				AF63ADD91CAF9E1E00029E77 /* LoginViewController.swift */,
-				AF63ADDB1CAF9E3E00029E77 /* RegisterViewController.swift */,
-				AF63ADE11CB00A6000029E77 /* FindPasswordViewController.swift */,
-				AF03E12C1CBE387200D1F1FC /* PreSearchViewController.swift */,
-				AFEADDF01CBBAFE80017BAD9 /* SearchViewController.swift */,
-				AFEADDFC1CBD09E20017BAD9 /* ClothesDetailViewController.swift */,
-				AFEADDFE1CBD32000017BAD9 /* FitSearchViewController.swift */,
-				AF03E12A1CBE24C900D1F1FC /* AgreementViewController.swift */,
-				AFFA74C81CD0D9B2000CBA3F /* NoDeviceViewController.swift */,
-				AF8E3E441CD330FA0009123A /* BrandListViewController.swift */,
+				AFC3589B1CB3E74300A0CB1E /* Transition */,
+				AF0BD1951CD715DB007A9F4D /* My body */,
+				AF0BD1961CD715F0007A9F4D /* My closet */,
+				AF0BD1971CD715FB007A9F4D /* My style */,
+				AF0BD1991CD71635007A9F4D /* measure */,
+				AF0BD19A1CD71660007A9F4D /* SignIn */,
+				AF0BD1981CD71604007A9F4D /* search */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -636,6 +686,7 @@
 				AF70D41F1CC3AA60005A395D /* NetworkModule.swift */,
 				AF696F321CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift */,
 				AFDF96C41CCDF0230077FBBA /* JaemClothes.swift */,
+				AF0BD19D1CD9DD00007A9F4D /* ParsingClasses.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -756,6 +807,7 @@
 				TargetAttributes = {
 					AFFBBC111C9FFB3A00879BDC = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = AFNN9HLXUM;
 					};
 					AFFBBC271C9FFB3A00879BDC = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1012,6 +1064,7 @@
 				AFDD17E71CAA9312005AF8BC /* PeripheralCell.swift in Sources */,
 				AF02369B1CCF8D3200E348EF /* JaemCharacterStyleKit.swift in Sources */,
 				AF655F341CB63CCD0015EE28 /* ClothesCell.swift in Sources */,
+				AF0BD19E1CD9DD00007A9F4D /* ParsingClasses.swift in Sources */,
 				AF696F331CC4AF3A0062CE6E /* UIImageView+DownloadImage.swift in Sources */,
 				AFC358A11CB3FFA400A0CB1E /* CardTabBarController.swift in Sources */,
 				AF8E3E451CD330FA0009123A /* BrandListViewController.swift in Sources */,
@@ -1046,7 +1099,6 @@
 				AF45544E1CB78F2E00775D65 /* UIPanGestureRecognizer+Direction.swift in Sources */,
 				AFDC15921CC0D22C001253CA /* MakeURL.swift in Sources */,
 				AFFA74C91CD0D9B2000CBA3F /* NoDeviceViewController.swift in Sources */,
-				AFC3589F1CB3EB8900A0CB1E /* MeasureNaviController.swift in Sources */,
 				AF655F321CB63C910015EE28 /* MyRegularFitCell.swift in Sources */,
 				AFEADDF11CBBAFE80017BAD9 /* SearchViewController.swift in Sources */,
 				AF4554521CB7D79200775D65 /* CirclePresentationController.swift in Sources */,
@@ -1054,6 +1106,7 @@
 				AF04FD1E1CCB518800289730 /* ClosetCell.swift in Sources */,
 				AFDD17E31CAA5531005AF8BC /* ConnectionViewController.swift in Sources */,
 				AF655F2E1CB61A580015EE28 /* AddButtonView.swift in Sources */,
+				AF0BD1941CD715D6007A9F4D /* ClosetCompareViewController.swift in Sources */,
 				AFEADDFF1CBD32000017BAD9 /* FitSearchViewController.swift in Sources */,
 				AF4DCD971CA385B300E5CC15 /* ClosetViewController.swift in Sources */,
 				AF63ADDC1CAF9E3E00029E77 /* RegisterViewController.swift in Sources */,
@@ -1215,11 +1268,14 @@
 			baseConfigurationReference = 0D857276982C7F56A6EB67B3 /* Pods-Jaem-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1228,11 +1284,14 @@
 			baseConfigurationReference = 28F80882EDE64E626DF33F60 /* Pods-Jaem-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Jaem-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.whataday.Jaem-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

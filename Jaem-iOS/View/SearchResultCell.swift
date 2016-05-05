@@ -38,13 +38,6 @@ class SearchResultCell: UICollectionViewCell {
         
         networkRequest()
         
-        let sizes = ["S","M","L","XL"]
-        
-        let sizeView = ClothesSaveView(frame: CGRect(x: 0, y: 0 ,width: self.frame.width,height: 52 )  , sizes: sizes , clothesSet : dataToAdd)
-        sizeView.center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
-        
-        self.addSubview(sizeView)
-        
     }
    
 
@@ -59,6 +52,17 @@ class SearchResultCell: UICollectionViewCell {
                     if dic["stat"]  as! String == "success" {
                         if let array = dic["result"] as? [Dictionary<String,AnyObject>] {
                             self.dataToAdd  = self.parseToObject(array)
+                            
+                            var sizes = [String]()
+                            for object in self.dataToAdd {
+                                sizes.append(object.typicalSize)
+                            }
+                            
+                            let sizeView = ClothesSaveView(frame: CGRect(x: 0, y: 0 ,width: self.frame.width, height: 52 )  , sizes: sizes, clothesSet : self.dataToAdd)
+                            sizeView.center = CGPoint(x: CGRectGetMidX(self.bounds), y: CGRectGetMidY(self.bounds))
+                            
+                            self.addSubview(sizeView)
+                            
                         }
                         
                         

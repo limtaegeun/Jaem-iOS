@@ -34,6 +34,8 @@ class RegisterViewController: UIViewController {
     var passwordFlag = false
     
     var buttonBorderView : TextFieldBorderView!
+    var loaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,28 +57,36 @@ class RegisterViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
-        let borderView1 = TextFieldBorderView(frame: CGRect(x: userNameTextField.frame.origin.x - 10, y: userNameTextField.frame.origin.y, width: userNameTextField.frame.width + 20, height: userNameTextField.frame.height ))
-        let borderView2 = TextFieldBorderView(frame: CGRect(x: passwordTextField.frame.origin.x - 10, y: passwordTextField.frame.origin.y, width: passwordTextField.frame.width + 20, height: passwordTextField.frame.height ))
-        let borderView3 = TextFieldBorderView(frame: CGRect(x: emailTextField.frame.origin.x - 10, y: emailTextField.frame.origin.y, width: emailTextField.frame.width + 20, height: emailTextField.frame.height ))
+        super.viewDidAppear(animated)
         
-        buttonBorderView = TextFieldBorderView(frame: regiButton.frame)
+        if loaded == false {
+            loaded = true
+            
+            let borderView1 = TextFieldBorderView(frame: CGRect(x: userNameTextField.frame.origin.x - 10, y: userNameTextField.frame.origin.y, width: userNameTextField.frame.width + 20, height: userNameTextField.frame.height ))
+            let borderView2 = TextFieldBorderView(frame: CGRect(x: passwordTextField.frame.origin.x - 10, y: passwordTextField.frame.origin.y, width: passwordTextField.frame.width + 20, height: passwordTextField.frame.height ))
+            let borderView3 = TextFieldBorderView(frame: CGRect(x: emailTextField.frame.origin.x - 10, y: emailTextField.frame.origin.y, width: emailTextField.frame.width + 20, height: emailTextField.frame.height ))
+            
+            buttonBorderView = TextFieldBorderView(frame: regiButton.frame)
+            
+            borderView1.backgroundColor = UIColor.clearColor()
+            borderView2.backgroundColor = UIColor.clearColor()
+            borderView3.backgroundColor = UIColor.clearColor()
+            buttonBorderView.backgroundColor = UIColor.clearColor()
+            
+            subView.insertSubview(borderView1, belowSubview: userNameTextField)
+            subView.insertSubview(borderView2, belowSubview: passwordTextField)
+            subView.insertSubview(borderView3, belowSubview:  emailTextField)
+            subView.insertSubview(buttonBorderView, belowSubview: regiButton)
+            
+            regiButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
+            
+            let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "이미 계정이 있으신가요?   로그인")
+            
+            attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(16, 3))
+            loginButton.setAttributedTitle(attributeString2, forState: .Normal)
+            
+        }
         
-        borderView1.backgroundColor = UIColor.clearColor()
-        borderView2.backgroundColor = UIColor.clearColor()
-        borderView3.backgroundColor = UIColor.clearColor()
-        buttonBorderView.backgroundColor = UIColor.clearColor()
-        
-        subView.insertSubview(borderView1, belowSubview: userNameTextField)
-        subView.insertSubview(borderView2, belowSubview: passwordTextField)
-        subView.insertSubview(borderView3, belowSubview:  emailTextField)
-        subView.insertSubview(buttonBorderView, belowSubview: regiButton)
-        
-        regiButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
-        
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "이미 계정이 있으신가요?   로그인")
-        
-        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(16, 3))
-        loginButton.titleLabel?.attributedText = attributeString2
 
     }
     override func didReceiveMemoryWarning() {

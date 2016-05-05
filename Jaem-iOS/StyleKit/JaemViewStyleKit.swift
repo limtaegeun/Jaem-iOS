@@ -368,7 +368,7 @@ public class JaemViewStyleKit : NSObject {
         let labelStyle = NSMutableParagraphStyle()
         labelStyle.alignment = .Left
 
-        let labelFontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica-Light", size: 12.65)!, NSForegroundColorAttributeName: textForeground, NSParagraphStyleAttributeName: labelStyle]
+        let labelFontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica-Light", size: 11)!, NSForegroundColorAttributeName: textForeground, NSParagraphStyleAttributeName: labelStyle]
 
         "GO STORE\n".drawInRect(labelRect, withAttributes: labelFontAttributes)
 

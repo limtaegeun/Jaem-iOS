@@ -9,6 +9,7 @@
 import UIKit
 import HidingNavigationBar
 import RealmSwift
+import Alamofire
 
 struct ParsingData {
     var section : String
@@ -30,8 +31,7 @@ class BodyViewController: UIViewController {
     
     var SizeDataSet : [ParsingData]?
     
-    @IBOutlet weak var LeftCircleView: UIView!
-    @IBOutlet weak var RightCircleView: UIView!
+    
     @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var userNameLabel: UILabel!
@@ -39,8 +39,8 @@ class BodyViewController: UIViewController {
     @IBOutlet weak var graphButton: UIButton!
     @IBOutlet weak var measureButton: UIButton!
     
-    var userName : String!
-    
+    var me : UserInfo?
+    var loaded = false
     
     var interactionController : PanGestureInteractionController?
     
@@ -50,50 +50,36 @@ class BodyViewController: UIViewController {
         //test
         
         if test == true {
+            
             let realm = try! Realm()
             
-            let testSize = MyBodySize()
-            testSize.index = 0
-            testSize.shoulder = 90
-            testSize.chest = 99
-            testSize.waist = 90
-            testSize.hips = 88
-            testSize.thigh = 48
-            testSize.head = 40
-            testSize.neck = 33
-            testSize.pelvis = 44
-            testSize.upperArm = 33
-            testSize.calf = 40
-            testSize.height = 176
-            testSize.weight = 70
+            let body = realm.objects(MyBodySize)
             
             try! realm.write({
                 
-                realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"seung hwan"], update: true)
+                realm.delete(body)
+                realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"ori", "gender" : "Male"], update: true)
                 
-                realm.add(testSize, update:  true)
-                /*
-                realm.create(MyBodySize.self, value:["index" : 0,
-                    "shoulder": 90.0,
-                    "chest":99.0,
-                    "waist":88.0,
-                    "hips":99.0,
-                    "head":33.0,
-                    "neck":33.0,
-                    "pelvis": 33.0,
-                    "legLength":33.0,
-                    "height":176.0,
-                    "weight":70.0] , update:)
-                 */
+                
             })
- 
+            
+            
             
         }
         
         let realm = try! Realm()
-        let me = realm.objects(UserInfo).first!
-        userName = me.userName
-        let gender = me.gender
+        if let userInfo = realm.objects(UserInfo).last {
+            me = userInfo
+            
+            if Gender(rawValue: userInfo.gender) == Gender.Male {
+                avatarImageView.image = UIImage(named: "MainMale")
+            } else {
+                avatarImageView.image = UIImage(named: "MainFemale")
+                
+            }
+        }
+        
+        
                 
         //set hidingNavBar
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: scrollView)
@@ -102,18 +88,14 @@ class BodyViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.translucent = true
-        
+        navigationController?.navigationBar.tintColor = UIColor.blackColor()
+
         // Do any additional setup after loading the view.
         
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
         
-        if Gender(rawValue: gender) == Gender.Male {
-            avatarImageView.image = UIImage(named: "MainMale")
-        } else {
-            avatarImageView.image = UIImage(named: "MainFemale")
-
-        }
+        
         
         //interactionController = PanGestureInteractionController(view: AvatarView, direction: .Right)
         //interactionController?.delegate = self
@@ -124,12 +106,25 @@ class BodyViewController: UIViewController {
         super.viewWillAppear(animated)
         hidingNavBarManager?.viewWillAppear(animated)
         
+        if loaded == false {
+            //set Views
+            graphButton.setImage(JaemIconStyleKit.imageOfGraphIcon, forState: .Normal)
+            measureButton.setImage(JaemIconStyleKit.imageOfMeasureButton, forState: .Normal)
+            
+            if me != nil {
+                userNameLabel.text = "HI " + me!.userName.uppercaseString
+            }
+            
+            loaded = true
+        }
+        
+        
         //set SizeData
         let realm = try! Realm()
         if let bodySize = realm.objects(MyBodySize).last {
             //avatarImageView.image =
             SizeDataSet = makeParsingData(bodySize)
-            
+            print(SizeDataSet)
             //set recently Measure Time
             let recentDate = bodySize.date
             let dateFormatter = NSDateFormatter()
@@ -150,10 +145,7 @@ class BodyViewController: UIViewController {
             SizeDataSet = makeParsingData(zero)
         }
         
-        //set Views
-        graphButton.setImage(JaemIconStyleKit.imageOfGraphIcon, forState: .Normal)
-        measureButton.setImage(JaemIconStyleKit.imageOfMeasureButton, forState: .Normal)
-        userNameLabel.text = "HI " + userName.uppercaseString
+        
         
         
         sizeCollectionView.reloadData()
@@ -197,22 +189,22 @@ class BodyViewController: UIViewController {
     func makeParsingData(object : MyBodySize?) -> [ParsingData] {
         var set = [ParsingData]()
         if object != nil {
-            set.append(ParsingData(section: "body", title: "HEIGHT", value: CGFloat( object!.height ) , require: true, unit: "cm"))
-            set.append(ParsingData(section: "body", title: "WEIGHT", value: CGFloat( object!.weight) , require: true, unit: "kg"))
+            set.append(ParsingData(section: "body", title: "키", value: CGFloat( object!.height ) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "body", title: "몸무게", value: CGFloat( object!.weight) , require: true, unit: "kg"))
             
-            set.append(ParsingData(section: "top", title: "SHOULDER", value: CGFloat( object!.shoulder) , require: true, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "CHEST", value: CGFloat( object!.chest) , require: true, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "WAIST", value: CGFloat( object!.waist), require: true, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "HEAD", value: CGFloat( object!.head) , require: false, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "NECK", value: CGFloat( object!.neck) , require: false, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "PELVIS", value: CGFloat( object!.pelvis) , require: false, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "UPPERARM", value: CGFloat( object!.upperArm) , require: false, unit: "cm"))
-            set.append(ParsingData(section: "top", title: "REACH", value: CGFloat( object!.reach), require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "어깨너비", value: CGFloat( object!.shoulder) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "가슴둘레", value: CGFloat( object!.chest) , require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "허리둘레", value: CGFloat( object!.waist), require: true, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "머리둘레", value: CGFloat( object!.head) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "목둘레", value: CGFloat( object!.neck) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "팔둘레", value: CGFloat( object!.upperArm) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "top", title: "팔길이", value: CGFloat( object!.reach), require: false, unit: "cm"))
             
-            set.append(ParsingData(section: "bottom", title: "HIPS", value: CGFloat( object!.hips), require: true, unit: "cm"))
-            set.append(ParsingData(section: "bottom", title: "THIGH", value: CGFloat( object!.thigh), require: true, unit: "cm"))
-            set.append(ParsingData(section: "bottom", title: "CALF", value: CGFloat( object!.calf), require: false, unit: "cm"))
-            set.append(ParsingData(section: "bottom", title: "LEG LENGTH", value: CGFloat( object!.legLength), require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "엉덩이둘레", value: CGFloat( object!.hips), require: true, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "허벅지둘레", value: CGFloat( object!.thigh), require: true, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "골반둘레", value: CGFloat( object!.pelvis) , require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "종아리둘레", value: CGFloat( object!.calf), require: false, unit: "cm"))
+            set.append(ParsingData(section: "bottom", title: "다리길이", value: CGFloat( object!.legLength), require: false, unit: "cm"))
         }
         return set
     }
@@ -237,12 +229,17 @@ class BodyViewController: UIViewController {
     }
     
     @IBAction func tapMeasureButton(sender: AnyObject) {
-        performSegueWithIdentifier("GoMeasure", sender: self)
-        /*
-        let navi = MeasureNaviController()
-        let rootVC = self.view.window?.rootViewController as! CardStackViewController
-        rootVC.presentViewController(navi, animated: true, completion: nil)
-        */
+        if me != nil {
+            if me!.gender != "" {
+                performSegueWithIdentifier("GoMeasureWithoutGender", sender: self)
+            } else {
+                performSegueWithIdentifier("GoMeasure", sender: self)
+            }
+        }
+        
+        
+        
+        
         
         
     }

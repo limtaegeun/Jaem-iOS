@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-var RealmSchemaVersion: UInt64 = 12
+var RealmSchemaVersion: UInt64 = 13
 
 
 @UIApplicationMain
@@ -23,8 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         realmMigration()
         
         //getListOfFont()
-        
-
+        /*
+        let backButtonImage = JaemIconStyleKit.imageOfExitBlackArrow.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+        UIBarButtonItem.appearance().setBackButtonBackgroundImage( backButtonImage, forState : UIControlState.Normal   ,barMetrics: UIBarMetrics.Default )
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, backButtonImage.size.height * 3), forBarMetrics: .Default)
+        */
         return true
     }
 

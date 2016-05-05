@@ -28,7 +28,7 @@ class PreSearchViewController: UIViewController {
     
     var loaded = false
     private var typeSearchText = false
-    var searchedText : String!
+    var searchedText : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +68,14 @@ class PreSearchViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.translucent = true
+        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        
+        //backButton
+        navigationController?.navigationBar.backIndicatorImage = JaemIconStyleKit.imageOfExitBlackArrow
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = JaemIconStyleKit.imageOfExitBlackArrow
+        navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -86,10 +94,13 @@ class PreSearchViewController: UIViewController {
         
         
         
+        
     }
     
     
-    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationItem.title = ""
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -100,15 +111,13 @@ class PreSearchViewController: UIViewController {
     
     func dummyBrand() -> [String] {
         var set = [String]()
-        set.append("유니클로")
+        set.append("에잇세컨즈")
         set.append("아베크롬비")
         set.append("디스이즈네버댓")
         set.append("립합")
         set.append("에이치엔엠")
         set.append("나이키")
-        set.append("에잇세컨즈")
-        set.append("나이키")
-        
+        set.append("유니클로")
         return set
     
     }

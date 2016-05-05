@@ -25,15 +25,19 @@ class ClosetViewController: UIViewController {
     var header : ClothesHeaderView!
     var headerHeight : CGFloat = coordiCVHeight + infoTableViewCellHeight + categoryHeight
     
-    
+    var loaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         //navigationBar background clearColor
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.translucent = true
-        
+        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        navigationController?.navigationBar.tintColor = UIColor.blackColor()
+
         
         closetCollectionView.delegate = self
         closetCollectionView.dataSource = self
@@ -50,7 +54,7 @@ class ClosetViewController: UIViewController {
         view.addSubview(noClothesLabel)
         
         let realm = try! Realm()
-        
+                
         clothesSet = realm.objects(Clothes)
         
         /*
@@ -74,18 +78,26 @@ class ClosetViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         hidingNavBarManager?.viewWillDisappear(animated)
+        navigationItem.title = ""
     }
+    
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let width = CGRectGetWidth(closetCollectionView!.frame) / 3
-        let layout = closetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width)
         
-        noClothesLabel.center = closetCollectionView.center
-
+        if loaded == false {
+            let width = CGRectGetWidth(closetCollectionView!.frame) / 3
+            let layout = closetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            layout.itemSize = CGSize(width: width, height: width)
+            
+            noClothesLabel.center = closetCollectionView.center
+            
+            header.addExtensionView()
+            header.delegate = self
+            loaded = true
+        }
+        self.closetCollectionView.contentOffset.y = -(-coordiCVHeight - infoTableViewCellHeight) - 64
         
-        header.addExtensionView()
-        header.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -141,15 +153,20 @@ class ClosetViewController: UIViewController {
         performSegueWithIdentifier("GoSearchFromCloset", sender: self)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "GoDetail" {
+            let dv = segue.destinationViewController as! ClosetDetailViewController
+            
+            dv.targetClothes = header.saveCoordi
+        }
     }
-    */
+    
 
 }
 
@@ -205,6 +222,18 @@ extension ClosetViewController : UICollectionViewDelegate, UICollectionViewDataS
     //MARK : ClothesHeaderViewDelegate
     func clothesHeaderView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("GoDetail", sender: self)
+    }
+    
+    func tapCategoryButton(currentCategory: Category) {
+        let realm = try! Realm()
+        if currentCategory == Category.ALL {
+            clothesSet = realm.objects(Clothes)
+            closetCollectionView.reloadData()
+        } else {
+            clothesSet = realm.objects(Clothes).filter("category = %@", Parse().parseIntToClothesCategory(currentCategory.rawValue).rawValue )
+            closetCollectionView.reloadData()
+        }
+        
     }
  
 }

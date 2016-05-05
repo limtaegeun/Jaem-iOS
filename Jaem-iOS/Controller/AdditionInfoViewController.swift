@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import CoreBluetooth
 
 class AdditionInfoViewController: UIViewController {
 
@@ -30,7 +31,9 @@ class AdditionInfoViewController: UIViewController {
     var presentWeightRow = 70
     
     var dataToSave : MyBodySize!
+    var loaded = false
     
+    var targetPeripheral : CBPeripheral?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +46,20 @@ class AdditionInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if loaded == false {
+            loaded = true
+            
+            let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "기록 완료")
+            
+            attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 5))
+            completeButton.titleLabel?.attributedText = attributeString2
+            
+            topSizeClickView.setButton(85, max: 115, term: 5)
+            bottomSizeClickView.setButton(28, max: 36, term: 1)
+            
+        }
         /*
         let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = NSTextAlignment.Center
@@ -60,16 +77,17 @@ class AdditionInfoViewController: UIViewController {
         */
         
         
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "기록 완료")
         
-        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 5))
-        completeButton.titleLabel?.attributedText = attributeString2
-        
-        topSizeClickView.setButton(85, max: 115, term: 5)
-        bottomSizeClickView.setButton(28, max: 36, term: 1)
     }
     
-    
+    override func viewWillDisappear(animated: Bool) {
+        if targetPeripheral != nil {
+            btDiscoverySharedInstance.peripheralList.removeAll()
+            btDiscoverySharedInstance.bleService?.reset()
+            btDiscoverySharedInstance.centralManager?.cancelPeripheralConnection(targetPeripheral!)
+        }
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -218,12 +236,59 @@ class AdditionInfoViewController: UIViewController {
     
     @IBAction func tapComplete(sender: AnyObject) {
         
+        
         //설정되지 않는 값을 기존 값으로 채워 넣기
         print(dataToSave)
         let realm = try! Realm()
+        if let lastData = realm.objects(MyBodySize).last {
+            if dataToSave.shoulder == 0 {
+                dataToSave.shoulder = lastData.shoulder
+            }
+            if dataToSave.chest == 0 {
+                dataToSave.chest = lastData.chest
+            }
+            if dataToSave.waist == 0 {
+                dataToSave.waist = lastData.waist
+            }
+            if dataToSave.hips == 0 {
+                dataToSave.hips = lastData.hips
+            }
+            if dataToSave.thigh == 0 {
+                dataToSave.thigh = lastData.thigh
+            }
+            if dataToSave.head == 0 {
+                dataToSave.head = lastData.head
+            }
+            if dataToSave.neck == 0 {
+                dataToSave.neck = lastData.neck
+            }
+            if dataToSave.pelvis == 0 {
+                dataToSave.pelvis = lastData.pelvis
+            }
+            if dataToSave.upperArm == 0 {
+                dataToSave.upperArm = lastData.upperArm
+            }
+            if dataToSave.calf == 0 {
+                dataToSave.calf = lastData.calf
+            }
+            if dataToSave.reach == 0 {
+                dataToSave.reach = lastData.reach
+            }
+            if dataToSave.legLength == 0 {
+                dataToSave.legLength = lastData.legLength
+            }
+            if dataToSave.height == 0 {
+                dataToSave.height = lastData.height
+            }
+            if dataToSave.weight == 0 {
+                dataToSave.weight = lastData.weight
+            }
+        }
+        
         try! realm.write {
-            //realm.add(dataToSave)
+            realm.add(dataToSave)
             //To Do: network
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     

@@ -16,12 +16,17 @@ class FitSearchViewController: UIViewController {
     
     @IBOutlet weak var exitButton: UIButton!
     
-    var mySize : MyBodySize!
-    var mySizeArray : [Dictionary<String,String>]!
+    var mySize : MyBodySize?
+    var mySizeArray : [Dictionary<String,String>]?
     var clothesSet = [Clothes]()
-    
+    var clothesFromCloset = [Clothes]()
     var checkOtherClothes : Bool!
     
+    var loaded = false
+    
+    var dummyArray = [String]()
+    var dummySize = [MyBodySize]()
+    var dummyDic = [[Dictionary<String,String>]]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,21 +43,45 @@ class FitSearchViewController: UIViewController {
         let realm = try! Realm()
         let data = realm.objects(MyBodySize)
         mySize = data.last
+        if mySize != nil {
+            mySizeArray = parseToArray(mySize!)
+        } else {
+            mySize = MyBodySize()
+            mySizeArray = parseToArray(mySize!)
+        }
         
-        mySizeArray = parseToArray(mySize)
         // Do any additional setup after loading the view.
+        if checkOtherClothes == true {
+            dummyData()
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-        exitButton.setImage(JaemIconStyleKit.imageOfExitButton, forState: UIControlState.Normal)
-        exitButton.tintColor = UIColor.whiteColor()
+        super.viewDidAppear(animated)
         
-        let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width / 2
-        layout.itemSize = CGSize(width: width, height: 250)
+        if loaded == false {
+            loaded = true
+            
+            exitButton.setImage(JaemIconStyleKit.imageOfExitButton, forState: UIControlState.Normal)
+            exitButton.tintColor = UIColor.whiteColor()
+            
+            let layout = UICollectionViewFlowLayout()
+            let width = view.frame.width / 2
+            layout.itemSize = CGSize(width: width, height: 200)
+            
+            fitCollectionView.collectionViewLayout = layout
+            
+            let layout2 = UICollectionViewFlowLayout()
+            
+            layout2.itemSize = CGSize(width: width - 10, height: 200)
+            searchedClothesCollectionView.collectionViewLayout = layout2
+        } else {
+            fitCollectionView.reloadData()
+        }
         
-        fitCollectionView.collectionViewLayout = layout
-        searchedClothesCollectionView.collectionViewLayout = layout
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -150,7 +179,44 @@ class FitSearchViewController: UIViewController {
         return array
     }
 
-    
+    func dummyData() {
+        dummyArray.append(105.description)
+        dummyArray.append(105.description)
+        dummyArray.append(100.description)
+        dummyArray.append("딱 내 사이즈에요")
+        dummyArray.append("좀 작은 편이에요")
+        dummyArray.append("좀 큰 편이에요")
+        
+        let size = MyBodySize()
+        size.shoulder = 46.5
+        size.calf = 96
+        size.waist = 65
+        size.upperArm = 37
+        size.reach = 63
+        
+        dummySize.append(size)
+        
+        let size2 = MyBodySize()
+        size2.shoulder = 49
+        size2.calf = 96
+        size2.waist = 67
+        size2.upperArm = 40.5
+        size2.reach = 63
+        dummySize.append(size2)
+        
+        let size3 = MyBodySize()
+        size3.shoulder = 45
+        size3.calf = 92.5
+        size3.waist = 63
+        size3.upperArm = 39
+        size3.reach = 62
+        dummySize.append(size3)
+        
+        for size in dummySize {
+            dummyDic.append( parseToArray(size))
+        }
+        
+    }
     
     /*
     // MARK: - Navigation
@@ -172,9 +238,14 @@ extension FitSearchViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == fitCollectionView {
-            return 1
+            return 1 + clothesFromCloset.count
         } else {
-            return clothesSet.count
+            if checkOtherClothes == true {
+                return 3
+            } else {
+                return clothesSet.count
+            }
+            
             
         }
     }
@@ -182,37 +253,74 @@ extension FitSearchViewController : UICollectionViewDelegate, UICollectionViewDa
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if collectionView == fitCollectionView {
-            if indexPath.row == 0 {
+            
+            if checkOtherClothes == true {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyRegularFitCell", forIndexPath: indexPath) as! MyRegularFitCell
+                
+                //present SizeData
                 cell.sizeArray = mySizeArray
                 cell.defaultLabel.text = clothesSet.first?.category
-                //present SizeData
                 cell.addLabels()
                 return cell
             } else {
-                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AddCell", forIndexPath: indexPath) as! AddCell
+                if indexPath.row < clothesFromCloset.count {
+                    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyRegularFitCell", forIndexPath: indexPath) as! MyRegularFitCell
+                    
+                    cell.targetClothes = clothesFromCloset[indexPath.row]
+                    cell.titleLabel.text = clothesFromCloset[indexPath.row].name
+                    cell.defaultLabel.text = clothesFromCloset[indexPath.row].typicalSize
+                    
+                    cell.addLabelsWithClothes()
+                    return cell
+                } else {
+                    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AddCell", forIndexPath: indexPath) as! AddCell
+                    if clothesFromCloset.count != 0{
+                        cell.titleLabel.hidden = true
+                    }
+                    
+                    return cell
+                }
+            }
+            
+            
+            
+            
+        } else {
+            if checkOtherClothes == true {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothesCell", forIndexPath: indexPath) as! ClothesCell
                 
+                cell.sizeArray = dummyDic[indexPath.row]
+                cell.titleLabel.text = clothesSet[indexPath.row].name
+                cell.sizeLabel.text = dummyArray[indexPath.row]
+                cell.fittingLabel.text = dummyArray[indexPath.row + 3]
+                cell.addLabelsFromOthers()
+                return cell
+                
+            } else {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothesCell", forIndexPath: indexPath) as! ClothesCell
+                
+                cell.targetClothes = clothesSet[indexPath.row]
+                cell.titleLabel.text = clothesSet[indexPath.row].name
+                cell.sizeLabel.text = clothesSet[indexPath.row].typicalSize
+                cell.addLabels()
                 return cell
             }
             
             
-        } else {
-        
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothesCell", forIndexPath: indexPath) as! ClothesCell
             
-            cell.targetClothes = clothesSet[indexPath.row]
-            cell.titleLabel.text = clothesSet[indexPath.row].name
-            cell.sizeLabel.text = clothesSet[indexPath.row].typicalSize
-            cell.addLabels()
-            return cell
-        
         }
         
         
     }
     
     
-    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if collectionView == fitCollectionView {
+            if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? AddCell {
+                performSegueWithIdentifier("ShowCloset", sender: cell)
+            }
+        }
+    }
     
     
     

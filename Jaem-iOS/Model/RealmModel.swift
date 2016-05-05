@@ -82,7 +82,7 @@ class Clothes: Object {
     dynamic var cost = ""
     dynamic var image = NSData()
     dynamic var typicalSize = ""
-    dynamic var rating = 0
+    dynamic var rating = 0.0
     dynamic var fitting = 0
     let sizeRequired = List<Size>()
     let sizeOptional = List<Size>()

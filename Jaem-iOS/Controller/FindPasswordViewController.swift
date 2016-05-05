@@ -20,6 +20,8 @@ class FindPasswordViewController: UIViewController {
     @IBOutlet weak var BackButton: UIButton!
     
     var buttonBorderView : TextFieldBorderView!
+    var loaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,27 +36,35 @@ class FindPasswordViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        let borderView1 = TextFieldBorderView(frame: CGRect(x: UserNameTextField.frame.origin.x - 10, y: UserNameTextField.frame.origin.y, width: UserNameTextField.frame.width + 20, height: UserNameTextField.frame.height ))
+        super.viewDidAppear(animated)
         
-        buttonBorderView = TextFieldBorderView(frame: SendButton.frame)
+        if loaded == false {
+            loaded = true
+            
+            let borderView1 = TextFieldBorderView(frame: CGRect(x: UserNameTextField.frame.origin.x - 10, y: UserNameTextField.frame.origin.y, width: UserNameTextField.frame.width + 20, height: UserNameTextField.frame.height ))
+            
+            buttonBorderView = TextFieldBorderView(frame: SendButton.frame)
+            
+            borderView1.backgroundColor = UIColor.clearColor()
+            buttonBorderView.backgroundColor = UIColor.clearColor()
+            
+            subView.insertSubview(borderView1, belowSubview: UserNameTextField)
+            subView.insertSubview(buttonBorderView, belowSubview: SendButton)
+            
+            SendButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
+            
+            let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "다른 문제가 있나요? jaem 고객센터를 이용해보세요")
+            
+            attributeString1.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(12, 9))
+            helpButton.titleLabel?.attributedText = attributeString1
+            
+            let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "로그인으로 돌아가기")
+            
+            attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 10))
+            BackButton.titleLabel?.attributedText = attributeString2
+        }
         
-        borderView1.backgroundColor = UIColor.clearColor()
-        buttonBorderView.backgroundColor = UIColor.clearColor()
-
-        subView.insertSubview(borderView1, belowSubview: UserNameTextField)
-        subView.insertSubview(buttonBorderView, belowSubview: SendButton)
-
-        SendButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
-
-        let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "다른 문제가 있나요? jaem 고객센터를 이용해보세요")
         
-        attributeString1.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(12, 9))
-        helpButton.titleLabel?.attributedText = attributeString1
-        
-        let attributeString2: NSMutableAttributedString =  NSMutableAttributedString(string: "로그인으로 돌아가기")
-        
-        attributeString2.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, 10))
-        BackButton.titleLabel?.attributedText = attributeString2
     }
 
     /*

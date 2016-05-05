@@ -24,18 +24,14 @@ class ClosetDetailViewController: UIViewController {
     @IBOutlet weak var fittingLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
-    var mySize : MyBodySize!
+    var mySize : MyBodySize?
     var mySizeArray : [Dictionary<String,String>]!
-    var targetClothes : JaemClothes!
+    var targetClothes : Clothes!
+    var loaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-        if test == true {
-            
-            
-            targetClothes = JaemClothes(category: ClothesCategory.TOP, type: ClothesType.skirt, brand: "dd", name: "dd", image: UIImage(imageLiteral:"1.png"))
-        }
         
         fitCollectionView.delegate = self
         fitCollectionView.dataSource = self
@@ -48,7 +44,19 @@ class ClosetDetailViewController: UIViewController {
         let data = realm.objects(MyBodySize)
         mySize = data.last
         
-        mySizeArray = parseToArray(mySize)
+        if mySize != nil {
+            mySizeArray = parseToArray(mySize!)
+        } else {
+            mySize = MyBodySize()
+            mySizeArray = parseToArray(mySize!)
+        }
+        
+        
+        
+        
+        heartRatingView.value = CGFloat( targetClothes.rating)
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -62,16 +70,28 @@ class ClosetDetailViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let layout2 = UICollectionViewFlowLayout()
-        let width2 = view.frame.width / 2
-        layout2.itemSize = CGSize(width: width2, height: 250)
+        if loaded == false {
+            loaded = true
+            
+            let layout2 = UICollectionViewFlowLayout()
+            let width2 = view.frame.width / 2
+            layout2.itemSize = CGSize(width: width2, height: 250)
+            
+            fitCollectionView.collectionViewLayout = layout2
+            compareCollectionView.collectionViewLayout = layout2
+            
+            exitButton.setImage(JaemIconStyleKit.imageOfExitButton, forState: UIControlState.Normal)
+            exitButton.tintColor = UIColor.whiteColor()
+            
+            sizeRatingView.setButton()
+            
+            
+        }
         
-        fitCollectionView.collectionViewLayout = layout2
+        if targetClothes.fitting != 0 {
+            sizeRatingView.selectValue(targetClothes.fitting)
+        }
         
-        exitButton.setImage(JaemIconStyleKit.imageOfExitButton, forState: UIControlState.Normal)
-        exitButton.tintColor = UIColor.whiteColor()
-        
-        sizeRatingView.setButton()
         
     }
     
@@ -83,7 +103,7 @@ class ClosetDetailViewController: UIViewController {
         var array = [Dictionary<String,String>]()
         var dic = [String:String]()
         
-        if targetClothes.category == .TOP || targetClothes.category == .OUTER || targetClothes.category == .SUIT || targetClothes.category == .DRESS {
+        if targetClothes!.category == ClothesCategory.TOP.rawValue || targetClothes!.category == ClothesCategory.OUTER.rawValue || targetClothes!.category == ClothesCategory.SUIT.rawValue || targetClothes!.category == ClothesCategory.DRESS.rawValue {
             if object.shoulder != 0 {
                 dic["title"] = "어깨너비"
                 dic["value"] = "\(object.shoulder)"
@@ -112,7 +132,7 @@ class ClosetDetailViewController: UIViewController {
                 array.append(dic)
                 
             }
-        } else if targetClothes.category == .BOTTOM {
+        } else if targetClothes!.category == ClothesCategory.BOTTOM.rawValue {
             if object.waist != 0 {
                 dic["title"] = "허리둘레"
                 dic["value"] = "\(object.waist)"
@@ -189,6 +209,11 @@ class ClosetDetailViewController: UIViewController {
             ratingLabel.text = "완전 내 스타일이에요"
         }
         
+        let realm = try! Realm()
+        try! realm.write({ 
+            targetClothes.rating = Double( heartRatingView.value)
+        })
+        
     }
 }
 
@@ -226,6 +251,12 @@ extension ClosetDetailViewController : UICollectionViewDelegate, UICollectionVie
         } else {
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothesCell", forIndexPath: indexPath) as! ClothesCell
+            
+            cell.targetClothes = targetClothes
+            cell.titleLabel.text = targetClothes.name
+            cell.sizeLabel.text = targetClothes.typicalSize
+            cell.addLabels()
+            
             return cell
         
         }
@@ -264,5 +295,10 @@ extension ClosetDetailViewController : UICollectionViewDelegate, UICollectionVie
         default:
             fittingLabel.text = "..."
         }
+        
+        let realm = try! Realm()
+        try! realm.write({
+            targetClothes.fitting = value
+        })
     }
 }

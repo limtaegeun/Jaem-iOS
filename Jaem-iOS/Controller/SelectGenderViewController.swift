@@ -24,7 +24,9 @@ class SelectGenderViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.translucent = true
-        
+        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        navigationController?.navigationBar.tintColor = UIColor.blackColor()
+
         exitButton.image = JaemIconStyleKit.imageOfExit_black
         
         maleImageView.image = UIImage(named: "BasicMale")

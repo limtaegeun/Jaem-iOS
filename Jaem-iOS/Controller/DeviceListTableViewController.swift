@@ -24,6 +24,10 @@ class DeviceListTableViewController: UITableViewController ,BTDiscoveryDelegate 
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationItem.title = ""
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
