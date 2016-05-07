@@ -123,7 +123,7 @@ class SearchResultCell: UICollectionViewCell {
         var set = [Clothes]()
         for data in array {
             let object = Clothes()
-            object.code = data["c_key"] as! Int
+            object.serverKey = data["c_key"] as! Int
             let category = data["cloth_code"] as! Int
             object.category = parseClothesCategory(category).rawValue
             let gender = data["gender"] as! String
@@ -133,6 +133,8 @@ class SearchResultCell: UICollectionViewCell {
             object.cost = data["price"] as! String
             object.image = UIImagePNGRepresentation(clothesImage.image!)!
             object.typicalSize = data["size"] as! String
+            object.requiredSizeKey = data["main_size_key"] as! Int
+            object.optionalSizeKey = data["sub_size_key"] as! Int
             
             //get size 
             if let value = data["ShoulderWidth"] as? Double {

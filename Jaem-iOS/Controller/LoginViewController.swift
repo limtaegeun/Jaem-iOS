@@ -92,28 +92,46 @@ class LoginViewController: UIViewController {
 
     @IBAction func tapLogin(sender: AnyObject) {
         if userNameFlag && passwordFlag {
-            /*
+            
+            
+            
+            
             let name = DataToSend["name"]!
             let password = DataToSend["password"]!
             if let url = MyHost().urlWtihPathNameAboutMainServer("user/login?name="+name+"&password="+password) {
                 Alamofire.request(.GET, url,  encoding: .JSON).responseJSON { response in
                     debugPrint(response)
-                    if response.result.value!["stat"] as! String == "login_success" {
-                        self.performSegueWithIdentifier("GoMain", sender: self)
+                    
+                    switch response.result {
+                    case .Success(let json):
+                        if let dic = Parse.parseJSONToDictionary(json) {
+                            
+                            if dic["stat"] as! String == "login_success" {
+                                self.performSegueWithIdentifier("GoMain", sender: self)
+                                
+                            } else if dic["stat"] as! String == "not_found_name" {
+                                self.alertPresent("잘못된 사용자 이름", message: "입력하신 사용자 이름을 계정에서 찾을 수 없습니다. 사용자 이름을 확인하고 다시 시도해보세요")
+                            } else if dic["stat"] as! String == "not_found_password" {
+                                self.alertPresent(name+"님의 비밀번호를 잊으셨나요?", message: "입력하신 사용자 이름과 비밀번호가 일치하지 않습니다. 비밀번호를 확인하고 다시 시도해보세요.")
+                            } else  {
+                                self.alertPresent("서버 오류", message: "서버에 문제가 있습니다.")
+                            }
+                            
+                        }
                         
-                    } else if response.result.value!["stat"] as! String == "not_found_name" {
-                        self.alertPresent("잘못된 사용자 이름", message: "입력하신 사용자 이름을 계정에서 찾을 수 없습니다. 사용자 이름을 확인하고 다시 시도해보세요")
-                    } else if response.result.value!["stat"] as! String == "not_found_password" {
-                        self.alertPresent(name+"님의 비밀번호를 잊으셨나요?", message: "입력하신 사용자 이름과 비밀번호가 일치하지 않습니다. 비밀번호를 확인하고 다시 시도해보세요.")
-                    } else if response.result.value!["stat"] as! String == "err" {
-                        self.alertPresent("서버 오류", message: "네트워크 혹은 서버에 문제가 있습니다.")
+                        
+                    case .Failure(_):
+                        
+                        self.alertPresent("서버 오류", message: "네트워크에 문제가 있습니다.")
+                        
                     }
+                    
                     
                 }
                 
             }
             
-            */
+            
             
             
         }

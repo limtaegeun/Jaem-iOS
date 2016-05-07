@@ -31,6 +31,7 @@ class AdditionInfoViewController: UIViewController {
     var presentWeightRow = 70
     
     var dataToSave : MyBodySize!
+    
     var loaded = false
     
     var targetPeripheral : CBPeripheral?
@@ -232,10 +233,25 @@ class AdditionInfoViewController: UIViewController {
         
     }
     
+    func parseDataToSend() -> Dictionary<String,AnyObject>  {
+        var dic = Dictionary<String,AnyObject>()
+        
+        dic["ShoulderWidth"] = dataToSave.shoulder
+        dic["BreastPeripheral"] = dataToSave.chest
+        dic["WaistCircumference"] = dataToSave.waist
+        dic["HipCircumference"] = dataToSave.hips
+        dic["ThighCircumference"] = dataToSave.thigh
+        
+        
+        return dic
+    }
+    
     //MARK : - ACTION
     
     @IBAction func tapComplete(sender: AnyObject) {
         
+        var dataToSend : Dictionary<String,AnyObject>?
+        dataToSend = parseDataToSend()
         
         //설정되지 않는 값을 기존 값으로 채워 넣기
         print(dataToSave)
@@ -284,6 +300,15 @@ class AdditionInfoViewController: UIViewController {
                 dataToSave.weight = lastData.weight
             }
         }
+        
+        //서버에 사이즈 값 등록
+        
+        //ToDo: network request
+        
+        
+        
+        
+        
         
         try! realm.write {
             realm.add(dataToSave)

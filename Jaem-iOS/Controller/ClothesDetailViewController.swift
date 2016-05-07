@@ -142,9 +142,9 @@ class ClothesDetailViewController: UIViewController {
         var set = [Clothes]()
         for data in array {
             let object = Clothes()
-            object.code = data["c_key"] as! Int
+            object.serverKey = data["c_key"] as! Int
             let category = data["cloth_code"] as! Int
-            object.category = Parse().parseIntToClothesCategory(category).rawValue
+            object.category = Parse.parseIntToClothesCategory(category).rawValue
             let gender = data["gender"] as! String
             object.gender = parseGender(gender).rawValue
             object.brand = result.brandKo
@@ -152,7 +152,8 @@ class ClothesDetailViewController: UIViewController {
             object.cost = data["price"] as! String
             object.image = UIImagePNGRepresentation(clothesImageView.image!)!
             object.typicalSize = data["size"] as! String
-            
+            object.requiredSizeKey = data["main_size_key"] as! Int
+            object.optionalSizeKey = data["sub_size_key"] as! Int
             //get size
             if let value = data["ShoulderWidth"] as? Double {
                 if value != 0{

@@ -20,7 +20,7 @@ struct ParsingData {
     
 }
 
-var test = true
+var test = false
 
 class BodyViewController: UIViewController {
 
@@ -53,15 +53,9 @@ class BodyViewController: UIViewController {
             
             let realm = try! Realm()
             
-            let body = realm.objects(MyBodySize)
+            let body = realm.objects(UserInfo)
             
-            try! realm.write({
-                
-                realm.delete(body)
-                realm.create(UserInfo.self, value: ["email":"imori333@gmail.com","userName":"ori", "gender" : "Male"], update: true)
-                
-                
-            })
+            
             
             
             
@@ -111,9 +105,7 @@ class BodyViewController: UIViewController {
             graphButton.setImage(JaemIconStyleKit.imageOfGraphIcon, forState: .Normal)
             measureButton.setImage(JaemIconStyleKit.imageOfMeasureButton, forState: .Normal)
             
-            if me != nil {
-                userNameLabel.text = "HI " + me!.userName.uppercaseString
-            }
+            
             
             loaded = true
         }
@@ -135,11 +127,8 @@ class BodyViewController: UIViewController {
         } else {
             avatarImageView.image = JaemViewStyleKit.imageOfEmptyAvatar
             
-            //set recently Measure Time
-            let recentDate = NSDate()
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy'.'MM'.'dd"
-            dateLabel.text = dateFormatter.stringFromDate(recentDate)
+            
+            dateLabel.text = ""
             
             let zero = MyBodySize()
             SizeDataSet = makeParsingData(zero)
@@ -160,7 +149,9 @@ class BodyViewController: UIViewController {
         let realm = try! Realm()
         if let _ = realm.objects(UserInfo).first {
             print("realm userinfo exist")
-            
+            if me != nil {
+                userNameLabel.text = "HI " + me!.userName.uppercaseString
+            }
         } else {
             print("segue")
 

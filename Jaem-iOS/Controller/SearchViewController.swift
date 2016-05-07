@@ -42,12 +42,17 @@ class SearchViewController: UIViewController {
     var searchedText : String?
     
     var searchResults = [Result]()
-    var hasSearched = false
+    
     var categorys = [CategoryButton]()
     var currentCategory = Category.ALL
     var categoryView : UIView!
     
+    var currentPage = 0
+    var endPage : Int?
+    var searching = false
+    
     var loaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //set tableview contentInset
@@ -183,8 +188,9 @@ class SearchViewController: UIViewController {
     }
     
     func searchNetworkRequest(category : Category, page : Int ){
-        
-        let url_encoding = searchedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        currentPage = page
+        searching = true
+        let url_encoding = searchBar.text!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=\(category.rawValue)&pagenation=\(page)") {
             Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
                 debugPrint(response)
@@ -206,6 +212,7 @@ class SearchViewController: UIViewController {
                     
                     
                 }
+                self.searching = false
             })
             
         }
@@ -256,29 +263,7 @@ extension SearchViewController : UISearchBarDelegate, UICollectionViewDelegate, 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         
-        let url_encoding = searchBar.text!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        if let url = MyHost().urlWtihPathNameAboutMainServer("user/search?keyword="+url_encoding!+"&category=all&pagenation=0") {
-            Alamofire.request(.GET, url, encoding:.JSON).responseJSON(completionHandler: { (response) in
-                debugPrint(response)
-                
-                switch response.result {
-                case .Success(let json):
-                    if let dic = ParseJSON.parseJSONToDictionary(json) {
-                        if dic["stat"] as! String == "success" {
-                            self.parseToResultObject(dic)
-                            self.searchCollectionView.reloadData()
-                        } else {
-                            Alert.networkErrorAlertPresent(self, title: "서버에 문제가 있습니다.", message: "다시 시도해보세요")
-                        }
-                    }
-                    
-                case .Failure(_):
-                    Alert.networkErrorAlertPresent(self, title: "네트워크에 문제가 있습니다.", message: "다시 시도해보세요")
-                    
-                }
-            })
-            
-        }
+        searchNetworkRequest(currentCategory, page: 0)
         searchBar.resignFirstResponder()
     }
     
@@ -312,6 +297,21 @@ extension SearchViewController : UISearchBarDelegate, UICollectionViewDelegate, 
     func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
         hidingNavBarManager?.shouldScrollToTop()
         return true
+    }
+    
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if currentPage < endPage {
+            
+            if searching != false {
+                let refreshOffSet = scrollView.contentSize.height - scrollView.frame.height - 100
+                if scrollView.contentOffset.y > refreshOffSet {
+                    
+                    searchNetworkRequest(currentCategory, page: currentPage)
+                    
+                }
+            }
+        }
     }
 }
 

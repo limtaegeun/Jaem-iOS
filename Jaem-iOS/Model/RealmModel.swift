@@ -75,6 +75,9 @@ class MyBodySize: Object {
 
 class Clothes: Object {
     dynamic var code = 0
+    dynamic var serverKey = 0   //서버에 저장되있는 옷 key
+    dynamic var requiredSizeKey = 0
+    dynamic var optionalSizeKey = 0
     dynamic var category : String = ""
     dynamic var gender = ""
     dynamic var brand = ""
@@ -90,6 +93,9 @@ class Clothes: Object {
     override static func primaryKey() -> String? {
         return "code"
     }
+    
+    
+    
 }
 
 class Size: Object {

@@ -9,6 +9,7 @@
 import UIKit
 import HidingNavigationBar
 import RealmSwift
+import Alamofire
 
 let coordiCVHeight : CGFloat = 175
 let infoTableViewCellHeight : CGFloat = 44
@@ -64,7 +65,30 @@ class ClosetViewController: UIViewController {
          category height = 50
          */
         closetCollectionView.contentInset = UIEdgeInsets(top: -coordiCVHeight - infoTableViewCellHeight , left: 0, bottom: 0, right: 0)
-        // Do any additional setup after loading the view.
+        
+        //request New Clothes To Save
+        let userName = realm.objects(UserInfo).first?.userName
+        let lastCode = clothesSet.last?.code
+        if let url = MyHost().urlWtihPathNameAboutMainServer("user/mycloset?name=" + userName! + "&my_closet_key=\(lastCode!)") {
+            Alamofire.request(.GET, url, encoding: .JSON).responseJSON(completionHandler: { (response) in
+                debugPrint(response)
+                
+                switch response.result {
+                case .Success(let json):
+                    if let dic = Parse.parseJSONToDictionary(json) {
+                        if dic["stat"] as! String == "success" {
+                            
+                        }
+                    }
+                    
+                case .Failure(_): break
+                    
+                }
+            })
+
+        }
+        
+        
         
     }
     override func viewWillAppear(animated: Bool) {
@@ -230,7 +254,7 @@ extension ClosetViewController : UICollectionViewDelegate, UICollectionViewDataS
             clothesSet = realm.objects(Clothes)
             closetCollectionView.reloadData()
         } else {
-            clothesSet = realm.objects(Clothes).filter("category = %@", Parse().parseIntToClothesCategory(currentCategory.rawValue).rawValue )
+            clothesSet = realm.objects(Clothes).filter("category = %@", Parse.parseIntToClothesCategory(currentCategory.rawValue).rawValue )
             closetCollectionView.reloadData()
         }
         

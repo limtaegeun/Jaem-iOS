@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
 
 class ClothesSaveView: UIView {
 
@@ -63,11 +64,43 @@ class ClothesSaveView: UIView {
     
     func tapButton(sender: AnyObject) {
         let index = buttons.indexOf(sender as! UIButton)
-        
         let realm = try! Realm()
-        try! realm.write {
-            realm.add(clothesSet[index!],update:  true)
+        
+        let userName = realm.objects(UserInfo).first?.userName
+        let targetClothes = clothesSet[index!]
+        let parameters : Dictionary<String,AnyObject> = ["name" : userName!,
+                                                         "clothing_key":targetClothes.serverKey,
+                                                         "main_size_key":targetClothes.requiredSizeKey,
+                                                         "sub_size_key":targetClothes.optionalSizeKey,
+                                                         "size":targetClothes.typicalSize]
+        print(parameters)
+        if let url = MyHost().urlWtihPathNameAboutMainServer("user/mycloset/regi") {
+            Alamofire.request(.POST, url, parameters: parameters, encoding: .JSON).responseJSON(completionHandler: { (response) in
+                debugPrint(response)
+                
+                switch response.result {
+                case .Success(let json):
+                    
+                    if let dic = Parse.parseJSONToDictionary(json) {
+                        if dic["stat"] as! String == "success" {
+                            targetClothes.code = dic["closet_key"] as! Int
+                            try! realm.write {
+                                realm.add(targetClothes,update:  true)
+                            }
+                        }
+                    }
+                    
+                    
+                case .Failure(_): break
+                    
+                }
+                
+            })
+
         }
+        
+        
+        
         
         UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
             self.alpha = 0

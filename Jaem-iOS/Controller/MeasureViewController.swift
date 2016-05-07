@@ -137,7 +137,7 @@ class MeasureViewController: UIViewController {
     @IBAction func nextStep(sender: AnyObject) {
         currentMeasureStep(currentStep + 1)
         pickerView.selectItem(50, animated: true)
-        containerViewController.measureStep[currentStep].write = true
+        containerViewController.measureStep?[currentStep].write = true
         containerViewController.collectionView!.performBatchUpdates({
             self.containerViewController.collectionView!.reloadSections(NSIndexSet(index: 0))
             }, completion: nil)
@@ -309,7 +309,7 @@ class MeasureViewController: UIViewController {
         
         
         //set write
-        containerViewController.measureStep[currentStep].write = true
+        containerViewController.measureStep?[currentStep].write = true
         containerViewController.collectionView!.performBatchUpdates({
             self.containerViewController.collectionView!.reloadSections(NSIndexSet(index: 0))
             }, completion: nil)

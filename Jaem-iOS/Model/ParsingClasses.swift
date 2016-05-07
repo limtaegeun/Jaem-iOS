@@ -9,8 +9,11 @@
 import UIKit
 
 class Parse {
+    var requiredBodySize = ["ShoulderWidth","BreastPeripheral","WaistCircumference","HipCircumference","ThighCircumference"]
+    var optionalBodySize = ["head","neck","pelvis","upperArm","calf","reach","legLength"]
     
-    func parseIntToClothesCategory(int : Int) -> ClothesCategory {
+    
+    class func parseIntToClothesCategory(int : Int) -> ClothesCategory {
         switch int {
         case 1:
             return ClothesCategory.OUTER
@@ -26,6 +29,14 @@ class Parse {
             return ClothesCategory.ACC
         default:
             return ClothesCategory.ACC
+        }
+    }
+    
+    class func parseJSONToDictionary(json:AnyObject) -> [String:AnyObject]? {
+        if let dic = json as? [String:AnyObject] {
+            return dic
+        } else {
+            return nil
         }
     }
 }

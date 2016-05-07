@@ -155,24 +155,25 @@ class RegisterViewController: UIViewController {
                     
                     switch response.result {
                     case .Success(let json):
-                        if json as! String == "regi_success" {
-                            if let realm = try? Realm() {
-                                try! realm.write({
-                                    realm.add(me)
-                                })
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                        if let dic = Parse.parseJSONToDictionary(json) {
+                            if dic["stat"] as! String == "regi_success" {
+                                if let realm = try? Realm() {
+                                    try! realm.write({
+                                        realm.add(me)
+                                    })
+                                    self.dismissViewControllerAnimated(true, completion: nil)
+                                }
+                            } else {
+                                self.appearErrorView("서버에 문제가 있습니다.")
                             }
-                        } else {
-                            self.appearErrorView("서버에 문제가 있습니다.")
                         }
+                        
                     case .Failure(_):
                         self.appearErrorView("네트워크에 문제가 있습니다.")
                         
                         
                         
                     }
-                    
-                    
                     
                 }
             }
@@ -211,21 +212,35 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
     func textFieldDidEndEditing(textField: UITextField) {
         
         if textField == emailTextField {
-            /*
+            
             if isValidEmail(textField.text!) {
                 let email = textField.text!
                 if let url = MyHost().urlWtihPathNameAboutMainServer("user/check/email?email="+email) {
                     Alamofire.request(.GET, url, encoding: .JSON).responseJSON { response in
                         debugPrint(response)
-                        if response.result.value!["stat"] as! String == "duplicate" {
-                            self.appearErrorView("이미 존재하는 이메일입니다.")
-                        } else if response.result.value!["stat"] as! String == "usefull" {
-                            self.appearErrorView("사용가능한 이메일입니다.")
-                            self.DataToSend["email"] = textField.text
-                            self.emailFlag = true
-                        } else {
-                            self.appearErrorView("오류가 발생하였습니다.")
+                        
+                        switch response.result {
+                        case .Success(let json):
+                            if let dic = Parse.parseJSONToDictionary(json) {
+                                if dic["stat"] as! String == "duplicate" {
+                                    self.appearErrorView("이미 존재하는 이메일입니다.")
+                                } else if dic["stat"] as! String == "usefull" {
+                                    self.appearErrorView("사용가능한 이메일입니다.")
+                                    self.DataToSend["email"] = textField.text
+                                    self.emailFlag = true
+                                } else {
+                                    self.appearErrorView("서버에 오류가 발생하였습니다.")
+                                }
+                            }
+                            
+                            
+                        case .Failure(_):
+                            
+                            self.appearErrorView("네트워크에 문제가 있습니다.")
+                            
+                            
                         }
+                        
                     }
                 }
                 
@@ -240,15 +255,29 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
                 if let url = MyHost().urlWtihPathNameAboutMainServer("user/check/email?name="+name) {
                     Alamofire.request(.GET, url, encoding: .JSON).responseJSON { response in
                         debugPrint(response)
-                        if response.result.value!["stat"] as! String == "duplicate" {
-                            self.appearErrorView("이미 존재하는 이메일입니다.")
-                        } else if response.result.value!["stat"] as! String == "usefull" {
-                            self.appearErrorView("사용가능한 이메일입니다.")
-                            self.DataToSend["email"] = textField.text
-                            self.emailFlag = true
-                        } else {
-                            self.appearErrorView("오류가 발생하였습니다.")
+                        
+                        switch response.result {
+                        case .Success(let json):
+                            if let dic = Parse.parseJSONToDictionary(json) {
+                                if dic["stat"] as! String == "duplicate" {
+                                    self.appearErrorView("이미 존재하는 이메일입니다.")
+                                } else if dic["stat"] as! String == "usefull" {
+                                    self.appearErrorView("사용가능한 이메일입니다.")
+                                    self.DataToSend["email"] = textField.text
+                                    self.emailFlag = true
+                                } else {
+                                    self.appearErrorView("오류가 발생하였습니다.")
+                                }
+                            }
+                            
+                            
+                        case .Failure(_):
+                            
+                            self.appearErrorView("네트워크 오류가 발생하였습니다.")
+                            
                         }
+                        
+                        
                     }
                 }
                 
@@ -276,7 +305,7 @@ extension RegisterViewController : UITextFieldDelegate , UIGestureRecognizerDele
             regiButton.userInteractionEnabled = false
             regiButton.titleLabel?.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
             
-           */
+ 
         }
  
     }
