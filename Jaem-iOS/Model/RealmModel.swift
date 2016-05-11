@@ -24,9 +24,9 @@ class UserInfo: Object {
     dynamic var userName = ""
     dynamic var email = ""
     dynamic var gender = ""
-    dynamic var birthDay = NSDate()
-    dynamic var favoriteTopSize = 0.0
-    dynamic var favoriteBottomSize = 0.0
+    dynamic var birthDay : NSDate = NSDate(timeIntervalSince1970: 0)
+    dynamic var favoriteTopSize = 0
+    dynamic var favoriteBottomSize = 0
     
     override static func primaryKey() -> String? {
         return "userName"
@@ -96,6 +96,11 @@ class Clothes: Object {
     
     
     
+}
+
+class ClothesWithImageURL : Object {
+    dynamic var clothes : Clothes? = nil
+    dynamic var imageURLPath : String = ""
 }
 
 class Size: Object {

@@ -372,7 +372,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axL-pt-srj">
-                                <rect key="frame" x="5" y="10" width="40" height="40"/>
+                                <rect key="frame" x="5" y="30" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2UH-CN-lsO"/>
                                     <constraint firstAttribute="width" constant="40" id="cHu-1P-8si"/>
@@ -462,7 +462,7 @@
                             <constraint firstItem="gAA-e9-qOZ" firstAttribute="trailing" secondItem="MKg-ZH-YUb" secondAttribute="trailingMargin" id="w4B-Ox-aIM"/>
                             <constraint firstItem="WA0-DP-snL" firstAttribute="top" secondItem="9Mn-wG-d6w" secondAttribute="bottom" id="w69-Gk-ARl"/>
                             <constraint firstItem="WA0-DP-snL" firstAttribute="top" secondItem="GwS-Vy-Mpv" secondAttribute="bottom" id="wov-e8-nHx"/>
-                            <constraint firstItem="axL-pt-srj" firstAttribute="top" secondItem="7Ej-aA-kTH" secondAttribute="bottom" constant="-10" id="xgu-QN-dU1"/>
+                            <constraint firstItem="axL-pt-srj" firstAttribute="top" secondItem="7Ej-aA-kTH" secondAttribute="bottom" constant="10" id="xgu-QN-dU1"/>
                             <constraint firstAttribute="trailing" secondItem="WA0-DP-snL" secondAttribute="trailing" id="y4q-1R-HtB"/>
                         </constraints>
                     </view>
@@ -678,10 +678,17 @@
                             <constraint firstAttribute="trailing" secondItem="77O-Th-4LL" secondAttribute="trailing" id="qX1-Na-bny"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RhT-oK-d1t"/>
+                    <navigationItem key="navigationItem" id="RhT-oK-d1t">
+                        <barButtonItem key="leftBarButtonItem" id="lY3-bB-VyD">
+                            <connections>
+                                <action selector="tapExit:" destination="YWn-KO-cV5" id="JUv-TQ-I0C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="connectButton" destination="eda-Z2-CFD" id="mW2-Yr-04d"/>
                         <outlet property="connectImageView" destination="77O-Th-4LL" id="qCN-Aw-foA"/>
+                        <outlet property="exitButton" destination="lY3-bB-VyD" id="1Lz-kA-pGC"/>
                         <outlet property="noDeviceButton" destination="DZb-ri-qLO" id="XjK-c0-rco"/>
                         <segue destination="Jz3-9M-bRV" kind="push" identifier="GoDeviceList" id="Xat-h9-dre"/>
                         <segue destination="Nul-Wb-dcm" kind="push" identifier="NoDevice" id="gah-ft-hlU"/>
@@ -1455,6 +1462,7 @@
                     <connections>
                         <outlet property="collectionView" destination="REa-Dc-z9z" id="dMB-q5-J4W"/>
                         <outlet property="explainImageView" destination="5zQ-lz-zPY" id="4cR-sn-W6P"/>
+                        <outlet property="explainImageViewTopConstraint" destination="1aC-bg-6pd" id="JoD-KR-SRV"/>
                         <outlet property="skipButton" destination="opW-7g-Nfx" id="PMG-8T-lZi"/>
                         <outlet property="stepLabel" destination="ptQ-vg-wBb" id="zhj-h2-PNh"/>
                         <segue destination="7Ic-8T-aTO" kind="push" identifier="GetAnotherSizeFromNoDevice" id="5Gu-Mb-nva"/>
@@ -2416,7 +2424,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1KG-Pl-VHs">
-                                <rect key="frame" x="5" y="10" width="40" height="40"/>
+                                <rect key="frame" x="5" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="sQN-jR-NR8"/>
                                     <constraint firstAttribute="height" constant="40" id="wXA-xS-J4X"/>
@@ -2436,7 +2444,7 @@
                             <constraint firstItem="Nta-do-oaD" firstAttribute="top" secondItem="prp-lI-p1u" secondAttribute="topMargin" id="RQB-E9-Gi9"/>
                             <constraint firstItem="e0q-Lc-4nb" firstAttribute="leading" secondItem="Nta-do-oaD" secondAttribute="trailing" id="V4R-4p-YPI"/>
                             <constraint firstItem="Nta-do-oaD" firstAttribute="width" secondItem="e0q-Lc-4nb" secondAttribute="width" id="aOM-HI-1XT"/>
-                            <constraint firstItem="1KG-Pl-VHs" firstAttribute="top" secondItem="YUU-CY-dez" secondAttribute="bottom" constant="-10" id="hJy-ci-4mt"/>
+                            <constraint firstItem="1KG-Pl-VHs" firstAttribute="top" secondItem="YUU-CY-dez" secondAttribute="bottom" id="hJy-ci-4mt"/>
                             <constraint firstItem="Nta-do-oaD" firstAttribute="leading" secondItem="prp-lI-p1u" secondAttribute="leadingMargin" constant="-20" id="xKO-RR-LOf"/>
                         </constraints>
                     </view>
@@ -2670,8 +2678,8 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ltp-bx-7aT"/>
-        <segue reference="vCL-Lq-E08"/>
-        <segue reference="7GM-en-1sB"/>
+        <segue reference="5Gu-Mb-nva"/>
+        <segue reference="0RS-GX-FT3"/>
+        <segue reference="3NM-zg-j2r"/>
     </inferredMetricsTieBreakers>
 </document>

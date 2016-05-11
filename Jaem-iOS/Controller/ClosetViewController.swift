@@ -23,9 +23,11 @@ class ClosetViewController: UIViewController {
     var hidingNavBarManager: HidingNavigationBarManager?
     
     var clothesSet : Results<(Clothes)>!
+    var newClothes : [ClothesWithImageURL]?
     var header : ClothesHeaderView!
     var headerHeight : CGFloat = coordiCVHeight + infoTableViewCellHeight + categoryHeight
     
+    var expand = false
     var loaded = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +56,6 @@ class ClosetViewController: UIViewController {
         noClothesLabel.hidden =  true
         view.addSubview(noClothesLabel)
         
-        let realm = try! Realm()
-                
-        clothesSet = realm.objects(Clothes)
-        
         /*
          기준
          coordiCV height = 175
@@ -66,36 +64,14 @@ class ClosetViewController: UIViewController {
          */
         closetCollectionView.contentInset = UIEdgeInsets(top: -coordiCVHeight - infoTableViewCellHeight , left: 0, bottom: 0, right: 0)
         
-        //request New Clothes To Save
-        let userName = realm.objects(UserInfo).first?.userName
-        let lastCode = clothesSet.last?.code
-        if let url = MyHost().urlWtihPathNameAboutMainServer("user/mycloset?name=" + userName! + "&my_closet_key=\(lastCode!)") {
-            Alamofire.request(.GET, url, encoding: .JSON).responseJSON(completionHandler: { (response) in
-                debugPrint(response)
-                
-                switch response.result {
-                case .Success(let json):
-                    if let dic = Parse.parseJSONToDictionary(json) {
-                        if dic["stat"] as! String == "success" {
-                            
-                        }
-                    }
-                    
-                case .Failure(_): break
-                    
-                }
-            })
-
-        }
-        
-        
         
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         hidingNavBarManager?.viewWillAppear(animated)
         
-        
+        print(closetCollectionView.contentInset)
+        print(closetCollectionView.contentOffset)
         
     }
     override func viewWillDisappear(animated: Bool) {
@@ -104,6 +80,7 @@ class ClosetViewController: UIViewController {
         hidingNavBarManager?.viewWillDisappear(animated)
         navigationItem.title = ""
     }
+    
     
     
     override func viewDidAppear(animated: Bool) {
@@ -120,8 +97,64 @@ class ClosetViewController: UIViewController {
             header.delegate = self
             loaded = true
         }
-        self.closetCollectionView.contentOffset.y = -(-coordiCVHeight - infoTableViewCellHeight) - 64
+        //self.closetCollectionView.contentOffset.y = -(-coordiCVHeight - infoTableViewCellHeight) - 64
         
+        let realm = try! Realm()
+        
+        clothesSet = realm.objects(Clothes)
+        
+        //request New Clothes To Save
+        if let userName = realm.objects(UserInfo).first?.userName {
+            if let lastCode = clothesSet.last?.code {
+                
+                if let url = MyHost().urlWtihPathNameAboutMainServer("user/mycloset?name=" + userName + "&my_closet_key=\(lastCode)") {
+                    Alamofire.request(.GET, url, encoding: .JSON).responseJSON(completionHandler: { (response) in
+                        debugPrint(response)
+                        
+                        switch response.result {
+                        case .Success(let json):
+                            if let dic = Parse.parseJSONToDictionary(json) {
+                                if dic["stat"] as! String == "success" {
+                                    if let array = dic["result"] as? [Dictionary<String,AnyObject>] {
+                                        self.newClothes = Parse.parseToObjectWithImageURL(array)
+                                        
+                                    }
+                                }
+                            }
+                            
+                        case .Failure(_): break
+                            
+                        }
+                    })
+                    
+                }
+                
+            } else {
+                if let url = MyHost().urlWtihPathNameAboutMainServer("user/mycloset?name=" + userName) {
+                    Alamofire.request(.GET, url, encoding: .JSON).responseJSON(completionHandler: { (response) in
+                        debugPrint(response)
+                        
+                        switch response.result {
+                        case .Success(let json):
+                            if let dic = Parse.parseJSONToDictionary(json) {
+                                if dic["stat"] as! String == "success" {
+                                    if let array = dic["result"] as? [Dictionary<String,AnyObject>] {
+                                        self.newClothes = Parse.parseToObjectWithImageURL(array)
+                                        
+                                    }
+                                }
+                            }
+                            
+                        case .Failure(_): break
+                            
+                        }
+                    })
+                    
+                }
+            }
+        }
+        
+        closetCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -165,9 +198,10 @@ class ClosetViewController: UIViewController {
         header.coordiSet.removeAll()
         header.coordiCollectionView.reloadData()
         header.infoTableView.reloadData()
+        expand = true
         UIView.animateWithDuration(0.3, animations: {
-            self.closetCollectionView.contentInset = UIEdgeInsets(top: -coordiCVHeight - infoTableViewCellHeight , left: 0, bottom: 0, right: 0)
-            self.closetCollectionView.contentOffset.y = -(-coordiCVHeight - infoTableViewCellHeight) - 64
+            self.closetCollectionView.contentInset = UIEdgeInsets(top: -coordiCVHeight - infoTableViewCellHeight + 60 - 20 , left: 0, bottom: 0, right: 0)
+            //self.closetCollectionView.contentOffset.y = -(-coordiCVHeight - infoTableViewCellHeight) - 60
         }) { (complete) in
             //
         }
@@ -201,12 +235,18 @@ extension ClosetViewController : UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if clothesSet.count == 0 {
-            noClothesLabel.hidden = false
+        if clothesSet != nil {
+        
+            if clothesSet.count == 0 {
+                noClothesLabel.hidden = false
+            } else {
+                noClothesLabel.center = expand ? CGPointMake(closetCollectionView.center.x, closetCollectionView.center.y + (coordiCVHeight + infoTableViewCellHeight + 40)/2) : closetCollectionView.center
+                noClothesLabel.hidden = true
+            }
+            return clothesSet.count
         } else {
-            noClothesLabel.hidden = true
+            return 0
         }
-        return clothesSet.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -223,6 +263,7 @@ extension ClosetViewController : UICollectionViewDelegate, UICollectionViewDataS
         header.saveCoordi = clothesSet[indexPath.row]
         header.coordiCollectionView.reloadData()
         header.infoTableView.reloadData()
+        expand = true
         UIView.animateWithDuration(0.3, animations: { 
             self.closetCollectionView.contentInset = UIEdgeInsets(top: 64 , left: 0, bottom: 0, right: 0)
             self.closetCollectionView.contentOffset.y = -64

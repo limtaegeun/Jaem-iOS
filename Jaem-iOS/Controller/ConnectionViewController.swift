@@ -15,6 +15,7 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
     
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var noDeviceButton: UIButton!
+    @IBOutlet weak var exitButton: UIBarButtonItem!
     
     @IBOutlet weak var connectImageView: UIImageView!
     
@@ -41,6 +42,8 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
         connectButton.titleLabel!.attributedText = attributeString
         
         btDiscoverySharedInstance
+        
+        exitButton.image = JaemIconStyleKit.imageOfExit_black
         // Do any additional setup after loading the view.
     }
 
@@ -61,6 +64,9 @@ class ConnectionViewController: UIViewController , BTDiscoveryDelegate {
         performSegueWithIdentifier("NoDevice", sender: self)
     }
     
+    @IBAction func tapExit(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     // MARK: - Navigation
 

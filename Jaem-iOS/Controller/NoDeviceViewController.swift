@@ -17,17 +17,19 @@ class NoDeviceViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var explainImageView: UIImageView!
     
+    @IBOutlet weak var explainImageViewTopConstraint: NSLayoutConstraint!
     var measureStep : [MeasureTerm]?
     var requireStep = true
     
     var picker : UIPickerView?
+    var toolbar : UIToolbar?
     var indexs = [CGFloat]()
     
     var presentRow = [0,0,0,0,0,0,0,0,0,0,0,0]
     
     var textfields = [UITextField]()
     var nowTextfield : UITextField?
-    
+    var usingTextfield : Bool = false
     var gender : Gender?
     
     var dataToSave = MyBodySize()
@@ -36,7 +38,7 @@ class NoDeviceViewController: UIViewController {
         super.viewDidLoad()
 
         setMeasureTerm(true)
-        
+        setPickerView()
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -53,6 +55,12 @@ class NoDeviceViewController: UIViewController {
         dataToSave.index = dataToSave.IncrementaID()
         
         explainImageView.image = UIImage(named: "noDeviceDefault")
+        explainImageViewTopConstraint.constant = 60
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapping(_:)))
+        tapGestureRecognizer.delegate = self
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
 
     
@@ -77,6 +85,7 @@ class NoDeviceViewController: UIViewController {
     func setMeasureTerm(require : Bool)  {
         var set = [MeasureTerm]()
         if require == true {
+            textfields.removeAll()
             set.append(MeasureTerm(title: "SHOULDER",write: false))
             set.append(MeasureTerm(title: "WAIST",write: false))
             set.append(MeasureTerm(title: "CHEST", write: false))
@@ -100,9 +109,9 @@ class NoDeviceViewController: UIViewController {
         
     }
     
-    func setPickerView(textField: UITextField) {
+    func setPickerView() {
         picker = UIPickerView()
-        textfields.append(textField)
+        
         if let picker = self.picker {
             picker.sizeToFit()
             picker.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
@@ -110,21 +119,24 @@ class NoDeviceViewController: UIViewController {
             picker.dataSource = self
             picker.showsSelectionIndicator = true
             
-            textField.inputView = picker
-            
             //add a done button
-            let toolbar = UIToolbar()
-            toolbar.barStyle = UIBarStyle.Default
-            toolbar.translucent = true
-            toolbar.tintColor = nil
-            toolbar.sizeToFit()
-            
-            let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.dismissPicker) )
-            toolbar.setItems([doneButton], animated: false)
-            
-            textField.inputAccessoryView = toolbar
-            // set Notification
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.pickerViewWillshow(_:)), name: "UITextFieldTextDidBeginEditingNotification", object: nil)
+            toolbar = UIToolbar()
+            if let toolbar = self.toolbar {
+                toolbar.barStyle = UIBarStyle.Default
+                toolbar.translucent = true
+                toolbar.tintColor = nil
+                toolbar.sizeToFit()
+                
+                let doneButton  = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.dismissPicker) )
+                doneButton.tintColor = UIColor.blackColor()
+                
+                let lastButton = UIBarButtonItem(title: "Last", style:.Plain, target: self, action: #selector(self.tapLastButton(_:)))
+                lastButton.tintColor = UIColor.blackColor()
+                let nextButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(self.tapNextButton(_:)))
+                nextButton.tintColor = UIColor.blackColor()
+                
+                toolbar.setItems([doneButton,lastButton,nextButton], animated: false)
+            }
             
             //creat ages Array
             for index in 0...250 {
@@ -144,58 +156,39 @@ class NoDeviceViewController: UIViewController {
         
     }
     
-    
-   
-    
-    func pickerViewWillshow(notification : NSNotification) {
-        if let textfield =  notification.object as? UITextField {
-            nowTextfield = textfield
-        }
-        if nowTextfield!.isFirstResponder() {
-        
-            if let textfield =  notification.object as? UITextField {
-                
-                if let textfieldIndex = textfields.indexOf(textfield) {
-                
-                    picker?.reloadAllComponents()
-                    picker?.selectRow(requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5], inComponent: 0, animated: true)
-                    
-                    if requireStep == true {
-                        stepLabel.text = "\(textfieldIndex + 1) OF 5 STEPS"
-                    } else {
-                        stepLabel.text = "\(textfieldIndex + 1) OF 7 STEPS"
-                    }
-                    
-                    //change image 
-                    if gender == .Male {
-                        if requireStep == true {
-                            explainImageView.image = UIImage(named: "NM\(textfieldIndex + 1).png")
-                        } else {
-                            explainImageView.image = UIImage(named: "NM\(textfieldIndex + 6).png")
-
-                        }
-                    } else {
-                        if requireStep == true {
-                            explainImageView.image = UIImage(named: "NF\(textfieldIndex + 1).png")
-                        } else {
-                            explainImageView.image = UIImage(named: "NF\(textfieldIndex + 6).png")
-                            
-                        }
-                    }
-                    
-                    
-                    //set init value
-                    let pickerString = "\(indexs[requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5]])CM"
-                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
-                    
-                    attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
-                    
-                    nowTextfield?.attributedText = attributeString
-                
+    func tapLastButton(sender: AnyObject) {
+        if nowTextfield != nil {
+            let index = textfields.indexOf(nowTextfield!)
+            
+            if index == 0 {
+                if nowTextfield!.isFirstResponder() {
+                    nowTextfield!.resignFirstResponder()
                 }
+                
+            } else {
+                textfields[index! + 1].becomeFirstResponder()
             }
         }
+        
     }
+    
+    func tapNextButton(sender : AnyObject) {
+        if nowTextfield != nil {
+            let index = textfields.indexOf(nowTextfield!)
+            
+            if index == textfields.count - 1 {
+                if nowTextfield!.isFirstResponder() {
+                    nowTextfield!.resignFirstResponder()
+                }
+                
+            } else {
+                textfields[index! + 1].becomeFirstResponder()
+                
+            }
+        
+        }
+    }
+   
     
     func askNextStep() {
         let alert = UIAlertController(title: "조금 더 상세하게 기록하시겠어요?" , message: "더욱 정밀한 추천을 위해 몸의 몇 부분을 추가로 기록합니다.", preferredStyle: .Alert)
@@ -204,6 +197,8 @@ class NoDeviceViewController: UIViewController {
             self.requireStep = false
             self.setMeasureTerm(self.requireStep)
             self.stepLabel.text = "1 OF 7 STEPS"
+            self.explainImageView.image = UIImage(named: "NoDeviceOptionDefault")
+            self.explainImageViewTopConstraint.constant = 60
             self.chackData()
         })
         alert.addAction(action)
@@ -270,21 +265,50 @@ class NoDeviceViewController: UIViewController {
     func chackData() {
         //check if there is value zero
         var thereIsZeroValue = false
-        for i in 0...4 {
-            if presentRow[i] == 0 {
-                thereIsZeroValue = true
+        if requireStep == true {
+            for i in 0...4 {
+                if presentRow[i] == 0 {
+                    thereIsZeroValue = true
+                }
+            }
+            
+            // 측정 값중에 0이 없고 필수 사이즈 측정중이라면 skip버튼을 next로 바꾼다
+            if !thereIsZeroValue {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "NEXT")
+                
+                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0,4))
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
+            } else {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "SKIP")
+                
+                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0,4))
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
+            }
+        } else {
+            for i in 5...11 {
+                if presentRow[i] == 0 {
+                    thereIsZeroValue = true
+                }
+            }
+            
+            // 측정 값중에 0이 없으면 skip버튼을 next로 바꾼다
+            if !thereIsZeroValue {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "NEXT")
+                
+                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0,4))
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
+            } else {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "SKIP")
+                
+                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0,4))
+                skipButton.setAttributedTitle(attributeString, forState: .Normal)
             }
         }
         
-        if !thereIsZeroValue && requireStep {
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "NEXT")
-            
-            attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0,4))
-            skipButton.setAttributedTitle(attributeString, forState: .Normal)
-        }
+        
     }
     
-    //MAKR : ACTION
+    //MARK: - ACTION
     
     @IBAction func tapSkip(sender: AnyObject) {
         var thereIsZeroValue = false
@@ -301,9 +325,19 @@ class NoDeviceViewController: UIViewController {
         }
     }
     
+    func tapping(recognizer:UITapGestureRecognizer) {
+        if nowTextfield != nil {
+            if nowTextfield!.isFirstResponder() {
+                nowTextfield?.resignFirstResponder()
+            }
+        }
+        
+        
+    }
+    
 }
 
-extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate , UIPickerViewDelegate, UIPickerViewDataSource  {
+extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate , UIPickerViewDelegate, UIPickerViewDataSource , UIGestureRecognizerDelegate {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -325,11 +359,17 @@ extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDat
                 cell.sizeTextField.userInteractionEnabled = false
             } else if indexPath.row == measureStep!.count {
                 cell.titleLabel.text = measureStep![indexPath.row - 1].title
-                setPickerView(cell.sizeTextField)
+                cell.sizeTextField.delegate = self
+                cell.sizeTextField.inputView = picker
+                cell.sizeTextField.inputAccessoryView = toolbar
+                textfields.append(cell.sizeTextField)
+
             } else {
                 cell.titleLabel.text = measureStep![indexPath.row].title
-                setPickerView(cell.sizeTextField)
-
+                cell.sizeTextField.delegate = self
+                cell.sizeTextField.inputView = picker
+                cell.sizeTextField.inputAccessoryView = toolbar
+                textfields.append(cell.sizeTextField)
             }
         }
         
@@ -338,14 +378,71 @@ extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDat
         
     }
     
+    //MAKR : TextField Delegate 
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        explainImageViewTopConstraint.constant = 0
+        if let textfieldIndex = textfields.indexOf(textField) {
+            nowTextfield = textField
+            usingTextfield = true
+            picker?.reloadAllComponents()
+            
+            //if value is 0  set Default Value
+            if requireStep == true {
+                presentRow[textfieldIndex] = (presentRow[textfieldIndex] == 0) ? 100 : presentRow[textfieldIndex]
+            } else {
+                presentRow[textfieldIndex + 5] = (presentRow[textfieldIndex + 5] == 0) ? 100 : presentRow[textfieldIndex + 5]
+            }
+            // selecRow by default value
+            picker?.selectRow(requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5], inComponent: 0, animated: true)
+            
+            if requireStep == true {
+                stepLabel.text = "\(textfieldIndex + 1) OF 5 STEPS"
+            } else {
+                stepLabel.text = "\(textfieldIndex + 1) OF 7 STEPS"
+            }
+            
+            //change image
+            if gender == .Male {
+                if requireStep == true {
+                    explainImageView.image = UIImage(named: "NM\(textfieldIndex + 1).png")
+                } else {
+                    explainImageView.image = UIImage(named: "NM\(textfieldIndex + 6).png")
+                    
+                }
+            } else {
+                if requireStep == true {
+                    explainImageView.image = UIImage(named: "NF\(textfieldIndex + 1).png")
+                } else {
+                    explainImageView.image = UIImage(named: "NF\(textfieldIndex + 6).png")
+                    
+                }
+            }
+            
+            
+            //set init value
+            let pickerString = "\(indexs[requireStep ? presentRow[textfieldIndex] : presentRow[textfieldIndex + 5]]) CM"
+            
+            
+            nowTextfield?.text = pickerString
+            
+        }
+        
+    }
+    
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        usingTextfield = false
+        chackData()
+    }
     
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return "\(indexs[row])"
         
-            
+        
         
     }
     
@@ -353,11 +450,8 @@ extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDat
         if self.nowTextfield!.isFirstResponder() {
             //get value of pickerView
             let pickerString = "\(indexs[row])CM"
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: pickerString)
             
-            attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, range: NSMakeRange(pickerString.characters.count - 2, 2))
-            
-            nowTextfield?.attributedText = attributeString
+            nowTextfield?.text = pickerString
             //self.DataToSend["gender"] = genders[row]
             let index = textfields.indexOf(nowTextfield!)
             if requireStep == true {
@@ -381,5 +475,18 @@ extension NoDeviceViewController : UICollectionViewDelegate, UICollectionViewDat
         
     }
     
+    //MARK: UIGestureRecognizerDelegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if usingTextfield == true {
+            if !CGRectContainsPoint(picker!.frame, touch.locationInView(view)) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
     
 }

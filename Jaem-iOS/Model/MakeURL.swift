@@ -9,7 +9,7 @@
 import UIKit
 
 struct MyHost {
-    var AmazonMainHost : String =  "http://ec2-52-193-85-231.ap-northeast-1.compute.amazonaws.com:9000"
+    var AmazonMainHost : String =  "http://www.jaemurbody.com"
     
     func urlWithPathName(PathName: String, host : String) -> NSURL? {
         let path = NSString(string: PathName)

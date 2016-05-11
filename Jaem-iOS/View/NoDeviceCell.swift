@@ -17,6 +17,7 @@ class NoDeviceCell: UICollectionViewCell {
     override func prepareForReuse() {
         titleLabel.text = ""
         sizeTextField.placeholder = "__CM"
+        sizeTextField.text = ""
         sizeTextField.userInteractionEnabled = true
         
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class LoginViewController: UIViewController {
 
@@ -93,9 +94,6 @@ class LoginViewController: UIViewController {
     @IBAction func tapLogin(sender: AnyObject) {
         if userNameFlag && passwordFlag {
             
-            
-            
-            
             let name = DataToSend["name"]!
             let password = DataToSend["password"]!
             if let url = MyHost().urlWtihPathNameAboutMainServer("user/login?name="+name+"&password="+password) {
@@ -107,6 +105,21 @@ class LoginViewController: UIViewController {
                         if let dic = Parse.parseJSONToDictionary(json) {
                             
                             if dic["stat"] as! String == "login_success" {
+                                let realm = try! Realm()
+                                let me = UserInfo()
+                                me.userName = self.DataToSend["name"]!
+                                let utc: NSTimeInterval = NSTimeInterval( dic["birthday"] as! Int)
+                                me.birthDay = NSDate(timeIntervalSince1970: utc)
+                                me.email = dic["email"] as! String
+                                me.favoriteTopSize = dic["body_top_category"] as! Int
+                                me.favoriteBottomSize = dic["body_bottom_category"] as! Int
+                                let genderJSON = dic["gender"] as! String
+                                me.gender = Parse.parseGender(genderJSON).rawValue
+                                
+                                try! realm.write({ 
+                                    realm.add(me)
+                                })
+                                
                                 self.performSegueWithIdentifier("GoMain", sender: self)
                                 
                             } else if dic["stat"] as! String == "not_found_name" {

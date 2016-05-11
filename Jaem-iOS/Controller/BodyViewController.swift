@@ -20,7 +20,7 @@ struct ParsingData {
     
 }
 
-var test = false
+var test = true
 
 class BodyViewController: UIViewController {
 
@@ -52,8 +52,10 @@ class BodyViewController: UIViewController {
         if test == true {
             
             let realm = try! Realm()
-            
-            let body = realm.objects(UserInfo)
+            try! realm.write({ 
+                realm.create(UserInfo.self, value: ["userName":"Ori","email":"imori333@gmail.com","gender":"Male"], update: true)
+
+            })
             
             
             

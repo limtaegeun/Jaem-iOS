@@ -44,6 +44,8 @@ class AdditionInfoViewController: UIViewController {
         
         birthTextField.delegate = self
         // Do any additional setup after loading the view.
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -86,6 +88,7 @@ class AdditionInfoViewController: UIViewController {
             btDiscoverySharedInstance.peripheralList.removeAll()
             btDiscoverySharedInstance.bleService?.reset()
             btDiscoverySharedInstance.centralManager?.cancelPeripheralConnection(targetPeripheral!)
+            btDiscoverySharedInstance.centralManager?.stopScan()
         }
         
     }

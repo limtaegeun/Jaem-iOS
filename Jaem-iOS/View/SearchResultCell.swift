@@ -87,24 +87,7 @@ class SearchResultCell: UICollectionViewCell {
         }
     }
     
-    func parseClothesCategory(int : Int) -> ClothesCategory {
-        switch int {
-        case 0:
-            return ClothesCategory.OUTER
-        case 1:
-            return ClothesCategory.TOP
-        case 2:
-            return ClothesCategory.BOTTOM
-        case 3:
-            return ClothesCategory.SUIT
-        case 4:
-            return ClothesCategory.DRESS
-        case 5:
-            return ClothesCategory.ACC
-        default:
-            return ClothesCategory.ACC
-        }
-    }
+    
     
     func parseGender(string : String) -> Gender {
         switch string {
@@ -125,7 +108,7 @@ class SearchResultCell: UICollectionViewCell {
             let object = Clothes()
             object.serverKey = data["c_key"] as! Int
             let category = data["cloth_code"] as! Int
-            object.category = parseClothesCategory(category).rawValue
+            object.category = Parse.parseIntToClothesCategory(category).rawValue
             let gender = data["gender"] as! String
             object.gender = parseGender(gender).rawValue
             object.brand = result.brandKo
